@@ -7,7 +7,6 @@ Run :
  ````
  	$ npm install
  	$ gulp
-
  ```` 
 
  
