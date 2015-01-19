@@ -90,6 +90,6 @@ lcov.info
 pids
 logs
 results
-src
+public
 node_modules
 .node_history
