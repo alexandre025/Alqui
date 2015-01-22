@@ -2,7 +2,7 @@
 
 $f3=require('lib/base.php');
 $f3->set('DEBUG',1);
-$f3->set('UI','templates/');
+$f3->set('UI','app/views/');
 
 $f3->route('GET /',function($f3){
   // $view=new View();
