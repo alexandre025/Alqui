@@ -7,7 +7,7 @@ class app_controller {
 	}
 
 	function home(){
-		echo View::instance()->render('main.html');
+		echo View::instance()->render('home.html');
 	}
 }
 
