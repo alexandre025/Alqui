@@ -4,12 +4,15 @@ namespace APP\CONTROLLERS;
 
 class app_controller {
 
-	function __constructor(){
+	private $model;
+	private $tpl;  
+
+	function __construct(){
     	$this->tpl='home.html';
     	$this->model=new \APP\MODELS\app_model();
 	}
 
-	function home(){
+	function home($f3){
 
 	}
 
