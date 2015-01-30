@@ -98,7 +98,7 @@ header li:hover{
 	width: 640px;
 }
 #landing-form input[name='object-name']{
-	width: 440px;
+	width: 375px;
 	padding: 14px 20px;
 
 	font-weight: 100;
@@ -107,18 +107,35 @@ header li:hover{
 
 	border: 0 none;
 	background: rgba(255,255,255,.8);
+	border-radius: 2px;
+}
+#landing-form input[name='object-zip']{
+	width: 100px;
+	padding: 14px 20px;
+
+	font-weight: 100;
+	font-size: 16px;
+	letter-spacing: 1px;
+
+	border: 0 none;
+	background: rgba(255,255,255,.8);
+	border-radius: 2px;
 }
 #landing-form input[name='object-submit']{
-	margin: 0 0 0 -4px;
-	width: 140px;
+	margin: 0 0 0 10px;
+	width: 150px;
 	padding: 14px 20px;
 
 	border: 0 none;
 	border-radius: 0;
 	background: $primary-color;
 	color: white;
+	border-radius: 2px;
 
 	font-weight: 100;
 	font-size: 16px;
 	letter-spacing: 1px;
+}
+#landing-form input[name='object-submit']:hover{
+	background: lighten($primary-color,5%);
 }
