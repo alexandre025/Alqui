@@ -1,13 +1,13 @@
 'use.strict'
 
-var $ = require('../tools.js')
+var $ = require('../tools.js');
 
 var displayer = {
 
 	init : function(){
 		displayer.loginPopup();
 	},
-
+	// Login popup toggle
 	loginPopup : function(){
 
 		// Click on login link
@@ -18,7 +18,7 @@ var displayer = {
 
 		// Press escape 
 		window.addEventListener('keyup', function(e) {
-            if (e.keyCode === 38) {
+            if (e.keyCode === 27) {
             	displayer.closeLogin();
             }
         },false);
@@ -32,5 +32,4 @@ var displayer = {
 	closeLogin : function(){
 		$.byId('login-overlay').classList.remove('active');
 	}
-
 }
