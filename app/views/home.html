@@ -12,6 +12,7 @@
 		</head>
 		<body>
 			
+			<div id="login-overlay"></div>
 			<div id="page-landing"></div>
 			<header>
 				<div>
@@ -19,7 +20,7 @@
 					<div id="header-logo"></div>
 					<ul>
 						<a href=""><li>Inscription</li></a>
-						<a href=""><li>Connexion</li></a>
+						<a href="" id='login-link'><li>Connexion</li></a>
 					</ul>
 				</div>
 			</header>
@@ -31,6 +32,7 @@
 
 			<form action='' method='POST' id='landing-form'>
 				<input type='text' placeholder='Un objet foooooormidable' name='object-name'/>
+				<input type='text' placeholder='Code Postall' name='object-zip'/>
 				<input type='submit' value='Rechercher' name='object-submit'>
 			</form>
 		
