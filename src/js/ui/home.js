@@ -29,4 +29,5 @@ var home = {
 			},10);
 		};
 	} 
-}
+};
+module.exports = home;
