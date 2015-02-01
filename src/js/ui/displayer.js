@@ -24,8 +24,12 @@ var displayer = {
         },false);
 
 		// Click on overlay
-        $.byId('login-overlay').addEventListener('click',function(){
+        $.byId('login-overlay').addEventListener('click',function(e){
         	displayer.closeLogin();
+        },false);
+        // Stop bubbling when clicking on the form
+        $.byClass('login-form')[0].addEventListener('click',function(e){
+          e.stopPropagation();
         },false);
 
 	},
