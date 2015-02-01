@@ -10,6 +10,9 @@ class app_controller {
 	function __construct(){
     	$this->tpl='home.html';
     	$this->model=new \APP\MODELS\app_model();
+    	new \DB\SQL\Session($this->model->dB,'sess_handler',true);
+    	$f3=\Base::instance();
+
 	}
 
 	function home($f3){

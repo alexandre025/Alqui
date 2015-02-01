@@ -14,20 +14,30 @@ var home = {
 		window.addEventListener('scroll',function(){
 			if(document.body.scrollTop > 150 && once == false){
 				once = true;
-				var $number = $.byClass('number');
-				for (var i = 0; i < $number.length; i++) {
-					home.numbCount($number[i]);
-				};
+				home.numbCount($.byClass('count-it'));				
 			}
 		},false);
 	},
 	numbCount : function(elem){
-		var value = parseInt(elem.innerHTML);
-		for (var i = 0; i < value; i++) {
+		var value0 = parseInt(elem[0].getAttribute('data-count'));
+		var value1 = parseInt(elem[1].getAttribute('data-count'));
+		var value2 = parseInt(elem[2].getAttribute('data-count'));
+		var max;
+		if(value0 >= value1 && value0 >= value2 ){ max = value0; }
+		else if(value1 >= value0 && value1 >= value2 ){ max = value1; }
+		else { max = value2; }
+		console.log(max);
+		for (var i = 0; i <= max; i++) {
+			if(value0>=i){set(elem[0],i,10000/value0);}
+			if(value1>=i){set(elem[1],i,10000/value1);}
+			if(value2>=i){set(elem[2],i,10000/value2);}
+		}
+		function set(elem,i,timer){
 			setTimeout(function(){
-				elem.innerHTML=value;
-			},10);
-		};
+				console.log(timer);
+				elem.innerHTML=i;
+			},timer);
+		}
 	} 
 };
 module.exports = home;

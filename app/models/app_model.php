@@ -4,7 +4,7 @@ namespace APP\MODELS;
 
 class app_model {
 	
-	private $dB;
+	public $dB;
 
 	function __construct(){
 		$f3=\Base::instance();
