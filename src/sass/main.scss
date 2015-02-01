@@ -23,44 +23,46 @@ header{
 	width: 100%;
 
 	background: linear-gradient(to bottom, rgba(0,0,0,.62), rgba(0,0,0,0));
-}
-header div{
-	width: 960px;
-	height: 10px;
-	margin: 0 auto;
-}
-header #header-logo{
-	margin: 42px 0 0 0;
-	width: 40px;
-	height: 40px;
 
-	background: $primary-color;
-}
-header ul{
-	margin: -20px -10px 0 0;
-	padding: 0;
+	div{
+		width: 960px;
+		height: 10px;
+		margin: 0 auto;
+	}
+	#header-logo{
+		margin: 42px 0 0 0;
+		width: 40px;
+		height: 40px;
 
-	float: right;
-}
-header li{
-	margin: 0 10px;
-	display: inline;
-	padding: 8px 16px;
+		background: $primary-color;
+	}
+	ul{
+		margin: -20px -10px 0 0;
+		padding: 0;
 
-	letter-spacing: 2px;
-	font-weight: 400;
-	font-size: 10px;
-	text-transform: uppercase;
+		float: right;
 
-	cursor: pointer;
-}
-header a{
-	color: white;
+		a{
+			color: white;
 
-	text-decoration: none;
-}
-header li:hover{
-	border-bottom: 2px solid rgba(255,255,255,1);
+			text-decoration: none;
+		}
+		li{
+			margin: 0 10px;
+			display: inline;
+			padding: 8px 16px;
+
+			letter-spacing: 2px;
+			font-weight: 400;
+			font-size: 10px;
+			text-transform: uppercase;
+
+			cursor: pointer;
+		}
+		li:hover{
+			border-bottom: 2px solid rgba(255,255,255,1);
+		}
+	}
 }
 
 #baseline{
@@ -96,46 +98,114 @@ header li:hover{
 	margin: 0 0 0 -320px;
 
 	width: 640px;
+
+	input[type='text'],
+	input[type='number']{
+		width: 375px;
+		padding: 14px 20px;
+
+		font-weight: 100;
+		font-size: 16px;
+		letter-spacing: 1px;
+
+		border: 0 none;
+		border-right: 1px solid #bbbbbb;
+		background: rgba(255,255,255,.8);
+	}
+	input[name='object-zip']{
+		width: 100px;
+		margin: 0 0 0 -4px;
+
+		border-right: 0 none;
+		border-radius: 0;
+		border-top-right-radius: 2px;
+		border-bottom-right-radius: 2px;
+	}
+	input[type='submit']{
+		margin: 0 0 0 10px;
+		width: 150px;
+		padding: 14px 20px;
+
+		border: 0 none;
+		border-radius: 0;
+		background: $primary-color;
+		color: white;
+		border-radius: 2px;
+
+		font-weight: 100;
+		font-size: 16px;
+		letter-spacing: 1px;
+	}
+	input[type='submit']:hover,
+	input[type='submit']:focus{
+		background: lighten($primary-color,5%);
+	}
+	input[type='submit']:active{
+		position: relative;
+		top: 2px;
+	}
 }
-#landing-form input[name='object-name']{
-	width: 375px;
-	padding: 14px 20px;
 
-	font-weight: 100;
-	font-size: 16px;
-	letter-spacing: 1px;
+.container{
+	width: 100%;
+	margin: 600px 0 0 0;
 
-	border: 0 none;
-	background: rgba(255,255,255,.8);
-	border-radius: 2px;
-}
-#landing-form input[name='object-zip']{
-	width: 100px;
-	padding: 14px 20px;
+	#counter-wrapper{
+		width: 100%;
+		height: 350px;
 
-	font-weight: 100;
-	font-size: 16px;
-	letter-spacing: 1px;
+		background: rgba(236,236,236,1);
 
-	border: 0 none;
-	background: rgba(255,255,255,.8);
-	border-radius: 2px;
-}
-#landing-form input[name='object-submit']{
-	margin: 0 0 0 10px;
-	width: 150px;
-	padding: 14px 20px;
+		div{
+			width: 320px;
+			height: 174px;
+			margin: 88px 0 0 0;
+			padding: 20px;
 
-	border: 0 none;
-	border-radius: 0;
-	background: $primary-color;
-	color: white;
-	border-radius: 2px;
+			display: inline-block;
+			vertical-align: top;
 
-	font-weight: 100;
-	font-size: 16px;
-	letter-spacing: 1px;
-}
-#landing-form input[name='object-submit']:hover{
-	background: lighten($primary-color,5%);
+			text-align: center;
+			letter-spacing: 3px;
+			text-transform: uppercase;
+			font-size: 12px;
+			font-weight: 100;
+
+			img{
+				width: 50px;
+				height: 50px;
+				margin: 0 0 25px 0;
+			}
+		}
+		#counter-objects{
+			margin-left: calc(50% - 480px);
+		}
+		#counter-locations{
+			margin-left: -4px;
+		}
+		#counter-members{
+			margin-left: -4px;
+		}
+		#number-objects{
+			display: block;
+			margin: 0 0 5px 0;
+
+			font-weight: 900;
+			font-size: 40px;
+		}
+		#number-locations{
+			display: block;
+			margin: 0 0 5px 0;
+			
+			font-weight: 900;
+			font-size: 40px;
+		}
+		#number-members{
+			display: block;
+			margin: 0 0 5px 0;
+			
+			font-weight: 900;
+			font-size: 40px;
+		}
+	}
 }
