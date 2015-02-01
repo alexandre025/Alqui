@@ -11,4 +11,5 @@ var $ = {
     selector: function(el){
         return document.querySelector(el);
     }
-}
+};
+module.exports = $;
