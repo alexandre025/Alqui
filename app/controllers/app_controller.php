@@ -46,6 +46,14 @@ class app_controller {
       $f3->clear('SESSION');
       $f3->reroute('/');
     }
+  
+    public function register($f3){
+      if($f3->get('VERB')=='POST'){ // Register form submited
+        
+      }else{ // GET
+        $this->tpl['sync']='register.html';
+      }
+    }
 
 	function afterroute($f3){
         $tpl=$f3->get('AJAX')?$this->tpl['async']:$this->tpl['sync'];
