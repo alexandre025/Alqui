@@ -5,18 +5,18 @@ var $ = require('../tools.js');
 var displayer = {
 
 	init : function(){
-      displayer.loginPopup();
+      if($.byId('login-link')){
+        displayer.loginPopup();
+      }
 	},
 	// Login popup toggle
 	loginPopup : function(){
 
-		// Click on login link
-        if($.byId('login-link')){
-          $.byId('login-link').addEventListener('click',function(e){
-              e.preventDefault();
-              $.byId('login-overlay').classList.add('active');
-          },false);
-        }
+		// Click on login link      
+        $.byId('login-link').addEventListener('click',function(e){
+            e.preventDefault();
+            $.byId('login-overlay').classList.add('active');
+        },false);
 
 		// Press escape 
 		window.addEventListener('keyup', function(e) {
