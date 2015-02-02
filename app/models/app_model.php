@@ -16,6 +16,7 @@ class app_model {
 	}
   
     public function login($params){
+      $params['pwd']=sha1($params['pwd']);
       return $this->getMapper('user')->load(array('email=:email and password=:pwd',':email'=>$params['email'],':pwd'=>$params['pwd']));
     }
 
