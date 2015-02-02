@@ -14,6 +14,10 @@ class app_model {
 	private function getMapper($table){
 		return new \DB\SQL\Mapper($this->dB,$table);
 	}
+  
+    public function login($params){
+      return $this->getMapper('user')->load(array('email=:email and password=:pwd',':email'=>$params['email'],':pwd'=>$params['pwd']));
+    }
 
 	public function log(){
 		return $this->dB->log();

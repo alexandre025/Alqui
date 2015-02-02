@@ -5,7 +5,8 @@ var $ = require('../tools.js');
 var displayer = {
 
 	init : function(){
-		displayer.loginPopup();
+      displayer.loginPopup();
+      displayer.loginSubmit();
 	},
 	// Login popup toggle
 	loginPopup : function(){
@@ -35,6 +36,16 @@ var displayer = {
 	},
 	closeLogin : function(){
 		$.byId('login-overlay').classList.remove('active');
-	}
+	},
+    loginSubmit : function(){
+      $.byId('login-submit').addEventListener('click',function(e){
+        e.preventDefault();
+        // SEND XHR $.async
+        $.async('POST','login','',function(xhr){
+          console.log(xhr);
+        });
+        return false;
+      },false);
+    }
 };
 module.exports = displayer;
