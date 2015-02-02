@@ -18,23 +18,25 @@ class app_controller {
     	
 	}
 
-	function home($f3){
+	public function home($f3){
 
 	}
   
-    function login($f3){
+    public function login($f3){
       if($f3->get('VERB')=='POST'){
-        //$auth=$this->model->login($f3->get('POST'));
-        $auth = true;
+        $auth=$this->model->login($f3->get('POST'));
         if($auth){ // auth succes -> set SESSION and reroute
           $user=array(
-            'id'=>'test',
-            'name'=>'Alexandre'
+            'id'=>$auth->id,
+            'firstname'=>$auth->firstname,
+            'lastname'=>$auth->lastname,
+            'firstname'=>$auth->firstname,
+            'mark'=>$auth->mark,
+            'created_at'=>$auth->created_at
           );
           $f3->set('SESSION',$user);
-
-            $f3->clear('login_error');
-            $f3->reroute('/');
+          $f3->clear('login_error');
+          $f3->reroute('/');
         }else{ // auth fail -> Show error
             $f3->set('login_error','Votre combinaison e-mail/mot de passe est incorrecte');
         }

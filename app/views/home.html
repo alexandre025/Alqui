@@ -16,8 +16,8 @@
 				<div class="login-form">
 					<form method="post" action="login/">
 						<label for="email">E-mail :</label>
-						<input type="mail" name="email">
-						<label for="pwd">Mot de passe :</label>
+						<input type="email" name="email" required>
+						<label for="pwd" required>Mot de passe :</label>
 						<input type="password" name="pwd">
 						<input type="submit" value="Valider" id="login-submit" name="login">
 					</form>
@@ -34,7 +34,7 @@
 						<a href=""><li>Inscription</li></a>
 						<a href="" id='login-link'><li>Connexion</li></a>
 				      <?php else: ?>
-				        <a href=""><li>Bonjour, <?php echo $SESSION['name']; ?></li></a>
+				        <a href=""><li>Bonjour, <?php echo $SESSION['firstname']; ?></li></a>
 				        <a href="logout"><li>Deconnection</li></a>
 				      <?php endif; ?>
 					</ul>
