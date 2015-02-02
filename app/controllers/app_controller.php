@@ -14,7 +14,7 @@ class app_controller {
             'async'=>''
         );
     	$this->model=new \APP\MODELS\app_model();
-    	//new \DB\SQL\Session($this->model->dB,'sess_handler',true);
+    	new \DB\SQL\Session($this->model->dB,'sess_handler',true);
     	
 	}
 
