@@ -14,13 +14,14 @@
 			
 			<div id="login-overlay">
 				<div class="login-form">
-					<form method="post" action="connection/">
-						<label for="login">E-mail :</label>
-						<input type="mail" name="mail">
+					<form method="post" action="login/">
+						<label for="email">E-mail :</label>
+						<input type="mail" name="email">
 						<label for="pwd">Mot de passe :</label>
 						<input type="password" name="pwd">
-						<input type="submit" value="Valider" name="login">
+						<input type="submit" value="Valider" id="login-submit" name="login">
 					</form>
+					<?php include('partials/login-error.html'); ?>
 				</div>
 			</div>
 			<div id="page-landing"></div>
