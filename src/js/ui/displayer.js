@@ -6,16 +6,17 @@ var displayer = {
 
 	init : function(){
       displayer.loginPopup();
-      displayer.loginSubmit();
 	},
 	// Login popup toggle
 	loginPopup : function(){
 
 		// Click on login link
-		$.byId('login-link').addEventListener('click',function(e){
-			e.preventDefault();
-			$.byId('login-overlay').classList.add('active');
-		},false);
+        if($.byId('login-link')){
+          $.byId('login-link').addEventListener('click',function(e){
+              e.preventDefault();
+              $.byId('login-overlay').classList.add('active');
+          },false);
+        }
 
 		// Press escape 
 		window.addEventListener('keyup', function(e) {
@@ -37,15 +38,5 @@ var displayer = {
 	closeLogin : function(){
 		$.byId('login-overlay').classList.remove('active');
 	},
-    loginSubmit : function(){
-      $.byId('login-submit').addEventListener('click',function(e){
-        e.preventDefault();
-        // SEND XHR $.async
-        $.async('POST','login','',function(xhr){
-          console.log(xhr);
-        });
-        return false;
-      },false);
-    }
 };
 module.exports = displayer;
