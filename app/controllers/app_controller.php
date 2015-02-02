@@ -33,7 +33,7 @@ class app_controller {
           );
           $f3->set('SESSION',$user);
 
-            $f3->set('login_error','Connecté');
+            $f3->clear('login_error');
             $f3->reroute('/');
         }else{ // auth fail -> Show error
             $f3->set('login_error','Votre combinaison e-mail/mot de passe est incorrecte');
