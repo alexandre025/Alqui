@@ -30,8 +30,13 @@
 					<!-- <img src="" id='header-logo' alt='Alqui - Logo' title='Alqui'/> -->
 					<div id="header-logo"></div>
 					<ul>
+					  <?php if(!isset($SESSION['id'])): ?>
 						<a href=""><li>Inscription</li></a>
 						<a href="" id='login-link'><li>Connexion</li></a>
+				      <?php else: ?>
+				        <a href=""><li>Bonjour, <?php echo $SESSION['name']; ?></li></a>
+				        <a href="logout"><li>Deconnection</li></a>
+				      <?php endif; ?>
 					</ul>
 				</div>
 			</header>
