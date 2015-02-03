@@ -23,6 +23,10 @@ class app_model {
 	public function log(){
 		return $this->dB->log();
 	}
+
+	public function checkEmail($params){
+		return $this->getMapper('user')->load(array('email=:email',':email'=>$params['email']));
+	}
 }
 
 ?>

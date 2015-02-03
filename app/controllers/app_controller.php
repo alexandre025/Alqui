@@ -8,13 +8,13 @@ class app_controller {
 	private $tpl;  
 
 	function __construct(){
-        $f3=\Base::instance();
-        $this->tpl=array(
-            'sync'=>'home.html',
-            'async'=>''
-        );
-    	$this->model=new \APP\MODELS\app_model();
-    	new \DB\SQL\Session($this->model->dB,'sess_handler',true);
+    $f3=\Base::instance();
+    $this->tpl=array(
+      'sync'=>'home.html',
+      'async'=>''
+    );
+    $this->model=new \APP\MODELS\app_model();
+  	new \DB\SQL\Session($this->model->dB,'sess_handler',true);
     	
 	}
 
@@ -54,11 +54,22 @@ class app_controller {
         $this->tpl['sync']='register.html';
       }
     }
+    public function checkEmail($f3){
+      if($f3->get('VERB')=='POST'){
+        $available=$this->model->checkEmail($f3->get('POST'));
+        if($available){
+          $f3->set('email_check','Cette adresse n\'est pas disponible');
+        }else{
+          $f3->set('email_check','Cette adresse est valide');
+        }
+      }
+      $this->tpl['async']='partials/email-check.html';
+    }
 
 	function afterroute($f3){
-        $tpl=$f3->get('AJAX')?$this->tpl['async']:$this->tpl['sync'];
-        echo \View::instance()->render($tpl);
-  	}
+    $tpl=$f3->get('AJAX')?$this->tpl['async']:$this->tpl['sync'];
+    echo \View::instance()->render($tpl);
+  }
 
 }
 
