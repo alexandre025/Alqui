@@ -14,16 +14,21 @@
 			
 			<div id="login-overlay"  <?php if(isset($login_error)): ?>class="active"<?php endif;?>>
 				<div class="login-form">
+					<h1>ALQUI</h1>
+					<h3>Bienvenue</h3>
+					<p>
+						Veuillez vous identifier pour profiter pleinement d'Alqui !
+					</p>
 					<form method="post" action="login/">
-						<label for="email">E-mail :</label>
-						<input type="email" name="email" required>
-						<label for="pwd" required>Mot de passe :</label>
-						<input type="password" name="pwd">
-						<input type="submit" value="Valider" id="login-submit" name="login">
+						<input type="email" name="email" required placeholder='Votre identifiant'>
+						<input type="password" name="pwd" placeholder='Votre mot de passe'>
+						<a href="">Mot de passe oublié ?</a>
+						<input type="submit" value="Connexion" id="login-submit" name="login">
 					</form>
 					<?php include('partials/login-error.html'); ?>
 				</div>
 			</div>
+
 			<div id="page-landing"></div>
 			<header>
 				<div>
