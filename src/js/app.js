@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded',function(){
 
 	displayer.init();
 	home.init();
-	if($.byId('email-register')){
+	if($.byId('register-form')){
+		console.log('inscription form init');
 		register.init();
 	}
 
