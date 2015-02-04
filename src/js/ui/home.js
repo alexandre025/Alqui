@@ -6,6 +6,7 @@ var countUp = require('../dependencies/countup.js');
 var home = {
 
 	init : function(){
+		home.onScroll();
 		home.number();
 	},
 	// Number animation
@@ -27,6 +28,16 @@ var home = {
 			count = new countUp(elem[i],0,value,0,10,options);
 			count.start();
 		};
-	} 
+	},
+	onScroll: function(){
+		window.onscroll = function(){
+			if(document.body.scrollTop >= window.innerHeight - 142){
+				$.selector('header').setAttribute('id','headerScroll');
+			}
+			else{
+				$.selector('header').removeAttribute('id');
+			}
+		}
+	}
 };
 module.exports = home;

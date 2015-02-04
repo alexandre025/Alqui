@@ -161,6 +161,64 @@ header{
 	}
 }
 
+header#headerScroll{
+	position: fixed;
+	top: 0; left: 0; right: 0;
+	z-index: 10;
+
+	height: 92px;
+	width: 100%;
+
+	background: rgba(255,255,255,.8);
+	border-bottom: 1px solid #d9d9d9;
+
+	div{
+		width: 960px;
+		margin: 0 auto;
+	}
+	#header-logo{
+		margin: 26px 0 0 0;
+		width: 40px;
+		height: 40px;
+
+		background: $primary-color;
+	}
+	ul{
+		margin: -30px -10px 0 0;
+		padding: 0;
+
+		float: right;
+
+		a{
+			color: rgba(0,0,0,1);
+
+			text-decoration: none;
+		}
+		li{
+			margin: 0 10px;
+			display: inline;
+			padding: 8px 16px;
+
+			letter-spacing: 2px;
+			font-weight: 700;
+			font-size: 11px;
+			text-transform: uppercase;
+
+			cursor: pointer;
+		}
+		li:hover{
+			border-bottom: 2px solid rgba(255,255,255,1);
+		}
+		li#register{
+			background: $primary-color;
+			border-radius: 3px;
+			color: rgba(255,255,255,1);
+			
+			font-weight: 400;
+		}
+	}
+}
+
 #baseline{
 	position: absolute;
 	top: 250px; left: 50%;
