@@ -11,7 +11,7 @@ var $ = {
     selector: function(el){
         return document.querySelector(el);
     },
-  
+
     async: function(verb,url,datas,callback){
 	 var self=this;
 	 var xhr = new XMLHttpRequest();

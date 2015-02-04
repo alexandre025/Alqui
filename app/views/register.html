@@ -24,9 +24,38 @@
 			
 			
 			
-			<form method="POST" action="register/">
-              <!-- INSCRIPTION FORM -->
-			  
+			<form id="register-form" method="POST" action="register/">
+              <!-- REGISTER FORM -->
+			  <label for="email">E-mail :</label>
+			  <input type="email" name="email" id="email-register" required>
+			  <span class="ckeck-form" id="email-check"><?php include('partials/email-check.html'); ?></span>
+
+			  			  <label for="password">Mot de passe :</label>
+			  <input type="password" name="password" id="password-register" required>
+
+			  <label for="password">Confirmation du mot de passe :</label>
+			  <input type="password" name="password" id="confirm-register" required>
+			  <span class="ckeck-form" id="password-check"></span>
+
+			  <label for="firstname">Prénom :</label>
+			  <input name="firstname" type="text" required>
+
+			  <label for="lastname">Nom :</label>
+			  <input name="lastname" type="text" required>
+
+			  <label for="address">Adresse :</label>
+			  <input name="address" type="text" required>
+
+			  <label for="postal">Code postal :</label>
+			  <input name="postal" type="number" required>
+
+			  <label for="city">Ville :</label>
+			  <input name="city" type="text" required>
+
+			  <label for="country">Pays :</label>
+			  <input name="country" type="text" required>
+
+			  <input type="submit" value="Inscription" id="submit-register">
 			</form>
 			
 			
