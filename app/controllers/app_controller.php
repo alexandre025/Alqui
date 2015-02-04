@@ -49,8 +49,18 @@ class app_controller {
   
     public function register($f3){
       if($f3->get('VERB')=='POST'){ // Register form submited
-        
-      }else{ // GET
+        $newUser = $this->model->register($f3->get('POST'));
+          $user=array(
+            'id'=>$newUser->id,
+            'firstname'=>$newUser->firstname,
+            'lastname'=>$newUser->lastname,
+            'firstname'=>$newUser->firstname,
+            'mark'=>$newUser->mark,
+            'created_at'=>$newUser->created_at
+          );
+          $f3->set('SESSION',$user);
+          $f3->reroute('/');
+      }else{ // GET register page
         $this->tpl['sync']='register.html';
       }
     }

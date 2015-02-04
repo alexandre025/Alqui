@@ -16,8 +16,8 @@ class app_model {
 	}
   
     public function login($params){
-      $params['pwd']=sha1($params['pwd']);
-      return $this->getMapper('user')->load(array('email=:email and password=:pwd',':email'=>$params['email'],':pwd'=>$params['pwd']));
+      $params['password']=sha1($params['password']);
+      return $this->getMapper('user')->load(array('email=:email and password=:password',':email'=>$params['email'],':password'=>$params['password']));
     }
 
 	public function log(){
@@ -26,6 +26,27 @@ class app_model {
 
 	public function checkEmail($params){
 		return $this->getMapper('user')->load(array('email=:email',':email'=>$params['email']));
+	}
+
+	public function register($params){
+		$query='INSERT INTO user (email,password,firstname,lastname,address,postal,city,country,mark,created_at) VALUES (:email,:password,:firstname,:lastname,:address,:postal,:city,:country,:mark,:created_at)';  
+		$mark=-1;
+		$timestamp=time();
+		$password=sha1($params['password']);
+		$val=array(
+			':email'=>$params['email'],
+			':password'=>$password,
+			':firstname'=>$params['firstname'],
+			':lastname'=>$params['lastname'],
+			':address'=>$params['address'],
+			':postal'=>$params['postal'],
+			':city'=>$params['city'],
+			':country'=>$params['country'],
+			':mark'=>$mark,
+			':created_at'=>$timestamp
+		);
+		$this->dB->exec($query,$val);
+		return $this->login($params);
 	}
 }
 
