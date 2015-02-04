@@ -19,7 +19,7 @@ class app_controller {
 	}
 
 	public function home($f3){
-
+    $f3->set('home_counter',$this->model->homeCounter());
 	}
   
     public function login($f3){
