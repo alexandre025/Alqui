@@ -21,7 +21,7 @@
 					</p>
 					<form method="post" action="login/">
 						<input type="email" name="email" required placeholder='Votre identifiant'>
-						<input type="password" name="pwd" placeholder='Votre mot de passe'>
+						<input type="password" name="password" placeholder='Votre mot de passe'>
 						<a href="">Mot de passe oublié ?</a>
 						<input type="submit" value="Connexion" id="login-submit" name="login">
 					</form>
@@ -63,16 +63,16 @@
 				<div id="counter-wrapper">
 					<div id="counter-objects">
 						<img src="img/_icon.svg">
-						<span data-count="555" class="count-it">0</span>
+						<span data-count="<?php echo $home_counter['offer']; ?>" class="count-it">0</span>
 						articles
 					</div>
 					<div id="counter-locations">
 						<img src="img/_icon.svg">
-						<span data-count="5555" class="count-it">0</span>
+						<span data-count="<?php echo $home_counter['reservation']; ?>" class="count-it">0</span>
 						locations
 					</div>
 					<div id="counter-members">					<img src="img/_icon.svg">
-						<span data-count="555555" class="count-it">0</span>
+						<span data-count="<?php echo $home_counter['user']; ?>" class="count-it">0</span>
 						inscrits
 					</div>
 				</div>
