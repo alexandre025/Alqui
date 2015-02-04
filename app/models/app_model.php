@@ -14,6 +14,14 @@ class app_model {
 	private function getMapper($table){
 		return new \DB\SQL\Mapper($this->dB,$table);
 	}
+
+	public function homeCounter(){
+		return $counter = array(
+			'offer'=>$this->getMapper('offer')->count(),
+			'user'=>$this->getMapper('user')->count(),
+			'reservation'=>$this->getMapper('reservation')->count()
+		);
+	}
   
     public function login($params){
       $params['password']=sha1($params['password']);
