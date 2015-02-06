@@ -27,16 +27,19 @@
 
 			<form id="register-form" method="POST" action="register/">
 				<!-- REGISTER FORM -->
+				<input name="firstname" type="text" placeholder='Prénom' required>
+				<br>
+				<input name="lastname" type="text" placeholder='Nom' required>
+				<br>
 				<input type="email" name="email" id="email-register" placeholder='Votre email' required>
 				<span class="ckeck-form" id="email-check"><?php include('partials/email-check.html'); ?></span>
-
+				<br>
 				<input type="password" name="password" id="password-register" placeholder='Votre mot de passe' required>
-
+				<br>
 				<input type="password" name="password" id="confirm-register" placeholder='Confirmer votre mot de passe' required>
 				<span class="ckeck-form" id="password-check"></span>
 				<input type="submit" value="Inscription" id="submit-register">
 			</form>
-
 
 			<script src="public/js/app.js" type="text/javascript"></script>
 		</body>
