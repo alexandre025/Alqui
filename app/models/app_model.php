@@ -38,7 +38,7 @@ class app_model {
 	}
 
 	public function register($params){
-		$query='INSERT INTO user (email,password,firstname,lastname,address,postal,city,country,mark,created_at) VALUES (:email,:password,:firstname,:lastname,:address,:postal,:city,:country,:mark,:created_at)';  
+		$query='INSERT INTO user (email,password,firstname,lastname,mark,created_at) VALUES (:email,:password,:firstname,:lastname,:mark,:created_at)';  
 		$mark=-1;
 		$timestamp=time();
 		$password=sha1($params['password']);
@@ -47,10 +47,6 @@ class app_model {
 			':password'=>$password,
 			':firstname'=>$params['firstname'],
 			':lastname'=>$params['lastname'],
-			':address'=>$params['address'],
-			':postal'=>$params['postal'],
-			':city'=>$params['city'],
-			':country'=>$params['country'],
 			':mark'=>$mark,
 			':created_at'=>$timestamp
 		);

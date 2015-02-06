@@ -59,7 +59,6 @@ class app_controller {
             'created_at'=>$newUser->created_at
           );
           $f3->set('SESSION',$user);
-
           $f3->reroute('/');
       }else{ // GET register page
         $this->tpl['sync']='register.html';
