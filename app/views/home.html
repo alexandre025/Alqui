@@ -30,13 +30,14 @@
 			</div>
 
 			<div id="page-landing"></div>
+
 			<header>
 				<div>
 					<!-- <img src="" id='header-logo' alt='Alqui - Logo' title='Alqui'/> -->
 					<div id="header-logo"></div>
 					<ul>
 					  <?php if(!isset($SESSION['id'])): ?>
-						<a href="register"><li>Inscription</li></a>
+						<a href="register"><li id='register'>Inscription</li></a>
 						<a href="" id='login-link'><li>Connexion</li></a>
 				      <?php else: ?>
 				        <a href=""><li>Bonjour, <?php echo $SESSION['firstname']; ?></li></a>
@@ -45,6 +46,7 @@
 					</ul>
 				</div>
 			</header>
+
 			<div id="baseline">
 				alqui
 				<br>
