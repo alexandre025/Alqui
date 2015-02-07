@@ -46,6 +46,7 @@ var register = {
 		$.byId('register-form').addEventListener('submit',function(e){
 			if(register.checkPwd()){
 				console.log('abort');
+				e.preventDefault();
 				return false;
 			}else{
 				// Go to app_controller.php

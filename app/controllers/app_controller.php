@@ -31,6 +31,7 @@ class app_controller {
           $f3->clear('login_error');
           $f3->reroute('/');
         }else{ // auth fail -> Show error
+            $f3->set('home_counter',$this->model->homeCounter());
             $f3->set('login_error','Votre combinaison e-mail/mot de passe est incorrecte');
         }
       }
@@ -60,7 +61,7 @@ class app_controller {
         'postal'=>$auth->postal,
         'city'=>$auth->city,
         'country'=>$auth->country,
-        'img'=>$auth->photo,
+        'photo'=>$auth->photo,
         'mark'=>$auth->mark,
         'created_at'=>$auth->created_at
       );
@@ -93,6 +94,47 @@ class app_controller {
         $f3->set('edited','password');
         $this->tpl['sync']="userEdit.html";
       }
+    }
+
+    public function infoEdit($f3){
+      if($f3->get('VERB')=='POST'){
+        $params=$this->model->infoEdit($f3->get('POST'),$f3->get('SESSION.id'));
+        $f3->set('edited','info');
+        $f3->set('SESSION.address',$params['address']);
+        $f3->set('SESSION.postal',$params['postal']);
+        $f3->set('SESSION.city',$params['city']);
+        $f3->set('SESSION.country',$params['country']);
+        $this->tpl['sync']="userEdit.html";
+      }      
+    }
+
+    public function photoEdit($f3){
+      if($f3->get('VERB')=='POST'){
+        //$params=$this->model->photoEdit($fileName,$f3->get('SESSION.id'));
+        $succes=\Web::instance()->receive(function($file,$formFieldName){
+          $type = explode('/',$file['type']);
+          if($file['size'] < (2 * 1024 * 1024) && $type[0] == 'image'){
+            return true;
+          }
+          return false;
+        },true,function($fileBaseName, $formFieldName){
+          $ext=explode('.',$fileBaseName);
+          $ext='.'.end($ext);
+          $name='profil_'.time().$ext;
+          return $name;
+        });
+        $fileName=array_keys($succes)[0];
+        if($succes[$fileName]){
+          $this->model->photoEdit($fileName,$f3->get('SESSION.id'));
+          $f3->clear('failed');
+          $f3->set('edited','photo');
+          $f3->set('SESSION.photo',$fileName);
+        }else{
+          $f3->clear('edited');
+          $f3->set('failed','photo');
+        }
+        $this->tpl['sync']="userEdit.html";
+      }      
     }
 
 	function afterroute($f3){
