@@ -28,7 +28,7 @@
 				</div>
 			</header> 
 
-			<form action="offer/add" method="POST" enctype="multipart/data">
+			<form action="account/offer/add" method="POST" enctype="multipart/form-data">
 
 				<input type="text" name="name" required>
 
@@ -44,6 +44,10 @@
 
 				<textarea name="content">Pour que votre offre soit publié, ne divilguez pas vos coordonnées.
 				</textarea>
+
+				<input type="file" name="main-photo" required>
+				<input type="file" name="second-photo">
+				<input type="file" name="third-photo">
 
 				<input type="submit" value="Valider">
 

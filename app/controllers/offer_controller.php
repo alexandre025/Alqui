@@ -22,7 +22,24 @@ class offer_controller {
       $f3->set('categories',$this->model->getCategories());
       $this->tpl['sync']='offerAdd.html';
     }else{
-      // ADD
+      $id=$this->model->offerAdd($f3->get('POST'),$f3->get('SESSION.id'));
+      $id=$id[0]['id'];
+      $files=\Web::instance()->receive(function($file,$formFieldName){
+          $type = explode('/',$file['type']);
+          if($file['size'] < (2 * 1024 * 1024) && $type[0] == 'image'){
+            return true;
+          }
+          return false;
+        },true,function($fileBaseName, $formFieldName){
+          $name='offer_'.time().'_'.$fileBaseName;
+          return $name;
+      });
+      foreach ($files as $file => $isUpload) {
+        if($isUpload==1){
+          $this->model->offerAddPhoto($file,$id);
+        }
+      }
+      $this->tpl['sync']='account.html';
     }
   }
 
