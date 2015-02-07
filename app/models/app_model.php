@@ -5,6 +5,7 @@ namespace APP\MODELS;
 class app_model {
 	
 	public $dB;
+	private $smtp;
 
 	function __construct(){
 		$f3=\Base::instance();
