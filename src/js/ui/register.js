@@ -24,7 +24,7 @@ var register = {
 	checkConfirm : function(){
 		var input = $.selectorAll('input[type="password"]');
 		for (var i = 0; i < input.length; i++) {
-			input[i].addEventListener('focusout',function(e){			
+			input[i].addEventListener('keyup',function(e){			
 				if(register.checkPwd()){
 					$.byId('password-check').innerHTML='Le mot de passe ne correspond pas';
 				}else{
