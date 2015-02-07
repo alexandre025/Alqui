@@ -31,7 +31,7 @@
 			<div id="info-change"><?php include('partials/edit-info.html'); ?></div>
 			<div id="photo-edit">
 				<h1>Modifier votre photo de profil</h1>
-				<form action="account/edit/photo" id="photo-form" method="POST">
+				<form action="account/edit/photo" enctype="multipart/form-data" id="photo-form" method="POST">
 					<input type="file" name="photo">
 					<input type="submit" value="Valider">
 				</form>
@@ -41,9 +41,9 @@
 			<div id="password-edit">
 				<h1>Modifier votre mot de passe</h1>
 				<form action="account/edit/password" id="password-form" method="POST">
-				<input type="password" name="password" id="password-edit" placeholder='Votre mot de passe' required>
+				<input type="password" name="password" id="password" placeholder='Votre mot de passe' required>
 				<br>
-				<input type="password" name="password-edit" id="password-confirm" placeholder='Confirmer votre mot de passe' required>
+				<input type="password" name="password-confirm" id="password-confirm" placeholder='Confirmer votre mot de passe' required>
 				<span class="ckeck-form" id="password-check"></span>
 				<input type="submit" value="Valider">
 				</form>

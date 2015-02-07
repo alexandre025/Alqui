@@ -64,6 +64,27 @@ class app_model {
 		$this->dB->exec($query,$val);
 		return;
 	}
+	public function infoEdit($params,$id){
+		$query='UPDATE user SET address=:address, postal=:postal, city=:city, country=:country WHERE id=:id';
+		$val=array(
+			':address'=>$params['address'],
+			':postal'=>$params['postal'],
+			':city'=>$params['city'],
+			':country'=>$params['country'],
+			':id'=>$id
+		);
+		$this->dB->exec($query,$val);
+		return $params;
+	}
+	public function photoEdit($fileName,$id){
+		$query='UPDATE user SET photo=:photo WHERE id=:id';
+		$val=array(
+			':photo'=>$fileName,
+			':id'=>$id
+		);
+		$this->dB->exec($query,$val);
+		return;
+	}
 }
 
 ?>

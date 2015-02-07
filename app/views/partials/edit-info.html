@@ -7,5 +7,7 @@
 		}else if($edited=='info'){
 			echo "Vos informations ont été mis à jour, nous vous rappellons que celle-ci restent confidentielles, même lors d'une transaction.";
 		}
+	}else if(isset($failed)){
+		echo "Votre fichier n'est pas une image (.png, .jpeg ou .jpg) et/ou est trop lourd (>2MB).";
 	}
 ?>
