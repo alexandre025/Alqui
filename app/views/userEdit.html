@@ -1,0 +1,96 @@
+<!-- <?php print_r($SESSION); ?> -->
+<!doctype html>
+	<html lang="fr">
+		<head>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+			<title>Alqui</title>
+			<meta name="description" content="">
+			<base href="<?php echo $BASE; ?>/" />
+			<meta name="viewport" content="width=device-width,initial-scale=1">
+			<link href="public/css/main.css" rel="stylesheet" type="text/css" />
+		</head>
+		<body>
+	
+			<header style="display:none;">
+				<div>
+					<!-- <img src="" id='header-logo' alt='Alqui - Logo' title='Alqui'/> -->
+					<div id="header-logo"></div>
+					<ul>
+					  <?php if(!isset($SESSION['id'])): ?>
+						<a href="register"><li>Inscription</li></a>
+						<a href="" id='login-link'><li>Connexion</li></a>
+				      <?php else: ?>
+				        <a href="account"><li>Bonjour, <?php echo $SESSION['firstname']; ?></li></a>
+				        <a href="logout"><li>Deconnexion</li></a>
+				      <?php endif; ?>
+					</ul>
+				</div>
+			</header> 
+			<div id="info-change"><?php include('partials/edit-info.html'); ?></div>
+			<div id="photo-edit">
+				<h1>Modifier votre photo de profil</h1>
+				<form action="account/edit/photo" id="photo-form" method="POST">
+					<input type="file" name="photo">
+					<input type="submit" value="Valider">
+				</form>
+
+			</div>
+
+			<div id="password-edit">
+				<h1>Modifier votre mot de passe</h1>
+				<form action="account/edit/password" id="password-form" method="POST">
+				<input type="password" name="password" id="password-edit" placeholder='Votre mot de passe' required>
+				<br>
+				<input type="password" name="password-edit" id="password-confirm" placeholder='Confirmer votre mot de passe' required>
+				<span class="ckeck-form" id="password-check"></span>
+				<input type="submit" value="Valider">
+				</form>
+			</div>
+
+			<div id="info-edit">
+				<h1>Modifier vos informations personnelles</h1>
+				<form action="account/edit/info" id="info-form" method="POST">
+					<!-- ADDRESS -->
+					<input type="text" name="address" 
+					<?php if(!empty($SESSION['address'])): ?>
+						value="<?php echo $SESSION['address']; ?>"
+					<?php else: ?>
+						placeholder="Entrez votre adresse"
+					<?php endif; ?>
+					required>
+					<!-- POSTAL -->
+					<input type="number" name="postal" 
+					<?php if(!empty($SESSION['postal'])): ?>
+						value="<?php echo $SESSION['postal']; ?>"
+					<?php else: ?>
+						placeholder="Entrez votre code postal"
+					<?php endif; ?>
+					required>
+					<!-- CITY -->
+					<input type="text" name="city" 
+					<?php if(!empty($SESSION['city'])): ?>
+						value="<?php echo $SESSION['city']; ?>"
+					<?php else: ?>
+						placeholder="Entrez votre ville"
+					<?php endif; ?>
+					required>
+					<!-- COUNTRY -->
+					<input type="text" name="country" 
+					<?php if(!empty($SESSION['country'])): ?>
+						value="<?php echo $SESSION['country']; ?>"
+					<?php else: ?>
+						placeholder="Entrez votre pays"
+					<?php endif; ?>
+					required>
+					<input type="submit" value="Valider">
+				</form>
+			</div>
+				
+
+		
+
+			<script src="public/js/app.js" type="text/javascript"></script>
+		</body>
+	</html>

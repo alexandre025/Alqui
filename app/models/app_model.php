@@ -53,6 +53,17 @@ class app_model {
 		$this->dB->exec($query,$val);
 		return $this->login($params);
 	}
+
+	public function passwordEdit($params,$id){
+		$query='UPDATE user SET password=:password WHERE id=:id';
+		$password=sha1($params['password']);
+		$val=array(
+			':password'=>$password,
+			':id'=>$id
+		);
+		$this->dB->exec($query,$val);
+		return;
+	}
 }
 
 ?>

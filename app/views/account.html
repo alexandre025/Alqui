@@ -1,3 +1,4 @@
+<!-- <?php print_r($SESSION); ?> -->
 <!doctype html>
 	<html lang="fr">
 		<head>
@@ -21,15 +22,44 @@
 						<a href="register"><li>Inscription</li></a>
 						<a href="" id='login-link'><li>Connexion</li></a>
 				      <?php else: ?>
-				        <a href=""><li>Bonjour, <?php echo $SESSION['firstname']; ?></li></a>
+				        <a href="account"><li>Bonjour, <?php echo $SESSION['firstname']; ?></li></a>
 				        <a href="logout"><li>Deconnexion</li></a>
 				      <?php endif; ?>
 					</ul>
 				</div>
 			</header> 
 			
-			<div style="margin-top:20px;">
-				ACCOUNT PAGE
+			<div id="account-info" style="margin-top:20px;">
+				<img src="<?php echo !empty($SESSION['img'])?$SESSION['img']:''; ?>"/>
+				<span class="account-name">
+					<?php echo $SESSION['firstname']." ".$SESSION['lastname']; ?>
+				</span>
+				<span class="account-email">
+					<?php echo $SESSION['email']; ?>
+				</span>	
+			<?php if(!empty($SESSION['address'])&&!empty($SESSION['postal'])&&!empty($SESSION['city'])&&!empty($SESSION['country'])): ?>			
+				<span class="account-address">
+					<?php echo $SESSION['address']; ?>
+				</span>
+				<span class="account-postal">
+					<?php echo $SESSION['postal']; ?>
+				</span>
+				<span class="account-city">
+					<?php echo $SESSION['city']; ?>
+				</span>
+				<span class="account-country">
+					<?php echo $SESSION['country']; ?>
+				</span>
+			<?php else: ?>
+				<span class="account-to-complete">
+					Vous devez compléter vos informations avant de débuter une transaction.
+				</span>
+			<?php endif; ?>
+				<a href="account/edit">Modifier</a>
+			</div>
+
+			<div id="dashboard">
+				DASHBOARD
 			</div>
 		
 

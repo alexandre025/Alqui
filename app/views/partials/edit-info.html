@@ -1,0 +1,11 @@
+<?php 
+	if(isset($edited)){
+		if($edited=='password'){
+			echo "Votre mot de passe a été mis à jour.";
+		}else if($edited=='photo'){
+			echo "Votre photo a été mise à jour.";
+		}else if($edited=='info'){
+			echo "Vos informations ont été mis à jour, nous vous rappellons que celle-ci restent confidentielles, même lors d'une transaction.";
+		}
+	}
+?>

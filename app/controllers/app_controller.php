@@ -26,14 +26,7 @@ class app_controller {
       if($f3->get('VERB')=='POST'){
         $auth=$this->model->login($f3->get('POST'));
         if($auth){ // auth succes -> set SESSION and reroute
-          $user=array(
-            'id'=>$auth->id,
-            'firstname'=>$auth->firstname,
-            'lastname'=>$auth->lastname,
-            'firstname'=>$auth->firstname,
-            'mark'=>$auth->mark,
-            'created_at'=>$auth->created_at
-          );
+          $user=$this->userArray($auth);
           $f3->set('SESSION',$user);
           $f3->clear('login_error');
           $f3->reroute('/');
@@ -49,20 +42,29 @@ class app_controller {
   
     public function register($f3){
       if($f3->get('VERB')=='POST'){ // Register form submited
-        $newUser = $this->model->register($f3->get('POST'));
-          $user=array(
-            'id'=>$newUser->id,
-            'firstname'=>$newUser->firstname,
-            'lastname'=>$newUser->lastname,
-            'firstname'=>$newUser->firstname,
-            'mark'=>$newUser->mark,
-            'created_at'=>$newUser->created_at
-          );
-          $f3->set('SESSION',$user);
-          $f3->reroute('/');
+        $auth = $this->model->register($f3->get('POST'));
+        $user=$this->userArray($auth);
+        $f3->set('SESSION',$user);
+        $f3->reroute('/');
       }else{ // GET register page
         $this->tpl['sync']='register.html';
       }
+    }
+    private function userArray($auth){
+      $user=array(
+        'id'=>$auth->id,
+        'email'=>$auth->email,
+        'firstname'=>$auth->firstname,
+        'lastname'=>$auth->lastname,
+        'address'=>$auth->address,
+        'postal'=>$auth->postal,
+        'city'=>$auth->city,
+        'country'=>$auth->country,
+        'img'=>$auth->photo,
+        'mark'=>$auth->mark,
+        'created_at'=>$auth->created_at
+      );
+      return $user;
     }
     public function checkEmail($f3){
       if($f3->get('VERB')=='POST'){
@@ -74,6 +76,23 @@ class app_controller {
         }
       }
       $this->tpl['async']='partials/email-check.html';
+    }
+
+    public function account($f3){
+      $this->tpl['sync']="account.html";
+    }
+
+    public function userEdit($f3){
+      $f3->clear('edited');
+      $this->tpl['sync']="userEdit.html";
+    }
+
+    public function passwordEdit($f3){
+      if($f3->get('VERB')=='POST'){
+        $this->model->passwordEdit($f3->get('POST'),$f3->get('SESSION.id'));
+        $f3->set('edited','password');
+        $this->tpl['sync']="userEdit.html";
+      }
     }
 
 	function afterroute($f3){
