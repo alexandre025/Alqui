@@ -1,0 +1,11 @@
+<ul>
+<?php 
+	if(!isset($data)||empty($data)):
+		echo "Ooops, nous n'avons trouvé aucun résultats";
+	else:
+	foreach ($data as $offer): ?>
+
+	<li><?php echo $offer['name']; ?></li>
+
+<?php endforeach;endif; ?>
+</ul>
