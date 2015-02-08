@@ -54,6 +54,39 @@ class offer_model {
 		$this->dB->exec($query,$val);
 	}
 
+	public function search($f3){
+		$query="SELECT * FROM offer LEFT JOIN photo ON offer.id=photo.id_offer";
+		if($f3->get('COOKIE.name')){
+			$name="offer.name LIKE '%".$f3->get('COOKIE.name')."%'";
+		}else{
+			$name="offer.name IS NOT NULL";
+		}
+		if($f3->get('COOKIE.location')){
+			$location="offer.location LIKE '%".$f3->get('COOKIE.location')."%'";
+		}else{
+			$location="offer.location IS NOT NULL";
+		}
+		if($f3->get('COOKIE.price')){
+			$price="offer.price_per_day < ".$f3->get('COOKIE.price')."'";
+		}else{
+			$price="price_per_day IS NOT NULL";
+		}
+		if($f3->get('COOKIE.category')){
+			$category="offer.id_category = '".$f3->get('COOKIE.category')."'";
+		}else{
+			$category="offer.id_category IS NOT NULL";
+		}
+		if($f3->get('COOKIE.order')){
+			$order="ORDER BY '".$f3->get('COOKIE.order')."'";
+		}else{
+			$order="ORDER BY offer.created_at DESC";
+		}
+
+		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." GROUP BY offer.id ".$order;
+		
+		return $this->dB->exec($query);
+	}
+
 	public function log(){
 		return $this->dB->log();
 	}
