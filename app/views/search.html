@@ -30,7 +30,7 @@
 
 
 
-			SEARCH PAGE
+			CATEGORIE : <?php if($search['category_name']=='undefined'){echo "Toute catégories";}else{echo $search['category_name'];} ?> 
 
 
 			<select id="select-order" name="order">
@@ -42,10 +42,12 @@
 
 
 			<form id="name-location" method="POST" action="homesearch">			
-				<input type="text" name="name" value="<?php echo $COOKIE['name']; ?>">
-				<input type="number" name="location" value="<?php echo $COOKIE['location']; ?>">
+				<input type="text" name="name" value="<?php if(isset($search['name'])){echo $search['name'];}?>">
+				<input type="number" name="location" value="<?php if(isset($search['location'])){echo $search['location'];} ?>">
 				<input type="submit" value="Lancer la recherche">
 			</form>
+
+
 
 
 			<div id="display-result">
