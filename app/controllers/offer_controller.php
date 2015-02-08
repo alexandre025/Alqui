@@ -15,6 +15,11 @@ class offer_controller {
     );
     $this->model=new \APP\MODELS\offer_model();
   	new \DB\SQL\Session($this->model->dB,'sess_handler',true); 	
+    $pattern=explode('/',$f3->get('PATTERN'));
+    $pattern=$pattern[1];
+    if($protected=='account'&&!$f3->get('SESSION.id')){
+       $f3->reroute('/');
+    }
 	}
 
 	function offerAdd($f3){

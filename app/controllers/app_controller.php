@@ -15,7 +15,11 @@ class app_controller {
     );
     $this->model=new \APP\MODELS\app_model();
   	new \DB\SQL\Session($this->model->dB,'sess_handler',true);
-    	
+    $pattern=explode('/',$f3->get('PATTERN'));
+    $pattern=$pattern[1];
+    if($pattern=='account'&&!$f3->get('SESSION.id')){
+       $f3->reroute('/');
+    }
 	}
 
 	public function home($f3){
