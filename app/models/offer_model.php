@@ -86,15 +86,20 @@ class offer_model {
 			$order="ORDER BY offer.created_at DESC";
 		}
 
-		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." AND offer.availability='1' GROUP BY offer.name ".$order;
+		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." AND offer.availability='1' GROUP BY offer.id ".$order;
 		return $this->dB->exec($query);
 	}
 
 	public function getOffer($id_offer){
-		$query="SELECT * FROM offer LEFT JOIN category ON offer.id_category=category.id WHERE offer.id='".$id_offer."'";
-		$result->append($this->$dB->exec($query));
+		$query="SELECT category.name AS category_name,offer.id,offer.location,offer.price_per_day,offer.availability,offer.name FROM offer LEFT JOIN category ON offer.id_category=category.id WHERE offer.id='".$id_offer."'";
+		$result=$this->dB->exec($query);
+		return $result;
+	}
+
+	public function getPhotos($id_offer){
 		$query="SELECT photo_name FROM photo WHERE id_offer='".$id_offer."'";
-		return $result->append($this->$dB->exec($query));
+		$result=$this->dB->exec($query);
+		return $result;
 	}
 
 	public function newReservation($params,$id_offer,$id_user){
