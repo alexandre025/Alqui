@@ -74,12 +74,13 @@ class offer_controller {
     $f3->set('categories',$this->model->getCategories());
     $this->tpl['sync']='search.html';
 
-    print_r($this->result);
   }
 
   function showOffer($f3,$params){
-    $this->result->$this->model->getOffer($params['offer']);
+    $this->result=$this->model->getOffer($params['offer']);
     $f3->set('data',$this->result);
+    $f3->set('photo',$this->model->getPhotos($params['offer']));
+    $this->result=array_merge($this->result,$f3->get('photo'));
     $this->tpl['sync']='offer.html';
   }
 
