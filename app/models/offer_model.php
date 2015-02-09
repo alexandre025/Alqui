@@ -28,7 +28,7 @@ class offer_model {
 	public function offerAdd($params,$id){
 		$query='INSERT INTO offer (name,price_per_day,location,content,id_category,id_user,created_at,availability) VALUES (:name,:price,:location,:content,:id_category,:id_user,:created_at,:availability)';  
 		$timestamp=time();
-		$availability=0;
+		$availability=1; // L'offre est publié
 		$val=array(
 			':name'=>$params['name'],
 			':price'=>$params['price'],
@@ -86,8 +86,23 @@ class offer_model {
 			$order="ORDER BY offer.created_at DESC";
 		}
 
-		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." GROUP BY offer.id ".$order;
+		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." AND offer.availability='1' GROUP BY offer.id ".$order;
 		return $this->dB->exec($query);
+	}
+
+	public function newReservation($params,$id_offer,$id_user){
+		$query="INSERT INTO reservation (id_user,id_offer,status,date_start,date_end,created_at) VALUES (:id_user,:id_offer,;status,:date_start,:date_end,:created_at)";
+		$status=0;
+		$timestamp=time();
+		$val=array(
+			':id_user'=>$id_user,
+			':id_offer'=>$id_offer,
+			':status'=>$status,
+			':date_start'=>$params['date_start'],
+			':date_end'=>$params['date_end'],
+			':created_at'=>$timestamp
+		);
+		$this->dB->exec($query,$val);
 	}
 
 	public function log(){

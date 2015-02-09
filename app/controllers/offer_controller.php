@@ -75,6 +75,11 @@ class offer_controller {
     $this->tpl['sync']='search.html';
   }
 
+  function newReservation($f3,$params){
+    $this->model->newReservation($f3->get('POST'),$params['offer'],$f3->get('SESSION.id'));
+    $this->reroute($f3->get('PATTERN'));
+  }
+
 	function afterroute($f3){
     $tpl=$f3->get('AJAX')?$this->tpl['async']:$this->tpl['sync'];
     echo \View::instance()->render($tpl);

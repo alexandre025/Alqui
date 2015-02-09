@@ -10,9 +10,6 @@ var search = require('./ui/search.js');
 
 document.addEventListener('DOMContentLoaded',function(){
 
-
-
-
 	displayer.init();
 	home.init();
 	if($.byId('register-form')){
