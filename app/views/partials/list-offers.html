@@ -5,7 +5,13 @@
 	else:
 	foreach ($data as $offer): ?>
 
-	<li><?php echo $offer['name']; ?></li>
+	<li>
+		<img src="<?php echo $offer['photo_name']; ?>"/>
+		<?php echo $offer['name']; ?>
+		<?php echo $offer['price_per_day']; ?>
+
+
+	</li>
 
 <?php endforeach;endif; ?>
 </ul>

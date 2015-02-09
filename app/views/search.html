@@ -27,7 +27,9 @@
 					<?php include('partials/login-error.html'); ?>
 				</div>
 			</div>
-			<header style="display:none;">
+
+
+			<header>
 				<div>
 					<!-- <img src="" id='header-logo' alt='Alqui - Logo' title='Alqui'/> -->
 					<div id="header-logo"></div>
@@ -43,10 +45,15 @@
 				</div>
 			</header> 
 
-			<?php include('partials/categories.html'); ?>
+			<!-- LEFT BAR -->
+			<?php include('partials/categories.html'); ?> 
 
-			CATEGORIE : <?php echo $category_name; ?>
+			<!-- OVERLAY -->
+			<div style="background-image:url('img/back_<?php echo $search['category'];?>.png">
+				
+				CATEGORIE : <?php echo $category_name; ?>
 
+			</div>
 
 			<form id="search-form" method="POST" action="search/<?php echo $search['category'];?>">
 				<select id="select-order" name="order">
