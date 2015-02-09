@@ -11,7 +11,22 @@
 			<link href="public/css/main.css" rel="stylesheet" type="text/css" />
 		</head>
 		<body>
-	
+			<div id="login-overlay"  <?php if(isset($login_error)): ?>class="active"<?php endif;?>>
+				<div class="login-form">
+					<h1>ALQUI</h1>
+					<h3>Bienvenue</h3>
+					<p>
+						Veuillez vous identifier pour profiter pleinement d'Alqui !
+					</p>
+					<form method="post" action="login/">
+						<input type="email" name="email" required placeholder='Votre identifiant'>
+						<input type="password" name="password" placeholder='Votre mot de passe'>
+						<a href="">Mot de passe oublié ?</a>
+						<input type="submit" value="Connexion" id="login-submit" name="login">
+					</form>
+					<?php include('partials/login-error.html'); ?>
+				</div>
+			</div>
 			<header style="display:none;">
 				<div>
 					<!-- <img src="" id='header-logo' alt='Alqui - Logo' title='Alqui'/> -->
@@ -28,20 +43,21 @@
 				</div>
 			</header> 
 
+			<?php include('partials/categories.html'); ?>
+
+			CATEGORIE : <?php echo $category_name; ?>
 
 
-			CATEGORIE : <?php if($search['category_name']=='undefined'){echo "Toute catégories";}else{echo $search['category_name'];} ?> 
+			<form id="search-form" method="POST" action="search/<?php echo $search['category'];?>">
+				<select id="select-order" name="order">
+					<option value="offer.price_per_day ASC">Trié par PRIX : le moins chère</option>
+					<option value="offer.price_per_day DESC">Trié par PRIX : le plus chère</option>
+					<option selected="selected" value="offer.created_at DESC">Trié par DATE : le plus récent</option>
+					<option value="offer.created_at ASC">Trié par DATE : le moins récent</option>
+				</select>
 
+				<input type="range" name="price" value="100" step="10" min="10" max="1000"> 
 
-			<select id="select-order" name="order">
-				<option value="ORDER BY offer.price_per_day ASC">Trié par PRIX : le moins chère</option>
-				<option value="ORDER BY offer.price_per_day DESC">Trié par PRIX : le plus chère</option>
-				<option selected="selected" value="ORDER BY offer.created_at DESC">Trié par DATE : le plus récent</option>
-				<option value="ORDER BY offer.created_at ASC">Trié par DATE : le moins récent</option>
-			</select>
-
-
-			<form id="name-location" method="POST" action="homesearch">			
 				<input type="text" name="name" value="<?php if(isset($search['name'])){echo $search['name'];}?>">
 				<input type="number" name="location" value="<?php if(isset($search['location'])){echo $search['location'];} ?>">
 				<input type="submit" value="Lancer la recherche">
