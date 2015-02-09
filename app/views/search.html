@@ -55,6 +55,7 @@
 
 			</div>
 
+			<!-- SEARCH FORM -->
 			<form id="search-form" method="POST" action="search/<?php echo $search['category'];?>">
 				<select id="select-order" name="order">
 					<option value="offer.price_per_day ASC">Trié par PRIX : le moins chère</option>
@@ -70,9 +71,7 @@
 				<input type="submit" value="Lancer la recherche">
 			</form>
 
-
-
-
+			<!-- DISPLAY SEARCH RESULT -->
 			<div id="display-result">
 				<?php include('partials/list-offers.html'); ?>
 			</div>
