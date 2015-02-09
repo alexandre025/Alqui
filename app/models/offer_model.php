@@ -21,6 +21,10 @@ class offer_model {
 		return $this->dB->exec('SELECT * FROM category');
 	}
 
+	public function getCategoryName($id){
+		return $this->dB->exec("SELECT name FROM category WHERE id='".$id."'")[0]['name'];
+	}
+
 	public function offerAdd($params,$id){
 		$query='INSERT INTO offer (name,price_per_day,location,content,id_category,id_user,created_at,availability) VALUES (:name,:price,:location,:content,:id_category,:id_user,:created_at,:availability)';  
 		$timestamp=time();
@@ -67,11 +71,11 @@ class offer_model {
 			$location="offer.location IS NOT NULL";
 		}
 		if($f3->get('search.price')){
-			$price="offer.price_per_day < ".$f3->get('search.price')."'";
+			$price="offer.price_per_day < '".$f3->get('search.price')."'";
 		}else{
 			$price="price_per_day IS NOT NULL";
 		}
-		if($f3->get('search.category')){
+		if($f3->get('search.category')!='all'){
 			$category="offer.id_category = '".$f3->get('search.category')."'";
 		}else{
 			$category="offer.id_category IS NOT NULL";
@@ -83,7 +87,6 @@ class offer_model {
 		}
 
 		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." GROUP BY offer.id ".$order;
-		echo $query;
 		return $this->dB->exec($query);
 	}
 

@@ -6,6 +6,7 @@ var displayer = require('./ui/displayer.js');
 var home = require('./ui/home.js');
 var register = require('./ui/register.js');
 var userEdit = require('./ui/userEdit.js');
+var search = require('./ui/search.js');
 
 document.addEventListener('DOMContentLoaded',function(){
 
@@ -21,6 +22,10 @@ document.addEventListener('DOMContentLoaded',function(){
 	if($.byId('password-form')){
 		userEdit.init();
 		console.log('edit form init');
+	}
+	if($.byId('display-result')){
+		search.init();
+		console.log('edit search form');
 	}
 
 },false);

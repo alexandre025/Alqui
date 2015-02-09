@@ -49,36 +49,30 @@ class offer_controller {
     }
   }
 
-  function homeSearch($f3){
+  function search($f3,$params){
     if($f3->get('VERB')=='POST'){
       $f3->set('search.name',$f3->get('POST.name'));
       $f3->set('search.location',$f3->get('POST.location'));
-      $this->search($f3);
-    }
-  }
-  function selectCategory($f3){
-    $f3->set('search.category',$f3->get('POST.category'));
-    $this->search($f3);
-  }
-  function selectOrder($f3){
-    $f3->set('search.order',$f3->get('POST.order'));
-    $this->search($f3);
-  }
-  function selectPrice($f3){
-    $f3->set('search.price',$f3->get('POST.price'));
-    $this->search($f3);
-  }
 
-  function search($f3){
-    $this->result=$this->model->search($f3);
-    if($f3->get('search.category') && $f3->get('search.category')!=0){
-      $f3->set('search.category_name',$this->model->getCategoryName($f3->get('search.category')));
-    }else{
-      $f3->set('search.category_name','undefined');
+      if($f3->get('POST.order')){
+        $f3->set('search.order',$f3->get('POST.order'));
+      }
+      if($f3->get('POST.price')){
+        $f3->set('search.price',$f3->get('POST.price'));
+      }
     }
+    $f3->set('search.category',$params['cat']);
+    if($params['cat']=='all'){
+      $f3->set('category_name','Toute les catégories');
+    }else{
+      $f3->set('category_name',$this->model->getCategoryName($params['cat']));
+    }
+    
+
+    $this->result=$this->model->search($f3);
     $f3->set('data',$this->result);
+    $f3->set('categories',$this->model->getCategories());
     $this->tpl['sync']='search.html';
-    $this->tpl['async']='offer-list.html';
   }
 
 	function afterroute($f3){
