@@ -59,7 +59,7 @@ class offer_model {
 	}
 
 	public function search($f3){
-		$query="SELECT * FROM offer LEFT JOIN photo ON offer.id=photo.id_offer";
+		$query="SELECT offer.id,offer.id_category,offer.price_per_day,offer.name,offer.location,photo.photo_name FROM offer LEFT JOIN photo ON offer.id=photo.id_offer";
 		if($f3->get('search.name')){
 			$name="offer.name LIKE '%".$f3->get('search.name')."%'";
 		}else{
@@ -86,8 +86,15 @@ class offer_model {
 			$order="ORDER BY offer.created_at DESC";
 		}
 
-		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." AND offer.availability='1' GROUP BY offer.id ".$order;
+		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." AND offer.availability='1' GROUP BY offer.name ".$order;
 		return $this->dB->exec($query);
+	}
+
+	public function getOffer($id_offer){
+		$query="SELECT * FROM offer LEFT JOIN category ON offer.id_category=category.id WHERE offer.id='".$id_offer."'";
+		$result->append($this->$dB->exec($query));
+		$query="SELECT photo_name FROM photo WHERE id_offer='".$id_offer."'";
+		return $result->append($this->$dB->exec($query));
 	}
 
 	public function newReservation($params,$id_offer,$id_user){

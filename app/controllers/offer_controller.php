@@ -73,11 +73,27 @@ class offer_controller {
     $f3->set('data',$this->result);
     $f3->set('categories',$this->model->getCategories());
     $this->tpl['sync']='search.html';
+
+    print_r($this->result);
+  }
+
+  function showOffer($f3,$params){
+    $this->result->$this->model->getOffer($params['offer']);
+    $f3->set('data',$this->result);
+    $this->tpl['sync']='offer.html';
   }
 
   function newReservation($f3,$params){
     $this->model->newReservation($f3->get('POST'),$params['offer'],$f3->get('SESSION.id'));
     $this->reroute($f3->get('PATTERN'));
+  }
+
+  function deleteReservation($f3,$params){ 
+
+  }
+
+  function acceptReservation($f3,$params){
+
   }
 
 	function afterroute($f3){
