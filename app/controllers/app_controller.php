@@ -18,7 +18,7 @@ class app_controller {
     $pattern=explode('/',$f3->get('PATTERN'));
     $pattern=$pattern[1];
     if($pattern=='account'&&!$f3->get('SESSION.id')){
-       $f3->reroute('/');
+      $f3->reroute('/');
     }
 	}
 
@@ -84,6 +84,7 @@ class app_controller {
     }
 
     public function account($f3){
+      $f3->set('offers',$this->model->getOwnOffers($f3->get('SESSION.id')));
       $this->tpl['sync']="account.html";
     }
 
