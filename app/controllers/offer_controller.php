@@ -77,10 +77,15 @@ class offer_controller {
   }
 
   function showOffer($f3,$params){
-    $this->result=$this->model->getOffer($params['offer']);
+    $this->result=$this->model->getOffer($params['offer'])[0];
+    $photos=$this->model->getPhotos($params['offer']);
+    $num=1;
+    foreach ($photos as $photo => $value) {
+      $key='photo_'.$num;
+      $this->result[$key]=$value['photo_name'];
+      $num = $num+1;
+    }
     $f3->set('data',$this->result);
-    $f3->set('photo',$this->model->getPhotos($params['offer']));
-    $this->result=array_merge($this->result,$f3->get('photo'));
     $this->tpl['sync']='offer.html';
   }
 
