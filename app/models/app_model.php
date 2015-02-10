@@ -86,6 +86,35 @@ class app_model {
 		$this->dB->exec($query,$val);
 		return;
 	}
+
+	public function getOwnOffers($id){
+		$query="SELECT offer.id, offer.name, offer.price_per_day FROM offer WHERE offer.id_user='".$id."'";
+
+		$ownOffers = $this->dB->exec($query);
+		$result=array();
+		foreach ($ownOffers as $offer) {
+			$query="SELECT 
+				reservation.id AS reservation_id, 
+				reservation.date_start, 
+				reservation.date_end, 
+				reservation.created_at,
+				reservation.status,
+				user.firstname AS user_name, 
+				user.photo AS user_photo, 
+				user.mark AS user_mark
+				FROM reservation LEFT JOIN user 
+				ON reservation.id_user=user.id 
+				WHERE reservation.id_offer=:offer_id 
+				AND reservation.status!='2'
+				AND reservation.disabled_at IS NOT NULL
+				";
+				$val=array(':offer_id'=>$offer['id']);
+				$reservations = $this->dB->exec($query,$val);
+				$offer['reservations']=$reservations;
+				array_push($result,$offer);
+		}
+		return $result;
+	}
 }
 
 ?>
