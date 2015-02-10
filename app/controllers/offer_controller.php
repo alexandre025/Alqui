@@ -77,10 +77,15 @@ class offer_controller {
   }
 
   function showOffer($f3,$params){
-    $this->result=$this->model->getOffer($params['offer']);
+    $this->result=$this->model->getOffer($params['offer'])[0];
+    $photos=$this->model->getPhotos($params['offer']);
+    $num=1;
+    foreach ($photos as $photo => $value) {
+      $key='photo_'.$num;
+      $this->result[$key]=$value['photo_name'];
+      $num = $num+1;
+    }
     $f3->set('data',$this->result);
-    $f3->set('photo',$this->model->getPhotos($params['offer']));
-    $this->result=array_merge($this->result,$f3->get('photo'));
     $this->tpl['sync']='offer.html';
   }
 
@@ -97,11 +102,29 @@ class offer_controller {
 
   }
 
-	function afterroute($f3){
-    $tpl=$f3->get('AJAX')?$this->tpl['async']:$this->tpl['sync'];
-    echo \View::instance()->render($tpl);
+  function afterroute($f3){
+    if(isset($_GET['format'])&&$_GET['format']=='json'){
+      if(is_array($this->result)){
+        $this->result=array_map(function($data){return $data->cast();},$this->result);
+      }elseif(is_object($this->result)){
+        $this->result=$this->result->cast();
+      }else{
+        $this->result=array('error'=>'no dataset');
+      }
+      
+      if(isset($_GET['callback'])){
+        header('Content-Type: application/javascript');
+        echo $_GET['callback'].'('.json_encode($this->result).')';
+      }else{
+        header('Content-Type: application/json');
+        echo json_encode($this->result);
+      }
+    }
+    else{
+      $tpl=$f3->get('AJAX')?$this->tpl['async']:$this->tpl['sync'];
+      echo \View::instance()->render($tpl);
+    }
   }
-
 }
 
 ?>
