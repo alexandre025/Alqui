@@ -270,7 +270,7 @@ header#headerScroll{
 		border-bottom-left-radius: 2px;
 		background: rgba(255,255,255,.8);
 	}
-	input[name='object-zip']{
+	input[name='location']{
 		width: 100px;
 		margin: 0 0 0 -3px;
 
@@ -488,6 +488,12 @@ header#headerScroll{
 		.row-2:active{
 			position: relative;
 			top: 2px;
+		}
+		#col-1 a,
+		#col-2 a,
+		#col-3 a{
+			color: 'white';
+			text-decoration: none;
 		}
 		.cat-infos{
 			height: auto;
