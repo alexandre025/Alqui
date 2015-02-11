@@ -1,0 +1,75 @@
+<?php foreach($offers as $offer): ?>
+
+<div class="own-offer">
+
+	<span class="offer-name">
+		<a href="offer/<?php echo $offer['id']; ?>"><?php echo $offer['name']; ?></a>
+	</span>
+	<span class="offer-price">
+		<?php echo $offer['price_per_day']; ?>
+	</span>
+	<?php if(isset($offer['reservations'])): 
+			foreach ($offer['reservations'] as $reservation): 
+				if($reservation['status']==0):?>
+					<div class="offer-reservation">
+						<span class="reservation-info">
+							<img class="reservation-photo" href="<?php echo $reservation['user_photo'];?>"/>
+							<?php echo "Proposition de réservation de : ".$reservation['user_name']."."; ?>
+							<br>
+						</span>
+						<span class="reservation-date">
+							<?php echo "Du ".$reservation['date_start']." au ".$reservation['date_end']."."; ?>
+						</span>
+						<span class="reservation-price">
+						<!-- ICI CALCULER LE NOMBRES DE JOURS * $offer['price_per_day'] -->
+						</span>
+						<!-- BOUTON SUPPRIMER / VALIDER -->
+						<form method="POST" action="account/reserve/accept/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
+							<input type="submit" class="validation-bouton" value="Accepter la proposition">
+						</form>
+						<form method="POST" action="account/reserve/delete/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
+							<input type="submit" class="delete-bouton" value="Refuser définitivement la proposition">
+						</form>
+
+						
+					</div>
+				<?php elseif($reservation['status']==1): ?>
+					<div class="offer-reservation">
+						<span class="reservation-info">
+							<img class="reservation-photo" href="<?php echo $reservation['user_photo'];?>"/>
+							<?php echo "Vous avez accepté la proposition de ".$reservation['user_name'].". Vous pouvez maintenant vous contacter par email : ".$reservation['user_email']; ?>
+						</span>
+						<span class="reservation-date">
+							<?php echo "Du ".$reservation['date_start']." au ".$reservation['date_end']."."; ?>
+						</span>
+							<!-- COMMENTAIRE -->
+							<form method="POST" action="account/comment/<?php echo $reservation['user_id'];?>">
+								<select name="rank">
+									<option value="0">0</select>
+									<option value="1">1</select>
+									<option value="2">2</select>
+									<option value="3">3</select>
+									<option value="4">4</select>
+									<option value="5">5</select>
+								</select>
+								<textarea name="comment">
+
+								</textarea>
+								<input type="submit" class="comment-submit" value="Valider votre commentaire">
+							</form>
+
+							<!-- BOUTON TERMINER -->
+							<form method="POST" action="account/reserve/end/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
+							<input type="submit" class="delete-bouton" value="Terminer la location">
+							<span class="end-warning">Assurez vous d'avoir bien noté l'adresse email ou d'avoir conserver l'email de validation</span>
+						</form>
+						
+					</div>	
+				<?php endif; ?>
+			<?php endforeach; ?>
+
+	<?php endif; ?>
+
+</div>
+
+<?php endforeach; ?>

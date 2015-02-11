@@ -99,13 +99,16 @@ class app_model {
 				reservation.date_end, 
 				reservation.created_at,
 				reservation.status,
+				user.id AS user_id,
 				user.firstname AS user_name, 
+				user.email AS user_email,
 				user.photo AS user_photo, 
 				user.mark AS user_mark
 				FROM reservation LEFT JOIN user 
 				ON reservation.id_user=user.id 
 				WHERE reservation.id_offer=:offer_id 
 				AND reservation.status!='2'
+				AND reservation.status!='-1'
 				AND reservation.disabled_at IS NOT NULL
 				";
 				$val=array(':offer_id'=>$offer['id']);
