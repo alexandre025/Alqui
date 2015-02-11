@@ -32,10 +32,10 @@ var home = {
 	onScroll: function(){
 		window.onscroll = function(){
 			if(document.body.scrollTop >= window.innerHeight - 142){
-				$.selector('header').setAttribute('id','headerScroll');
+				$.byId('headerLanding').setAttribute('id','headerLandingScroll');
 			}
 			else{
-				$.selector('header').removeAttribute('id');
+				$.byId('headerLandingScroll').setAttribute('id','headerLanding');
 			}
 		}
 	}

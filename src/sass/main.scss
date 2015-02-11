@@ -2,6 +2,7 @@
 @import 'variables';
 @import 'normalize';
 @import 'register';
+@import 'search';
 
 #page-landing{
 	position: fixed;
@@ -111,7 +112,7 @@
 	z-index: 100;
 }
 
-header{
+header#headerLanding{
 	position: fixed;
 	top: 0; left: 0; right: 0;
 	z-index: 10;
@@ -162,7 +163,7 @@ header{
 	}
 }
 
-header#headerScroll{
+header#headerLandingScroll{
 	position: fixed;
 	top: 0; left: 0; right: 0;
 	z-index: 10;
