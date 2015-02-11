@@ -1,18 +1,19 @@
-<div name="category">
+<div name="category" id='search-category'>
 	<ul>
-		<a href="search/all">
-			<li>
-				<img src="img/search/icon_all.png"/>
-				Toute les catégories
-			</li>
-		</a>
+		<li id='search-category-title'>
+			Catégories
+		</li>
 	<?php foreach($categories as $category): ?>
 		<a href="search/<?php echo $category['id'];?>">
 			<li>
 				<img src="img/search/icon_<?php echo $category['name']; ?>.png"/>
+				<br>
 				<?php echo $category['name']; ?>
 			</li>
 		</a>
 	<?php endforeach; ?>
+		<li>
+			<a href='search/all'><button>tout voir</button></a>
+		</li>
 	</ul>
 </div>
