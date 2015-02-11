@@ -37,7 +37,9 @@ class offer_controller {
           }
           return false;
         },true,function($fileBaseName, $formFieldName){
-          $name='offer_'.time().'_'.$fileBaseName;
+          $ext=explode('.',$fileBaseName);
+          $ext='.'.end($ext);
+          $name='offer_'.time().'_'.rand().$ext;
           return $name;
       });
       foreach ($files as $file => $isUpload) {
@@ -104,13 +106,6 @@ class offer_controller {
 
   function afterroute($f3){
     if(isset($_GET['format'])&&$_GET['format']=='json'){
-      if(is_array($this->result)){
-        $this->result=array_map(function($data){return $data->cast();},$this->result);
-      }elseif(is_object($this->result)){
-        $this->result=$this->result->cast();
-      }else{
-        $this->result=array('error'=>'no dataset');
-      }
       
       if(isset($_GET['callback'])){
         header('Content-Type: application/javascript');

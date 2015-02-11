@@ -20,7 +20,7 @@ class app_controller {
     $pattern=explode('/',$f3->get('PATTERN'));
     $pattern=$pattern[1];
     if($pattern=='account'&&!$f3->get('SESSION.id')){
-       $f3->reroute('/');
+      $f3->reroute('/');
     }
 	}
 
@@ -86,6 +86,7 @@ class app_controller {
     }
 
     public function account($f3){
+      $f3->set('offers',$this->model->getOwnOffers($f3->get('SESSION.id')));
       $this->tpl['sync']="account.html";
     }
 
@@ -126,7 +127,7 @@ class app_controller {
         },true,function($fileBaseName, $formFieldName){
           $ext=explode('.',$fileBaseName);
           $ext='.'.end($ext);
-          $name='profil_'.time().$ext;
+          $name='profil_'.time().'_'.rand().$ext;
           return $name;
         });
         $fileName=array_keys($succes)[0];
@@ -145,13 +146,6 @@ class app_controller {
 
 	function afterroute($f3){
     if(isset($_GET['format'])&&$_GET['format']=='json'){
-      if(is_array($this->result)){
-        $this->result=array_map(function($data){return $data->cast();},$this->dataset);
-      }elseif(is_object($this->result)){
-        $this->result=$this->result->cast();
-      }else{
-        $this->result=array('error'=>'no dataset');
-      }
       
       if(isset($_GET['callback'])){
         header('Content-Type: application/javascript');
