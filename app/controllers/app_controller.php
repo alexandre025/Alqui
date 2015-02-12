@@ -53,8 +53,9 @@ class app_controller {
         $user=$this->userArray($auth);
         $f3->set('SESSION',$user);
         $f3->reroute('/');
-      }else{ // GET register page
-        $this->tpl['sync']='register.html';
+      }else{ // REGISTER POPUP
+        // $this->tpl['sync']='register.html';
+        exit;
       }
     }
     private function userArray($auth){

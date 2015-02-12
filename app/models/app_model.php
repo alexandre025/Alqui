@@ -88,9 +88,20 @@ class app_model {
 	}
 
 	public function getOwnOffers($id){
-		$query="SELECT offer.id, offer.name, offer.price_per_day FROM offer WHERE offer.id_user='".$id."'";
+		$query="SELECT 
+			offer.id, 
+			offer.name, 
+			offer.price_per_day 
+			FROM offer 
+			WHERE offer.id_user=:id_user
+			AND offer.disabled_at='O'
+			AND offer.availability!='0'
+			";
+		$val=array(
+			':id_user'=>$id
+		);
 
-		$ownOffers = $this->dB->exec($query);
+		$ownOffers = $this->dB->exec($query,$val);
 		$result=array();
 		foreach ($ownOffers as $offer) {
 			$query="SELECT 
@@ -108,8 +119,7 @@ class app_model {
 				ON reservation.id_user=user.id 
 				WHERE reservation.id_offer=:offer_id 
 				AND reservation.status!='2'
-				AND reservation.status!='-1'
-				AND reservation.disabled_at IS NOT NULL
+				AND reservation.disabled_at='0'
 				";
 				$val=array(':offer_id'=>$offer['id']);
 				$reservations = $this->dB->exec($query,$val);

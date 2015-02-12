@@ -10,6 +10,7 @@
 	</span>
 	<?php if(isset($offer['reservations'])): 
 			foreach ($offer['reservations'] as $reservation): 
+				// RESERVATIONS EN ATTENTE
 				if($reservation['status']==0):?>
 					<div class="offer-reservation">
 						<span class="reservation-info">
@@ -33,6 +34,8 @@
 
 						
 					</div>
+					
+				<!-- RESERVATIONS VALIDES -->
 				<?php elseif($reservation['status']==1): ?>
 					<div class="offer-reservation">
 						<span class="reservation-info">
@@ -42,6 +45,7 @@
 						<span class="reservation-date">
 							<?php echo "Du ".$reservation['date_start']." au ".$reservation['date_end']."."; ?>
 						</span>
+
 							<!-- COMMENTAIRE -->
 							<form method="POST" action="account/comment/<?php echo $reservation['user_id'];?>">
 								<select name="rank">
@@ -52,9 +56,7 @@
 									<option value="4">4</select>
 									<option value="5">5</select>
 								</select>
-								<textarea name="comment">
-
-								</textarea>
+								<textarea name="comment"></textarea>
 								<input type="submit" class="comment-submit" value="Valider votre commentaire">
 							</form>
 
