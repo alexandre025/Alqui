@@ -1,7 +1,7 @@
 'use.strict'
 
 var $ = require('../tools.js');
-// var Masonry = require('../mansory.min.js');
+var Masonry = require('masonry-layout');
 
 var search = {
 	init : function(){
@@ -24,11 +24,10 @@ var search = {
 	// }
 	initMasonry: function(){
 		var container = $.selector('#search-display-result-all');
-		console.log(new Masonry());
-		// var msnry = new Masonry(container,{
-		// 	columnWidth: 10,
-		// 	itemSelector: '.search-display-result-single'
-		// });
+		var msnry = new Masonry(container,{
+			columnWidth: 10,
+			itemSelector: '.search-display-result-single'
+		});
 	}
 };
 module.exports = search;
