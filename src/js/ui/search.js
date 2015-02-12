@@ -1,7 +1,7 @@
 'use.strict'
 
 var $ = require('../tools.js');
-// var Masonry = require('../mansory.min.js');
+var Masonry = require('masonry-layout');
 
 var search = {
 	init : function(){
