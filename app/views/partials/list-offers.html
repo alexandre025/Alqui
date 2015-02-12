@@ -4,16 +4,21 @@
 <ul id='search-display-result-all'>
 <?php 
 	if(!isset($data)||empty($data)):
-		echo "Ooops, nous n'avons trouvé aucun résultats";
+		echo "<p id='no-result'>Ooops, nous n'avons trouvé aucun résultats...</p>";
 	else:
 	foreach ($data as $offer): ?>
 
 	<li class='search-display-result-single'>
 		<img src="<?php echo $offer['photo_name']; ?>"/>
-		<?php echo $offer['name']; ?>
-		<?php echo $offer['price_per_day']; ?>
-		<?php echo $offer['location']; ?>
-		<a href="offer/<?php echo $offer['id']; ?>">Link</a>
+		<p id="product-name"><?php echo $offer['name']; ?></p>
+		<p id="product-location"><?php echo $offer['location']; ?></p>
+		<p id="product-price-handler">
+			<span id="product-price">
+				<span><?php echo $offer['price_per_day']; ?>€/j</span>
+				<a href="offer/<?php echo $offer['id']; ?>">&#9733;</a>
+			</span>
+		</p>
+		<a href="offer/<?php echo $offer['id']; ?>" id='view-product'>Détails</a>
 	</li>
 
 <?php endforeach;endif; ?>

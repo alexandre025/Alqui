@@ -235,27 +235,115 @@
 		vertical-align: top;
 
 		width: calc(100% - 225px - 25px + 11px);
-		margin: 0 0 0 10px;
-		height: 1000px;
+		margin: -10px 0 0 10px;
 
 		ul{
 			list-style: none;
 			padding: 0;
 			margin: 0;
 		}
+		#no-result{
+			width: 350px;
+			padding: 10px;
+			margin: 11px 0 0 calc(50% - 175px);
+
+			border-radius: 6px;
+			background: white;
+
+			text-align: center;
+		}
 		li{
 			width: calc(33% - 11px);
-			margin: 0 0 0 11px;
+			margin: 11px 0 0 11px;
 
 			display: inline-block;
 			vertical-align: top;
 
+			border-bottom-left-radius: 6px;
+			border-bottom-right-radius: 6px;
+
+			background: white;
+
 			img{
 				width: 100%;
+
+				border-bottom: 2px solid rgba(220,199,90,1);
+			}
+			#product-name,
+			#product-location,
+			#product-price-handler,
+			#product-price{
+				margin: 0;
+				width: 100%;
+				
+				text-align: center;
+			}
+			#product-name{
+				margin: 11px 0 0 0;
+				
+				font-weight: 900;
+				letter-spacing: 2px;
+				font-size: 16px;
+
+				color: rgba(52,52,52,1);
+			}
+			#product-location{				
+				font-weight: 500;
+				letter-spacing: 2px;
+				font-size: 13px;
+				font-style: italic;
+
+				color: rgba(157,157,157,1);
+			}
+			#product-price-handler{
+				margin: 13px 0 0 0;
+			}
+			#product-price{
+				width: 200px;
+				padding: 5px 16px;
+
+				font-weight: 700;
+				letter-spacing: 1px;
+				font-size: 13px;
+
+				color: rgba(52,52,52,1);
+				border: 1px solid rgba(230,230,230,1);
+				border-radius: 12px;
+
+				span{
+					padding: 0 8px 0 0;
+					border-right: 1px solid rgba(230,230,230,1);
+				}
+				a{
+					color: rgba(52,52,52,1);
+					text-decoration: none;
+					padding: 5px 0 5px 8px;
+				}
+				a:hover{
+					color: $primary-color;
+				}
+			}
+			#view-product{
+				display: block;
+				width: 100px;
+				height: 30px;
+				margin: 20px 0 20px calc(50% - 50px);
+
+				line-height: 30px;
+				text-align: center;
+				text-decoration: none;
+
+				background: rgba(230,230,230,1);
+				border-radius: 6px;
+				color: rgba(52,52,52,1);
+			}
+			#view-product:hover{
+				background: darken(rgba(230,230,230,1),5%);
+			}
+			#view-product:active{
+				position: relative;
+				top: 2px;
 			}
 		}
-		// .search-display-result-single{
-		// 	width: 10px;
-		// }
 	}
 }

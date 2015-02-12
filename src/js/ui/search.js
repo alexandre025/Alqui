@@ -7,6 +7,7 @@ var search = {
 	init : function(){
 		//search.submitForm();
 		search.initMasonry();
+		search.fixForm();
 	},
 	// submitForm : function(){
 	// 	var form = $.byId('select-order');
@@ -28,6 +29,15 @@ var search = {
 			columnWidth: 10,
 			itemSelector: '.search-display-result-single'
 		});
+	},
+	fixForm: function(){
+		// window.onscroll = function(){
+		// 	if(document.body.scrollTop >= 228){
+		// 		$.byId('search-form').style.position = 'fixed';
+		// 		$.byId('search-form').style.top = '152px';
+		// 		$.byId('search-display-result-all').style.margin = '-10px 0 0 235px';
+		// 	}
+		// }
 	}
 };
 module.exports = search;
