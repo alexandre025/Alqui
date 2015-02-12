@@ -1,0 +1,46 @@
+<!doctype html>
+	<html lang="fr">
+		<head>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+			<title>Alqui</title>
+			<meta name="description" content="">
+			<base href="<?php echo $BASE; ?>/" />
+			<meta name="viewport" content="width=device-width,initial-scale=1">
+			<link href="public/css/main.css" rel="stylesheet" type="text/css" />
+		</head>
+		<body>
+
+			<header id='headerLanding'>
+				<div>
+					<!-- <img src="" id='header-logo' alt='Alqui - Logo' title='Alqui'/> -->
+					<div id="header-logo"></div>
+					<ul>
+						<a href=""><li>Retour à l'accueil</li></a>
+					</ul>
+				</div>
+			</header>
+			
+			
+			<div id="register-bg"></div>
+
+			<form id="register-form" method="POST" action="register/">
+				<!-- REGISTER FORM -->
+				<input name="firstname" type="text" placeholder='Prénom' required>
+				<br>
+				<input name="lastname" type="text" placeholder='Nom' required>
+				<br>
+				<input type="email" name="email" id="email-register" placeholder='Votre email' required>
+				<span class="ckeck-form" id="email-check"><?php include('partials/email-check.html'); ?></span>
+				<br>
+				<input type="password" name="password" id="password-register" placeholder='Votre mot de passe' required>
+				<br>
+				<input type="password" name="password-conf" id="confirm-register" placeholder='Confirmer votre mot de passe' required>
+				<span class="ckeck-form" id="password-check"></span>
+				<input type="submit" value="Inscription" id="submit-register">
+			</form>
+
+			<script src="public/js/app.js" type="text/javascript"></script>
+		</body>
+	</html>
