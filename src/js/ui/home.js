@@ -32,9 +32,11 @@ var home = {
 	onScroll: function(){
 		window.onscroll = function(){
 			if(document.body.scrollTop >= window.innerHeight - 142){
-				$.byId('headerLanding').setAttribute('id','headerLandingScroll');
+				if($.byId('headerLanding'))
+					$.byId('headerLanding').setAttribute('id','headerLandingScroll');
 			}
 			else{
+				if($.byId('headerLandingScroll'))
 				$.byId('headerLandingScroll').setAttribute('id','headerLanding');
 			}
 		}

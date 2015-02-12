@@ -1,11 +1,13 @@
-<ul>
+<!-- <ul id='search-display-result-all' class="js-masonry"
+  data-masonry-options='{ "columnWidth": 33%, "itemSelector": ".search-display-result-single" }'> -->
+<ul id='search-display-result-all'>
 <?php 
 	if(!isset($data)||empty($data)):
 		echo "Ooops, nous n'avons trouvé aucun résultats";
 	else:
 	foreach ($data as $offer): ?>
 
-	<li>
+	<li class='search-display-result-single'>
 		<img src="<?php echo $offer['photo_name']; ?>"/>
 		<?php echo $offer['name']; ?>
 		<?php echo $offer['price_per_day']; ?>
