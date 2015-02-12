@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 	displayer.init();
 	home.init();
+	search.init();
 	if($.byId('register-form')){
 		register.init();
 		console.log('register form init');
