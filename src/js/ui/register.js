@@ -1,6 +1,7 @@
 'use.strict'
 
 var $ = require('../tools.js');
+var displayer = require('../ui/displayer.js');
 
 var register = {
 
@@ -8,6 +9,32 @@ var register = {
 		register.checkEmail();
 		register.checkConfirm();
 		register.registerSubmit();
+		register.registerPopup();
+	},
+	registerPopup : function(){
+	    $.byId('register-link').addEventListener('click',function(e){
+            e.preventDefault();
+            $.byId('register-overlay').classList.add('active');
+        },false);
+
+		// Press escape 
+		window.addEventListener('keyup', function(e) {
+            if (e.keyCode === 27) {
+            	register.closeRegister();
+            }
+        },false);
+
+		// Click on overlay
+        $.byId('register-overlay').addEventListener('click',function(e){
+        	register.closeRegister();
+        },false);
+        // Stop bubbling when clicking on the form
+        $.byId('register-form').addEventListener('click',function(e){
+          e.stopPropagation();
+        },false);
+    },
+    closeRegister : function(){
+		$.byId('register-overlay').classList.remove('active');
 	},
 	checkEmail : function(){
 		$.byId('email-register').addEventListener('focusout',function(e){
