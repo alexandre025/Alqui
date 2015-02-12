@@ -91,8 +91,38 @@ class offer_model {
 	}
 
 	public function getOffer($id_offer){
-		$query="SELECT category.name AS category_name,offer.id,offer.location,offer.price_per_day,offer.availability,offer.name FROM offer LEFT JOIN category ON offer.id_category=category.id WHERE offer.id='".$id_offer."'";
-		$result=$this->dB->exec($query);
+		$query="SELECT 
+			category.name AS category_name,
+			offer.id,
+			offer.location,
+			offer.price_per_day,
+			offer.availability,
+			offer.name,
+			user.firstname AS user_name,
+			user.photo AS user_photo,
+			user.mark AS user_rank,
+			user.id AS user_id
+			FROM offer,user,category 
+			WHERE offer.id_category=category.id 
+			AND offer.id_user=user.id
+			AND offer.id='".$id_offer."'";
+		$result=$this->dB->exec($query)[0];
+
+		$query="SELECT
+			comment.content,
+			comment.created_at AS comment_date,
+			user.photo AS user_photo,
+			user.firstname AS user_name
+			FROM comment,offer,user
+			WHERE user.id=comment.id_from
+			AND comment.id_to=:id_to
+			GROUP BY comment.id
+			ORDER BY comment.created_at DESC 
+			LIMIT 5
+		";
+		$val=array(':id_to'=>$result['user_id']);
+		$result['comments']=$this->dB->exec($query,$val);
+		$result['user_nb_of_comments']=$this->dB->exec("SELECT COUNT(comment.id_to) AS count FROM comment WHERE comment.id_to=:id_to",$val)[0]['count'];
 		return $result;
 	}
 
