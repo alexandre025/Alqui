@@ -128,6 +128,29 @@ class app_model {
 		}
 		return $result;
 	}
+
+	public function selectNotifications($id_user){
+		$query="SELECT 
+			COUNT(*) FROM reservation WHERE id_";
+		$this->dB->exec($query);
+	}
+
+	public function refuseReservation($id_reservation){
+		$this->dB->exec("UPDATE reservation SET status='2' WHERE id='".$id_reservation."'");	
+	}
+
+	public function acceptReservation($id_reservation){
+		$this->dB->exec("UPDATE reservation SET status='1' WHERE id='".$id_reservation."'");	
+	}
+
+	public function deleteReservation($id_reservation){
+		$timestamp=time();
+		$this->dB->exec("UPDATE reservation SET disabled_at='".$timestamp."' WHERE id='".$id_reservation."'");
+	}
+
+	public function deleteOffer($id_offer){
+		$this->dB->exec("UPDATE offer SET disabled_at='".$timestamp."',availability='2' WHERE id='".$id_reservation."'");
+	}
 }
 
 ?>

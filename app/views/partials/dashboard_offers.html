@@ -28,7 +28,7 @@
 						<form method="POST" action="account/reserve/accept/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
 							<input type="submit" class="validation-bouton" value="Accepter la proposition">
 						</form>
-						<form method="POST" action="account/reserve/delete/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
+						<form method="POST" action="account/reserve/refuse/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
 							<input type="submit" class="delete-bouton" value="Refuser définitivement la proposition">
 						</form>
 
@@ -61,7 +61,7 @@
 							</form>
 
 							<!-- BOUTON TERMINER -->
-							<form method="POST" action="account/reserve/end/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
+							<form method="POST" action="account/reserve/delete/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
 							<input type="submit" class="delete-bouton" value="Terminer la location">
 							<span class="end-warning">Assurez vous d'avoir bien noté l'adresse email ou d'avoir conserver l'email de validation</span>
 						</form>
