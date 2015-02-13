@@ -91,19 +91,6 @@ class offer_controller {
     $this->tpl['sync']='offer.html';
   }
 
-  function newReservation($f3,$params){
-    $this->model->newReservation($f3->get('POST'),$params['offer'],$f3->get('SESSION.id'));
-    $this->reroute($f3->get('PATTERN'));
-  }
-
-  function deleteReservation($f3,$params){ 
-
-  }
-
-  function acceptReservation($f3,$params){
-
-  }
-
   function afterroute($f3){
     if(isset($_GET['format'])&&$_GET['format']=='json'){
       

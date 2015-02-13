@@ -53,9 +53,6 @@ class app_controller {
         $user=$this->userArray($auth);
         $f3->set('SESSION',$user);
         $f3->reroute('/');
-      }else{ // REGISTER POPUP
-        // $this->tpl['sync']='register.html';
-        exit;
       }
     }
     private function userArray($auth){
@@ -89,6 +86,31 @@ class app_controller {
     public function account($f3){
       $f3->set('offers',$this->model->getOwnOffers($f3->get('SESSION.id')));
       $this->tpl['sync']="account.html";
+    }
+
+    public function deleteOffer($f3,$params){
+      $this->model->deleteOffer($params['offer']);
+      $f3->reroute('/account');
+    }
+
+    public function newReservation($f3,$params){
+      $this->model->newReservation($f3->get('POST'),$params['offer'],$f3->get('SESSION.id'));
+      $f3->reroute('/account');
+    }
+
+    public function deleteReservation($f3,$params){ 
+      $this->model->deleteReservation($params['reserv']);
+      $f3->reroute('/account');
+    }
+
+    public function refuseReservation($f3,$params){
+      $this->model->refuseReservation($params['reserv']);
+      $f3->reroute('/account');
+    }
+
+    public function acceptReservation($f3,$params){
+      $this->model->acceptReservation($params['reserv']);
+      $f3->reroute('/account');
     }
 
     public function userEdit($f3){
