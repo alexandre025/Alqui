@@ -56,6 +56,7 @@ class app_controller {
       }
     }
     private function userArray($auth){
+      $notif=$this->model->selectNotifications($auth->id)['count'];
       $user=array(
         'id'=>$auth->id,
         'email'=>$auth->email,
@@ -67,7 +68,8 @@ class app_controller {
         'country'=>$auth->country,
         'photo'=>$auth->photo,
         'mark'=>$auth->mark,
-        'created_at'=>$auth->created_at
+        'created_at'=>$auth->created_at,
+        'notif'=>$notif
       );
       return $user;
     }

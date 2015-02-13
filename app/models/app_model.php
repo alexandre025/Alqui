@@ -120,6 +120,7 @@ class app_model {
 				WHERE reservation.id_offer=:offer_id 
 				AND reservation.status!='2'
 				AND reservation.disabled_at='0'
+				ORDER BY reservation.created_at DESC
 				";
 				$val=array(':offer_id'=>$offer['id']);
 				$reservations = $this->dB->exec($query,$val);
@@ -131,16 +132,51 @@ class app_model {
 
 	public function selectNotifications($id_user){
 		$query="SELECT 
-			COUNT(*) FROM reservation WHERE id_";
-		$this->dB->exec($query);
+			reservation.id AS reservation_id, 
+			reservation.date_start, 
+			reservation.date_end, 
+			reservation.created_at,
+			reservation.status,
+			user.firstname AS user_name, 
+			user.photo AS user_photo
+			FROM reservation,offer,user 
+			WHERE reservation.id_user=user.id
+			AND reservation.id_offer=offer.id
+			AND offer.id_user=:id_user 
+			AND reservation.status='0'
+			AND reservation.disabled_at='0'
+			ORDER BY reservation.created_at DESC";
+		$val=array(':id_user'=>$id_user);
+		$second_query="SELECT 
+			reservation.id AS reservation_id, 
+			reservation.date_start, 
+			reservation.date_end, 
+			reservation.created_at,
+			reservation.status,
+			user.firstname AS user_name, 
+			user.photo AS user_photo
+			FROM reservation,user,offer
+			WHERE reservation.id_user=:id_user
+			AND reservation.id_offer=offer.id
+			AND offer.id_user=user.id
+			AND reservation.status='1'
+			AND reservation.disabled_at='0'
+			ORDER BY reservation.created_at DESC";
+		$result=array(
+			'new_reserv'=>$this->dB->exec($query,$val), /* Les nouvelles demandes sur NOS produits */
+			'own_reserv'=>$this->dB->exec($second_query,$val) /* Demande accepté sur une offre d'un autre */
+		);
+		$count=count($result['new_reserv'])+count($result['own_reserv']);
+		$result['count']=$count;
+		return $result;
 	}
 
 	public function refuseReservation($id_reservation){
-		$this->dB->exec("UPDATE reservation SET status='2' WHERE id='".$id_reservation."'");	
+		$this->dB->exec("UPDATE reservation SET status='2', created_at='".time()."' WHERE id='".$id_reservation."'");	
 	}
 
 	public function acceptReservation($id_reservation){
-		$this->dB->exec("UPDATE reservation SET status='1' WHERE id='".$id_reservation."'");	
+		$this->dB->exec("UPDATE reservation SET status='1', created_at='".time()."' WHERE id='".$id_reservation."'");	
 	}
 
 	public function deleteReservation($id_reservation){
