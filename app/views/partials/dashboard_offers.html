@@ -1,7 +1,8 @@
+<div id="own-offer">
+	<h2>VOS OFFRES</h2>
 <?php foreach($offers as $offer): ?>
 
 <div class="own-offer">
-
 	<span class="offer-name">
 		<a href="offer/<?php echo $offer['id']; ?>"><?php echo $offer['name']; ?></a>
 	</span>
@@ -19,9 +20,13 @@
 							<br>
 						</span>
 						<span class="reservation-date">
-							<?php echo "Du ".$reservation['date_start']." au ".$reservation['date_end']."."; ?>
+							<?php echo "Du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end'])."."; ?>
 						</span>
 						<span class="reservation-price">
+							<?php 
+								$price=(($reservation['date_end']-$reservation['date_start'])/60/60/24)*$offer['price_per_day'];
+								echo $price;
+							?> €
 						<!-- ICI CALCULER LE NOMBRES DE JOURS * $offer['price_per_day'] -->
 						</span>
 						<!-- BOUTON SUPPRIMER / VALIDER -->
@@ -43,27 +48,29 @@
 							<?php echo "Vous avez accepté la proposition de ".$reservation['user_name'].". Vous pouvez maintenant vous contacter par email : ".$reservation['user_email']; ?>
 						</span>
 						<span class="reservation-date">
-							<?php echo "Du ".$reservation['date_start']." au ".$reservation['date_end']."."; ?>
+							<?php echo "Du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end'])."."; ?>
 						</span>
 
 							<!-- COMMENTAIRE -->
 							<form method="POST" action="account/comment/<?php echo $reservation['user_id'];?>">
 								<select name="rank">
-									<option value="0">0</select>
-									<option value="1">1</select>
-									<option value="2">2</select>
-									<option value="3">3</select>
-									<option value="4">4</select>
-									<option value="5">5</select>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
 								</select>
 								<textarea name="comment"></textarea>
 								<input type="submit" class="comment-submit" value="Valider votre commentaire">
 							</form>
 
 							<!-- BOUTON TERMINER -->
-							<form method="POST" action="account/reserve/delete/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
-							<input type="submit" class="delete-bouton" value="Terminer la location">
-							<span class="end-warning">Assurez vous d'avoir bien noté l'adresse email ou d'avoir conserver l'email de validation</span>
+							<?php if($reservation['date_end']<time()): ?>
+								<form method="POST" action="account/reserve/delete/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
+								<input type="submit" class="delete-bouton" value="Terminer la location">
+							<?php endif; ?>
+
 						</form>
 						
 					</div>	
@@ -75,3 +82,4 @@
 </div>
 
 <?php endforeach; ?>
+</div>
