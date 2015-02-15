@@ -61,6 +61,7 @@ class app_controller {
     // INITIALISATION DE LA CONNECTION
     private function userArray($auth){
       $notif=$this->model->selectNotifications($auth->id)['count'];
+      $wishlist=$this->model->getWish($auth->id);
       $user=array(
         'id'=>$auth->id,
         'email'=>$auth->email,
@@ -73,7 +74,8 @@ class app_controller {
         'photo'=>$auth->photo,
         'mark'=>$auth->mark,
         'created_at'=>$auth->created_at,
-        'notif'=>$notif
+        'notif'=>$notif,
+        'wishlist'=>$wishlist
       );
       return $user;
     }

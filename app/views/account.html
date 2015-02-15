@@ -19,7 +19,7 @@
 					<div id="header-logo"></div>
 					<ul>
 					  <?php if(!isset($SESSION['id'])): ?>
-						<a href="register"><li>Inscription</li></a>
+						<a href="register" id="register-link"><li>Inscription</li></a>
 						<a href="" id='login-link'><li>Connexion</li></a>
 				      <?php else: ?>
 				        <a href="account"><li>Bonjour, <?php echo $SESSION['firstname']; 

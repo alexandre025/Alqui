@@ -95,8 +95,11 @@ class offer_controller {
   }
 
   //AJOUTER UNE ENVIE
-  public function addToWhishlist($f3,$params){
-    $this->model->addToWhishlist($f3->get('SESSION.id'),$params['id']);
+  public function addToWishlist($f3,$params){
+    $this->model->addToWishlist($f3->get('SESSION.id'),$params['id']);
+    $wishlist=$f3->get('SESSION.wishlist');
+    array_push($wishlist,$params['id']);
+    $f3->set('SESSION.wishlist',$wishlist);
     exit;
   }
 

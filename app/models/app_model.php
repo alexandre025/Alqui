@@ -30,6 +30,17 @@ class app_model {
       return $this->getMapper('user')->load(array('email=:email and password=:password',':email'=>$params['email'],':password'=>$params['password']));
     }
 
+    public function getWish($id){
+    	$query="SELECT id_offer FROM wish WHERE id_user=:id_user";
+    	$val=array(':id_user'=>$id);
+    	$result=$this->dB->exec($query,$val);
+    	$wishlist=array();
+    	foreach($result as $key => $value){
+    		array_push($wishlist, $result['key']);
+    	}
+    	return $wishlist;
+    }
+
 	public function log(){
 		return $this->dB->log();
 	}
@@ -191,6 +202,7 @@ class app_model {
 	public function unavailableOffer($id_offer){
 		$this->dB->exec("UPDATE offer SET availability='2' WHERE id='".$id_offer."'");
 	}
+
 }
 
 ?>
