@@ -187,6 +187,10 @@ class app_model {
 	public function deleteOffer($id_offer){
 		$this->dB->exec("UPDATE offer SET disabled_at='".$timestamp."',availability='2' WHERE id='".$id_reservation."'");
 	}
+
+	public function unavailableOffer($id_offer){
+		$this->dB->exec("UPDATE offer SET availability='2' WHERE id='".$id_offer."'");
+	}
 }
 
 ?>
