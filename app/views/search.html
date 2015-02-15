@@ -80,6 +80,11 @@
 					<div name='price-under'>
 						<input id="input-price" type="range" name="price" value="<?php if(isset($search['price']))echo $search['price'];else echo '100';?>" step="10" min="10" max="1000"> 
 					</div>
+					
+					<select name="availability">
+						<option value="1" <?php if((isset($search['availability'])&&$search['availability']==1)||!isset($search['availability']))echo "selected";?>>Offre disponible uniquement</option>
+						<option value="2"<?php if((isset($search['availability'])&&$search['availability']==2))echo "selected";?>>Toute les offres</option>
+					</select>
 
 					<input type="submit" value="Lancer la recherche">
 				</form>
