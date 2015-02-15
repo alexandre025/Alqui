@@ -155,6 +155,15 @@ class offer_model {
 		$this->dB->exec($query,$val);
 	}
 
+	public function addToWishlist($id_user,$id_offer){
+		$query="INSERT INTO whish (id_user,id_offer) VALUES (:id_user,:id_offer)";
+		$val=array(
+			':id_user'=>$id_user,
+			':id_offer'=>$id_offer
+		);
+		$this->dB->exec($query,$val);
+	}
+
 	public function log(){
 		return $this->dB->log();
 	}
