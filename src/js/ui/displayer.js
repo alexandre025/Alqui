@@ -5,9 +5,10 @@ var $ = require('../tools.js');
 var displayer = {
 
 	init : function(){
-      if($.byId('login-link')){
-        displayer.loginPopup();
-      }
+        if($.byId('login-link')){
+            displayer.loginPopup();
+        }
+        displayer.wish();
 	},
 	// Login popup toggle
 	loginPopup : function(){
@@ -38,5 +39,40 @@ var displayer = {
 	closeLogin : function(){
 		$.byId('login-overlay').classList.remove('active');
 	},
+    wish : function(){
+        var wished=$.byClass('wished'); // DEJA DANS LA LISTE
+        for (var i = 0; i < wished.length; i++) {
+            wished[i].addEventListener('click',function(e){
+                e.preventDefault();
+            },false);
+        };
+
+        var notLogged=$.byClass('wish-not-logged'); // PAS CONNECTE
+        for (var i = 0; i < notLogged.length; i++) {
+            notLogged[i].addEventListener('click',function(e){
+                e.preventDefault();
+            },false);
+        };
+
+        var wishable=$.byClass('not-wished');
+        for (var i = 0; i < wishable.length; i++) {
+            wishable[i].addEventListener('click',displayer.addAWish(event,wishable[i]),false);
+        };
+    },
+    addAWish : function(e,self){
+        console.log(self);
+        console.log('TESt');
+        e.preventDefault();
+        var url=self.getAttribute('href');
+        $.async('POST',url,'',function(xhr){
+            self.classList.remove('not-wished');
+            self.classList.add('wished');
+            self.setAttribute('title','Cette offre est déjà dans votre liste de souhaits !');
+            self.removeEventListener('click',displayer.addAWish);
+            self.addEventListener('click',function(e){
+                e.preventDefault();
+            },false);
+        });
+    }
 };
 module.exports = displayer;

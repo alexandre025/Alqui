@@ -12,8 +12,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 	displayer.init();
 	home.init();
-	search.init();
-	if($.byId('register-form')){
+	if($.byId('register-link')){
 		register.init();
 		console.log('register form init');
 	}
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded',function(){
 		userEdit.init();
 		console.log('edit form init');
 	}
-	if($.byId('display-result')){
+	if($.byId('search-display-result')){
 		search.init();
 		console.log('edit search form');
 	}

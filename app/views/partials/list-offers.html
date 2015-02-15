@@ -12,7 +12,13 @@
 		<p id="product-price-handler">
 			<span id="product-price">
 				<span><?php echo $offer['price_per_day']; ?>€/j</span>
-				<a href="offer/<?php echo $offer['id']; ?>">&#9733;</a>
+				<?php if(isset($SESSION['id'])&&!in_array($offer['id'],$SESSION['wishlist'])): // CONNECTE ET PAS DANS LA LISTE?>
+					<a class="not-wished" href="account/wish/<?php echo $offer['id']; ?>">&#9733;</a>
+				<?php elseif(!isset($SESSION['id'])): // PAS CONNECTE?>
+					<a class="wish-not-logged" title="Connectez vous pour ajouter cette offre à votre liste de souhaits" href="">&#9733;</a>
+				<?php else: // CONNECTE ET DEJA DANS LA LISTE?>
+					<a class="wished" title="Cette offre est déjà dans votre liste de souhaits !" href="">&#9733;</a>
+				<?php endif; ?>
 			</span>
 		</p>
 		<a href="offer/<?php echo $offer['id']; ?>" id='view-product'>Détails</a>
