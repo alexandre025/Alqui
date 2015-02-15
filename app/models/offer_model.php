@@ -85,8 +85,16 @@ class offer_model {
 		}else{
 			$order="ORDER BY offer.created_at DESC";
 		}
-
-		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." AND offer.availability='1' GROUP BY offer.id ".$order;
+		if($f3->get('search.availability')){
+			if($f3->get('search.availability')==1){
+				$availability="offer.availability='".$f3->get('search.availability')."'";
+			}else{
+				$availability="offer.availability IS NOT NULL";
+			}
+		}else{
+			$availability="offer.availability='1'";
+		}
+		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." AND ".$availability." AND offer.disabled_at='0' GROUP BY offer.id ".$order;
 		return $this->dB->exec($query);
 	}
 

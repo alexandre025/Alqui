@@ -62,6 +62,9 @@ class offer_controller {
       if($f3->get('POST.price')){
         $f3->set('search.price',$f3->get('POST.price'));
       }
+      if($f3->get('POST.availability')){
+        $f3->set('search.availability',$f3->get('POST.availability'));
+      }
     }
     $f3->set('search.category',$params['cat']);
     if($params['cat']=='all'){
