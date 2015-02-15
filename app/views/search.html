@@ -64,10 +64,10 @@
 				<!-- SEARCH FORM -->
 				<form id="search-form" method="POST" action="search/<?php echo $search['category'];?>">
 					<select id="select-order" name="order">
-						<option value="offer.price_per_day ASC">Trié par PRIX : le moins chère</option>
-						<option value="offer.price_per_day DESC">Trié par PRIX : le plus chère</option>
-						<option selected="selected" value="offer.created_at DESC">Trié par DATE : le plus récent</option>
-						<option value="offer.created_at ASC">Trié par DATE : le moins récent</option>
+						<option <?php if(isset($search['order'])&&$search['order']=="offer.price_per_day ASC")echo"selected";?> value="offer.price_per_day ASC">Trié par PRIX : le moins chère</option>
+						<option <?php if(isset($search['order'])&&$search['order']=="offer.price_per_day DESC")echo"selected";?> value="offer.price_per_day DESC">Trié par PRIX : le plus chère</option>
+						<option <?php if((isset($search['order'])&&$search['order']=="offer.created_at DESC")||!isset($search['order']))echo"selected";?> value="offer.created_at DESC">Trié par DATE : le plus récent</option>
+						<option <?php if(isset($search['order'])&&$search['order']=="offer.created_at ASC")echo"selected";?> value="offer.created_at ASC">Trié par DATE : le moins récent</option>
 					</select>
 
 					<input type="text" name="name" value="<?php if(isset($search['name'])){echo $search['name'];}?>" placeholder='Recherche...'>

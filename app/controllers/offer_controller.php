@@ -94,6 +94,12 @@ class offer_controller {
     $this->tpl['sync']='offer.html';
   }
 
+  //AJOUTER UNE ENVIE
+  public function addToWhishlist($f3,$params){
+    $this->model->addToWhishlist($f3->get('SESSION.id'),$params['id']);
+    exit;
+  }
+
   function afterroute($f3){
     if(isset($_GET['format'])&&$_GET['format']=='json'){
       

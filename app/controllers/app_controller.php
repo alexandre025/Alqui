@@ -128,11 +128,6 @@ class app_controller {
       $f3->reroute('/account');
     }
 
-    public function addToWhishlist($f3,$params){
-      $this->model->addToWhishlist($params['id']);
-      exit;
-    }
-
     // PAGE EDITION DU COMPTE
     public function userEdit($f3){
       $f3->clear('edited');
