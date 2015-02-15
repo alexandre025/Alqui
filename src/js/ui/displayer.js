@@ -67,7 +67,7 @@ var displayer = {
         $.async('POST',url,'',function(xhr){
             self.classList.remove('not-wished');
             self.classList.add('wished');
-            self.setAttribute('title','Cette offre est déjà dans votre liste de souhaits !');
+            self.setAttribute('data-title','Cette offre est déjà dans votre liste de souhaits !');
             self.removeEventListener('click',displayer.addAWish);
             self.addEventListener('click',function(e){
                 e.preventDefault();

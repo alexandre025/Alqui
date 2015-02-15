@@ -35,8 +35,8 @@ class app_model {
     	$val=array(':id_user'=>$id);
     	$result=$this->dB->exec($query,$val);
     	$wishlist=array();
-    	foreach($result as $key => $value){
-    		array_push($wishlist, $result['key']);
+    	foreach($result as $value){
+    		array_push($wishlist, $value['id_offer']);
     	}
     	return $wishlist;
     }

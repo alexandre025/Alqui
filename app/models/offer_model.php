@@ -81,7 +81,7 @@ class offer_model {
 			$category="offer.id_category IS NOT NULL";
 		}
 		if($f3->get('search.order')){
-			$order="ORDER BY '".$f3->get('search.order')."'";
+			$order="ORDER BY ".$f3->get('search.order');
 		}else{
 			$order="ORDER BY offer.created_at DESC";
 		}
@@ -95,6 +95,7 @@ class offer_model {
 			$availability="offer.availability='1'";
 		}
 		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." AND ".$availability." AND offer.disabled_at='0' GROUP BY offer.id ".$order;
+		print_r($query);
 		return $this->dB->exec($query);
 	}
 
