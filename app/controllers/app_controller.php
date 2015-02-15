@@ -87,6 +87,8 @@ class app_controller {
 
     public function account($f3){
       $f3->set('offers',$this->model->getOwnOffers($f3->get('SESSION.id')));
+      $f3->set('notifs',$this->model->selectNotifications($f3->get('SESSION.id')));
+      $this->result=array($f3->get('offers'),$f3->get('notifs'));
       $this->tpl['sync']="account.html";
     }
 

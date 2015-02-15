@@ -1,3 +1,4 @@
+<!-- <?php print_r($search); ?> -->
 <!doctype html>
 	<html lang="fr">
 		<head>
@@ -74,10 +75,10 @@
 					<input type="number" name="location" value="<?php if(isset($search['location'])){echo $search['location'];} ?>" placeholder='CODE POSTAL'>
 
 					<div name='price-handler'>
-						Prix
+						Prix max : <span id="value-price"><?php if(isset($search['price']))echo $search['price'];else echo '100';?></span>
 					</div>
 					<div name='price-under'>
-						<input type="range" name="price" value="100" step="10" min="10" max="1000"> 
+						<input id="input-price" type="range" name="price" value="<?php if(isset($search['price']))echo $search['price'];else echo '100';?>" step="10" min="10" max="1000"> 
 					</div>
 
 					<input type="submit" value="Lancer la recherche">

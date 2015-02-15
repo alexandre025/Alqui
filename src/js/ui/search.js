@@ -7,6 +7,7 @@ var search = {
 	init : function(){
 		//search.submitForm();
 		search.initMasonry();
+		search.rangePrice();
 	},
 	// submitForm : function(){
 	// 	var form = $.byId('select-order');
@@ -30,6 +31,11 @@ var search = {
 				itemSelector: '.search-display-result-single'
 			});
 		}
+	},
+	rangePrice : function(){
+		$.byId('input-price').addEventListener('change',function(e){
+			$.byId('value-price').innerHTML=this.value;
+		},false);
 	}
 };
 module.exports = search;
