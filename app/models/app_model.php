@@ -50,16 +50,18 @@ class app_model {
 	}
 
 	public function register($params){
-		$query='INSERT INTO user (email,password,firstname,lastname,mark,created_at) VALUES (:email,:password,:firstname,:lastname,:mark,:created_at)';  
+		$query='INSERT INTO user (email,password,firstname,lastname,photo,mark,created_at) VALUES (:email,:password,:firstname,:lastname,:photo,:mark,:created_at)';  
 		$mark=-1;
 		$timestamp=time();
 		$password=sha1($params['password']);
+		$photo='img/profil_default.png';
 		$val=array(
 			':email'=>$params['email'],
 			':password'=>$password,
 			':firstname'=>$params['firstname'],
 			':lastname'=>$params['lastname'],
 			':mark'=>$mark,
+			':photo'=>$photo,
 			':created_at'=>$timestamp
 		);
 		$this->dB->exec($query,$val);
@@ -148,6 +150,8 @@ class app_model {
 			reservation.date_end, 
 			reservation.created_at,
 			reservation.status,
+			offer.name AS offer_name,
+			offer.id AS offer_id,
 			user.firstname AS user_name, 
 			user.photo AS user_photo
 			FROM reservation,offer,user 
@@ -164,6 +168,7 @@ class app_model {
 			reservation.date_end, 
 			reservation.created_at,
 			reservation.status,
+			offer.id AS offer_id,
 			user.firstname AS user_name, 
 			user.photo AS user_photo
 			FROM reservation,user,offer
@@ -177,8 +182,6 @@ class app_model {
 			'new_reserv'=>$this->dB->exec($query,$val), /* Les nouvelles demandes sur NOS produits */
 			'own_reserv'=>$this->dB->exec($second_query,$val) /* Demande accepté sur une offre d'un autre */
 		);
-		$count=count($result['new_reserv'])+count($result['own_reserv']);
-		$result['count']=$count;
 		return $result;
 	}
 
