@@ -4,6 +4,22 @@
 @import 'register';
 @import 'search';
 
+a.wished[data-title]:hover:after, a.not-wished[data-title]:hover:after, a.wish-not-logged[data-title]:hover:after{
+  content: attr(data-title);
+  padding: 4px 8px;
+  color: #000;
+  position: absolute;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-color: #ebebeb;
+}
+
 #page-landing{
 	position: fixed;
 	top: 0; left: 0; right: 0;
