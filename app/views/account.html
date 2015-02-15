@@ -53,23 +53,23 @@
 				<span class="account-country">
 					<?php echo $SESSION['country']; ?>
 				</span>
-			<?php else: ?>
-				<span class="account-to-complete">
-					Vous devez compléter vos informations avant de débuter une transaction.
-				</span>
 			<?php endif; ?>
+				Membre depuis le <?php echo date('d/m/Y',$SESSION['created_at']); ?>
 				<a href="account/edit">Modifier</a>
 			</div>
 
 			<div id="dashboard">
 				<!-- NOTIFICATIONS -->
-				<?php //include('partials/dashboard_notifs'); ?>
+				<?php include('partials/dashboard_notifs.html'); ?>
 
 				<!-- VOS OFFRES -->
-				<?php include('partials/dashboard_offers.html') ?>
+				<?php include('partials/dashboard_offers.html'); ?>
 
 				<!-- VOS DEMANDES -->
-				<?php //include('partials/dashboard_reservations'); ?>
+				<?php //include('partials/dashboard_reservations.html'); ?>
+
+				<!-- VOS SOUHAITS -->
+				<?php //include('partials/dashboard_wishlist.html'); ?>
 			</div>
 		
 
