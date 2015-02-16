@@ -1,0 +1,42 @@
+<div id="reservations" <?php if(isset($GET['view'])&&$GET['view']=='reserv')echo "class=\"active\"";?>>
+	<?php if(count($reservations)>1): ?>
+		<h2><?php echo count($reservations);?> DEMANDES DE RESERVATIONS</h2>
+	<?php else: ?>
+		<h2><?php echo count($reservations);?> DEMANDE DE RESERVATION</h2>
+	<?php endif; ?>
+<?php if(count($reservations)>0):?>
+	<?php foreach($reservations as $reservation): ?>
+
+		<!-- EN ATTENTE -->
+		<?php if($reservation['status']==0): ?>
+			<div class="reservation">
+				Votre demande de réservation de <?php echo $reservation['offer_name']." du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end']); ?> est toujours en attente d'une réponse de <?php echo $reservation['user_name'] ?>. <a href="offer/<?php echo $reservation['offer_id'];?>">Voir l'annonce</a>
+				<form action="account/reserv/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
+					<input type="submit" value="Annuler la réservation">
+				</form>
+			</div>
+		<!-- ACCEPTE -->
+		<?php elseif($reservation['status']==1): ?>
+			<div class="reservation">
+				Votre demande de réservation de <?php echo $reservation['offer_name']." du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end']); ?> a été accepté par <?php echo $reservation['user_name'] ?>. <a href="offer/<?php echo $reservation['offer_id'];?>">Voir l'annonce</a>
+				<br>Vous pouvez maintenant entrer en contact par email à l'adresse suivante : <?php echo $reservation['user_email']; ?>
+				<?php if(time()>$reservation['date_end']):?>
+					<form action="account/reserv/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
+						<input type="submit" value="Terminer">
+					</form>
+				<?php endif; ?>
+			</div>
+		<!-- REFUSE -->
+		<?php elseif($reservation['status']==2): ?>
+			<div class="reservation">
+				Votre demande de réservation de <?php echo $reservation['offer_name']." du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end']); ?> a été refusé par <?php echo $reservation['user_name'] ?>. <a href="offer/<?php echo $reservation['offer_id'];?>">Voir l'annonce</a>
+				<form action="account/reserv/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
+					<input type="submit" value="Supprimer l'information">
+				</form>
+			</div>
+		<?php endif; ?>
+	<?php endforeach; ?>
+<?php else: ?>
+	Vous n'avez pas de demande de reservation d'offre accepté ou en attente.
+<?php endif; ?>
+</div>
