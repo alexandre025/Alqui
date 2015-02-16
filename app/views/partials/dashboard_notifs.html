@@ -31,16 +31,25 @@
 		<?php $own_reserv=$notifs['own_reserv'];
 		if($own_reserv):
 			foreach($own_reserv as $notif): ?>
-				<div class="notif">
-					<img src="<?php echo $notif['user_photo'];?>"/>
-					<span class="details"><?php echo $notif['user_name'];?> a accepté votre demande de réservation. 
-						<a href="offer/<?php echo $notif['offer_id'];?>">Voir l'annonce</a>
-						<br>Le <?php echo date('d/m/Y',$notif['created_at']);?>
-					</span>
-				</div>			
-		<?php
-			endforeach; 
-		else:
+				<?php if($notif['status']==1): ?>
+					<div class="notif">
+						<img src="<?php echo $notif['user_photo'];?>"/>
+						<span class="details"><?php echo $notif['user_name'];?> a accepté votre demande de réservation. 
+							<a href="offer/<?php echo $notif['offer_id'];?>">Voir l'annonce</a>
+							<br>Le <?php echo date('d/m/Y',$notif['created_at']);?>
+						</span>
+					</div>	
+				<?php elseif($notif['status']==2): ?>
+					<div class="notif">
+						<img src="<?php echo $notif['user_photo'];?>"/>
+						<span class="details"><?php echo $notif['user_name'];?> a refusé votre demande de réservation. 
+							<a href="offer/<?php echo $notif['offer_id'];?>">Voir l'annonce</a>
+							<br>Le <?php echo date('d/m/Y',$notif['created_at']);?>
+						</span>
+					</div>			
+				<?php endif;?>
+		<?php endforeach; ?>
+		<?php else:
 			echo "Vous n'avez aucunes notifications concernant vos demandes de réservations";
 		endif;
 		?>

@@ -144,6 +144,29 @@ class app_model {
 		return $result;
 	}
 
+	public function getOwnReserv($id){
+		$query="SELECT
+			reservation.id AS reservation_id,
+			reservation.date_start,
+			reservation.date_end,
+			reservation.status,
+			offer.name AS offer_name,
+			offer.id AS offer_id,
+			user.firstname AS user_name, 
+			user.email AS user_email
+			FROM reservation, offer, user
+			WHERE reservation.id_user=:id
+			AND reservation.id_offer=offer.id
+			AND offer.id_user=user.id
+			AND reservation.disabled_at='0'
+			AND offer.disabled_at='0'
+			GROUP BY reservation.id
+			ORDER BY reservation.created_at DESC
+		";
+		$val=array(':id'=>$id);
+		return $this->dB->exec($query,$val);
+	}
+
 	public function selectNotifications($id_user){
 		$query="SELECT 
 			reservation.id AS reservation_id, 
@@ -176,8 +199,9 @@ class app_model {
 			WHERE reservation.id_user=:id_user
 			AND reservation.id_offer=offer.id
 			AND offer.id_user=user.id
-			AND reservation.status='1'
+			AND reservation.status!='0'
 			AND reservation.disabled_at='0'
+			AND offer.disabled_at='0'
 			ORDER BY reservation.created_at DESC";
 		$result=array(
 			'new_reserv'=>$this->dB->exec($query,$val), /* Les nouvelles demandes sur NOS produits */

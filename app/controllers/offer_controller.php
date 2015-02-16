@@ -47,7 +47,7 @@ class offer_controller {
           $this->model->offerAddPhoto($file,$id);
         }
       }
-      $this->tpl['sync']='account.html';
+      $f3->reroute('/account?view=offers');
     }
   }
 
