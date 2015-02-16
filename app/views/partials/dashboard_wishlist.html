@@ -1,0 +1,12 @@
+<div id="wishlist">
+	<?php if(count($wishlist)>1): ?>
+		<h2><?php echo count($wishlist);?> PRODUITS DANS VOTRE LISTE DE SOUHAITS</h2>
+	<?php else: ?>
+		<h2><?php echo count($wishlist);?> PRODUIT DANS VOTRE LISTE DE SOUHAITS</h2>
+	<?php endif; ?>
+	<?php foreach($wishlist as $wish): ?>
+		<div class="wish">
+			
+		</div>
+	<?php endforeach; ?>
+</div>
