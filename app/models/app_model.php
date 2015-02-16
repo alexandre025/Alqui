@@ -104,7 +104,8 @@ class app_model {
 		$query="SELECT 
 			offer.id, 
 			offer.name, 
-			offer.price_per_day 
+			offer.price_per_day,
+			offer.availability 
 			FROM offer 
 			WHERE offer.id_user=:id_user
 			AND offer.disabled_at='O'
@@ -186,24 +187,28 @@ class app_model {
 	}
 
 	public function refuseReservation($id_reservation){
-		$this->dB->exec("UPDATE reservation SET status='2', created_at='".time()."' WHERE id='".$id_reservation."'");	
+		return $this->dB->exec("UPDATE reservation SET status='2', created_at='".time()."' WHERE id='".$id_reservation."'");	
 	}
 
 	public function acceptReservation($id_reservation){
-		$this->dB->exec("UPDATE reservation SET status='1', created_at='".time()."' WHERE id='".$id_reservation."'");	
+		return $this->dB->exec("UPDATE reservation SET status='1', created_at='".time()."' WHERE id='".$id_reservation."'");	
 	}
 
 	public function deleteReservation($id_reservation){
 		$timestamp=time();
-		$this->dB->exec("UPDATE reservation SET disabled_at='".$timestamp."' WHERE id='".$id_reservation."'");
+		return $this->dB->exec("UPDATE reservation SET disabled_at='".$timestamp."' WHERE id='".$id_reservation."'");
 	}
 
 	public function deleteOffer($id_offer){
-		$this->dB->exec("UPDATE offer SET disabled_at='".$timestamp."',availability='2' WHERE id='".$id_reservation."'");
+		$timestamp=time();
+		return $this->dB->exec("UPDATE offer SET disabled_at='".$timestamp."',availability='2' WHERE id='".$id_offer."'");
 	}
 
 	public function unavailableOffer($id_offer){
-		$this->dB->exec("UPDATE offer SET availability='2' WHERE id='".$id_offer."'");
+		return $this->dB->exec("UPDATE offer SET availability='2' WHERE id='".$id_offer."'");
+	}
+	public function availableOffer($id_offer){
+		return $this->dB->exec("UPDATE offer SET availability='1' WHERE id='".$id_offer."'");
 	}
 
 }

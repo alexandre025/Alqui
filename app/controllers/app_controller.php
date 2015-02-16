@@ -96,7 +96,10 @@ class app_controller {
     // PAGE COMPTE / DASHBOARD
     public function account($f3){
       $f3->set('offers',$this->model->getOwnOffers($f3->get('SESSION.id')));
-      $f3->set('notifs',$this->model->selectNotifications($f3->get('SESSION.id')));
+      $notifs=$this->model->selectNotifications($f3->get('SESSION.id'));
+      $f3->set('notifs',$notifs);
+      $notifs_count=count($notifs['new_reserv'])+count($notifs['own_reserv']);
+      $f3->set('notifs_count',$notifs_count);
       $this->result=array($f3->get('offers'),$f3->get('notifs'));
       $this->tpl['sync']="account.html";
     }
@@ -104,31 +107,43 @@ class app_controller {
     // SUPPRIMER DEFINITIVEMENT UNE OFFRE
     public function deleteOffer($f3,$params){
       $this->model->deleteOffer($params['offer']);
-      $f3->reroute('/account');
+      $f3->reroute('/account?view=offers');
+    }
+
+    // RENDRE INDISPONIBLE UNE OFFRE
+    public function unavailableOffer($f3,$params){
+      $this->model->unavailableOffer($params['offer']);
+      $f3->reroute('/account?view=offers');
+    }
+
+    // RENDRE DISPONIBLE UNE OFFRE
+    public function availableOffer($f3,$params){
+      $this->model->availableOffer($params['offer']);
+      $f3->reroute('/account?view=offers');
     }
 
     // CREER UNE NOUVELLE RESERVATION
     public function newReservation($f3,$params){
       $this->model->newReservation($f3->get('POST'),$params['offer'],$f3->get('SESSION.id'));
-      $f3->reroute('/account');
+      $f3->reroute('/account?view=reserv');
     }
 
     // SUPPRIMER DEFINITVEMENT UNE RESERVATION
     public function deleteReservation($f3,$params){ 
       $this->model->deleteReservation($params['reserv']);
-      $f3->reroute('/account');
+      $f3->reroute('/account?view=offers');
     }
 
     // REFUSER UNE OFFRE DE RESERVATION
     public function refuseReservation($f3,$params){
       $this->model->refuseReservation($params['reserv']);
-      $f3->reroute('/account');
+      $f3->reroute('/account?view=offers');
     }
 
     // ACCEPTER UNE OFFRE DE RESERVATION
     public function acceptReservation($f3,$params){
       $this->model->acceptReservation($params['reserv']);
-      $f3->reroute('/account');
+      $f3->reroute('/account?view=offers');   
     }
 
     // PAGE EDITION DU COMPTE

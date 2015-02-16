@@ -1,5 +1,9 @@
-<div id="notifications">
-	<h2>VOS NOTIFICATIONS</h2>
+<div id="notifications" <?php if(!isset($GET['view']))echo "class=\"active\"";?>>
+	<?php if($notifs_count>1): ?>
+		<h2><?php echo $notifs_count;?> NOTIFICATIONS</h2>
+	<?php else: ?>
+		<h2><?php echo $notifs_count;?> NOTIFICATION</h2>
+	<?php endif; ?>
 	<div id="notifs-own-offers">
 		<h3>Vos offres</h3>
 		<?php $new_reserv=$notifs['new_reserv'];
