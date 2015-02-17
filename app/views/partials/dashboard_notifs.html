@@ -1,4 +1,4 @@
-<div id="notifications" <?php if(!isset($GET['view']))echo "class=\"active\"";?>>
+<div id="notifications" class="dashboard-display<?php if(!isset($GET['view']))echo " active";?>">
 	<?php if($notifs_count>1): ?>
 		<h2><?php echo $notifs_count;?> NOTIFICATIONS</h2>
 	<?php else: ?>

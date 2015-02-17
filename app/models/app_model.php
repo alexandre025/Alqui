@@ -150,10 +150,12 @@ class app_model {
 			reservation.date_start,
 			reservation.date_end,
 			reservation.status,
+			reservation.commented,
 			offer.name AS offer_name,
 			offer.id AS offer_id,
 			user.firstname AS user_name, 
-			user.email AS user_email
+			user.email AS user_email,
+			user.id AS user_id
 			FROM reservation, offer, user
 			WHERE reservation.id_user=:id
 			AND reservation.id_offer=offer.id
@@ -210,6 +212,23 @@ class app_model {
 		return $result;
 	}
 
+	public function getWishlist($id){
+		$query="SELECT
+			wish.id AS wish_id,
+			offer.name AS offer_name,
+			offer.id AS offer_id,
+			offer.price_per_day AS offer_price,
+			user.firstname AS user_name
+			FROM user,offer,wish
+			WHERE wish.id_user=:id
+			AND wish.id_offer=offer.id
+			AND user.id=offer.id_user
+			ORDER BY wish.id DESC
+		";
+		$val=array(':id'=>$id);
+		return $this->dB->exec($query,$val);
+	}
+
 	public function refuseReservation($id_reservation){
 		return $this->dB->exec("UPDATE reservation SET status='2', created_at='".time()."' WHERE id='".$id_reservation."'");	
 	}
@@ -233,6 +252,10 @@ class app_model {
 	}
 	public function availableOffer($id_offer){
 		return $this->dB->exec("UPDATE offer SET availability='1' WHERE id='".$id_offer."'");
+	}
+
+	public function deleteWish($id){
+		return $this->dB->exec("DELETE FROM wish WHERE id='".$id."'");
 	}
 
 }

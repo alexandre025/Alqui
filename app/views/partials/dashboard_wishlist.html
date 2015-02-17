@@ -1,4 +1,4 @@
-<div id="wishlist">
+<div id="wishlist" class="dashboard-display<?php if(isset($GET['view'])&&$GET['view']=='wishlist')echo " active";?>">
 	<?php if(count($wishlist)>1): ?>
 		<h2><?php echo count($wishlist);?> PRODUITS DANS VOTRE LISTE DE SOUHAITS</h2>
 	<?php else: ?>
@@ -6,7 +6,12 @@
 	<?php endif; ?>
 	<?php foreach($wishlist as $wish): ?>
 		<div class="wish">
-			
+			<?php echo $wish['offer_name']." de ".$wish['user_name']." pour ".$wish['offer_price']." €/jours.";?>
+			<form method="POST" action="account/wish/delete/<?php echo $wish['wish_id'];?>">
+				<input type="submit" value="X">
+			</form>
+			<br>
+			<a href="offer/<?php echo $wish['offer_id'];?>">Voir l'annonce</a>	
 		</div>
 	<?php endforeach; ?>
 </div>

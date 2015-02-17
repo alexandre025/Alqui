@@ -97,11 +97,12 @@ class app_controller {
     public function account($f3){
       $f3->set('offers',$this->model->getOwnOffers($f3->get('SESSION.id')));
       $f3->set('reservations',$this->model->getOwnReserv($f3->get('SESSION.id')));
+      $f3->set('wishlist',$this->model->getWishlist($f3->get('SESSION.id')));
       $notifs=$this->model->selectNotifications($f3->get('SESSION.id'));
       $f3->set('notifs',$notifs);
       $notifs_count=count($notifs['new_reserv'])+count($notifs['own_reserv']);
       $f3->set('notifs_count',$notifs_count);
-      $this->result=array($f3->get('offers'),$f3->get('reservations'),$f3->get('notifs'));
+      $this->result=array($f3->get('offers'),$f3->get('reservations'),$f3->get('wishlist'),$f3->get('notifs'));
       $this->tpl['sync']="account.html";
     }
 
@@ -173,6 +174,12 @@ class app_controller {
         $f3->set('SESSION.country',$params['country']);
         $this->tpl['sync']="userEdit.html";
       }      
+    }
+
+    // SUPPRIMER UN SOUHAIT
+    public function deleteWish($f3,$params){
+      $this->model->deleteWish($params['id']);
+      $f3->reroute('/account?view=wishlist');
     }
 
     // MODIFIER SA PHOTO DE PROFIL

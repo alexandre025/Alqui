@@ -1,4 +1,4 @@
-<div id="reservations" <?php if(isset($GET['view'])&&$GET['view']=='reserv')echo "class=\"active\"";?>>
+<div id="reservations" class="dashboard-display<?php if(isset($GET['view'])&&$GET['view']=='reserv')echo " active";?>">
 	<?php if(count($reservations)>1): ?>
 		<h2><?php echo count($reservations);?> DEMANDES DE RESERVATIONS</h2>
 	<?php else: ?>
@@ -11,7 +11,7 @@
 		<?php if($reservation['status']==0): ?>
 			<div class="reservation">
 				Votre demande de réservation de <?php echo $reservation['offer_name']." du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end']); ?> est toujours en attente d'une réponse de <?php echo $reservation['user_name'] ?>. <a href="offer/<?php echo $reservation['offer_id'];?>">Voir l'annonce</a>
-				<form action="account/reserv/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
+				<form action="account/reserve/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
 					<input type="submit" value="Annuler la réservation">
 				</form>
 			</div>
@@ -20,8 +20,26 @@
 			<div class="reservation">
 				Votre demande de réservation de <?php echo $reservation['offer_name']." du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end']); ?> a été accepté par <?php echo $reservation['user_name'] ?>. <a href="offer/<?php echo $reservation['offer_id'];?>">Voir l'annonce</a>
 				<br>Vous pouvez maintenant entrer en contact par email à l'adresse suivante : <?php echo $reservation['user_email']; ?>
+
+				<!-- COMMENTAIRE -->
+				<?php if($reservation['commented']!=1&&time()>$reservation['date_start']): ?>
+					<form method="POST" action="account/comment/<?php echo $reservation['user_id'];?>/">
+						Donnez une appréciation au loueur :
+						<select name="rank">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+						<textarea name="comment"></textarea>
+						<input type="submit" class="comment-submit" value="Valider votre commentaire">
+					</form>
+				<?php endif; ?>
+
 				<?php if(time()>$reservation['date_end']):?>
-					<form action="account/reserv/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
+					<form action="account/reserve/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
 						<input type="submit" value="Terminer">
 					</form>
 				<?php endif; ?>
@@ -30,7 +48,7 @@
 		<?php elseif($reservation['status']==2): ?>
 			<div class="reservation">
 				Votre demande de réservation de <?php echo $reservation['offer_name']." du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end']); ?> a été refusé par <?php echo $reservation['user_name'] ?>. <a href="offer/<?php echo $reservation['offer_id'];?>">Voir l'annonce</a>
-				<form action="account/reserv/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
+				<form action="account/reserve/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
 					<input type="submit" value="Supprimer l'information">
 				</form>
 			</div>
