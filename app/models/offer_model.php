@@ -165,6 +165,10 @@ class offer_model {
 		$this->dB->exec($query,$val);
 	}
 
+	public function isInWishlist($id_offer,$id_user){
+		return $this->dB->exec("SELECT id FROM wish WHERE id_user='".$id_user."' AND id_offer='".$id_offer."'");
+	}
+
 	public function log(){
 		return $this->dB->log();
 	}

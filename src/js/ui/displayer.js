@@ -56,23 +56,20 @@ var displayer = {
 
         var wishable=$.byClass('not-wished');
         for (var i = 0; i < wishable.length; i++) {
-            wishable[i].addEventListener('click',displayer.addAWish(event,wishable[i]),false);
-        };
-    },
-    addAWish : function(e,self){
-        console.log(self);
-        console.log('TESt');
-        e.preventDefault();
-        var url=self.getAttribute('href');
-        $.async('POST',url,'',function(xhr){
-            self.classList.remove('not-wished');
-            self.classList.add('wished');
-            self.setAttribute('data-title','Cette offre est déjà dans votre liste de souhaits !');
-            self.removeEventListener('click',displayer.addAWish);
-            self.addEventListener('click',function(e){
+            wishable[i].addEventListener('click',function(e){
+                var self=this;
                 e.preventDefault();
+                var url=self.getAttribute('href');
+                $.async('POST',url,'',function(xhr){
+                    self.classList.remove('not-wished');
+                    self.classList.add('wished');
+                    self.setAttribute('data-title','Cette offre est déjà dans votre liste de souhaits');
+                    self.addEventListener('click',function(e){
+                        e.preventDefault();
+                    },false);
+                });
             },false);
-        });
+        }
     }
 };
 module.exports = displayer;

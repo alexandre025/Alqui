@@ -1,4 +1,4 @@
-<div id="own-offer" <?php if(isset($GET['view'])&&$GET['view']=='offers')echo "class=\"active\"";?>>
+<div id="own-offer" class="dashboard-display<?php if(isset($GET['view'])&&$GET['view']=='offers')echo " active";?>">
 	<?php if(count($offers)>1): ?>
 		<h2><?php echo count($offers);?> PRODUITS EN LOCATION</h2>
 	<?php else: ?>
@@ -14,7 +14,7 @@
 				<form action="account/offer/unavailable/<?php echo $offer['id']; ?>" method="POST"><input type="submit" value="Rendre cettre offre indisponible à de nouvelles réservations">
 				</form>
 			<?php elseif($offer['availability']==2): ?>
-				<form action="account/offer/available/<?php echo $offer['id']; ?>" metho="POST">
+				<form action="account/offer/available/<?php echo $offer['id']; ?>" method="POST">
 					<input type="submit" value="Rendre cettre offre disponible à de nouvelles réservations">
 				</form>
 			<?php endif; ?>
@@ -64,27 +64,12 @@
 								<?php echo "Du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end'])."."; ?>
 							</span>
 
-								<!-- COMMENTAIRE -->
-								<form method="POST" action="account/comment/<?php echo $reservation['user_id'];?>">
-									<select name="rank">
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-									<textarea name="comment"></textarea>
-									<input type="submit" class="comment-submit" value="Valider votre commentaire">
-								</form>
-
-								<!-- BOUTON TERMINER -->
-								<?php if($reservation['date_end']<time()): ?>
-									<form method="POST" action="account/reserve/delete/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
+							<!-- BOUTON TERMINER -->
+							<?php if($reservation['date_end']<time()): ?>
+								<form method="POST" action="account/reserve/delete/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
 									<input type="submit" class="delete-bouton" value="Terminer la location">
-								<?php endif; ?>
-
-							</form>
+								</form>
+							<?php endif; ?>
 							
 						</div>	
 					<?php endif; ?>
