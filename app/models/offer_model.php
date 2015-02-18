@@ -102,11 +102,13 @@ class offer_model {
 	public function getOffer($id_offer){
 		$query="SELECT 
 			category.name AS category_name,
+			category.id AS category_id,
 			offer.id,
 			offer.location,
 			offer.price_per_day,
 			offer.availability,
 			offer.name,
+			offer.content,
 			user.firstname AS user_name,
 			user.photo AS user_photo,
 			user.mark AS user_rank,
