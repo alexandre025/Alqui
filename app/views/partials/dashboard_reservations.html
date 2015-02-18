@@ -19,13 +19,12 @@
 		<?php elseif($reservation['status']==1): ?>
 			<div class="reservation">
 				Votre demande de réservation de <?php echo $reservation['offer_name']." du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end']); ?> a été accepté par <?php echo $reservation['user_name'] ?>. <a href="offer/<?php echo $reservation['offer_id'];?>">Voir l'annonce</a>
-				<br>Vous pouvez maintenant entrer en contact par email à l'adresse suivante : <?php echo $reservation['user_email']; ?>
+				<br>Vous pouvez maintenant entrer en contact par email à l'adresse suivante : <a href="mailto:<?php echo $reservation['user_email']; ?>?subject=<?php echo "[ALQUI]--".$reservation['offer_name'];?>"><?php echo $reservation['user_email']; ?></a>
 
 				<!-- COMMENTAIRE -->
 				<?php if($reservation['commented']!=1&&time()>$reservation['date_start']): ?>
 					<form method="POST" action="account/comment/<?php echo $reservation['user_id'];?>/">
-						Donnez une appréciation au loueur :
-						<select name="rank">
+						<select name="mark">
 							<option value="0">0</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -33,14 +32,16 @@
 							<option value="4">4</option>
 							<option value="5">5</option>
 						</select>
-						<textarea name="comment"></textarea>
+						<input type="hidden" name="reservation_id" value="<?php echo $reservation['reservation_id'];?>">
+						<textarea name="content">Donnez une appréciation au loueur</textarea>
 						<input type="submit" class="comment-submit" value="Valider votre commentaire">
 					</form>
 				<?php endif; ?>
 
-				<?php if(time()>$reservation['date_end']):?>
+				<?php if(time()>$reservation['date_end']&&$reservation['commented']==1):?>
+					Votre commentaire a bien été enregistrer, merci !
 					<form action="account/reserve/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
-						<input type="submit" value="Terminer">
+						<input type="submit" value="Terminer la transaction">
 					</form>
 				<?php endif; ?>
 			</div>

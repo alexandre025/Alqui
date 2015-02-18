@@ -54,22 +54,15 @@
 						</div>
 						
 					<!-- RESERVATIONS VALIDES -->
-					<?php elseif($reservation['status']==1): ?>
+					<?php elseif($reservation['status']==1&&$reservation['date_end']>time()): ?>
 						<div class="offer-reservation">
 							<span class="reservation-info">
 								<img class="reservation-photo" href="<?php echo $reservation['user_photo'];?>"/>
-								<?php echo "Vous avez accepté la proposition de ".$reservation['user_name'].". Vous pouvez maintenant vous contacter par email : ".$reservation['user_email']; ?>
+								<?php echo "Vous avez accepté la proposition de ".$reservation['user_name'].". Vous pouvez maintenant vous contacter par email : ";?><a href="mailto:<?php echo $reservation['user_email']; ?>?subject=<?php echo "[ALQUI]--".$offer['name'];?>"><?php echo $reservation['user_email']; ?></a>
 							</span>
 							<span class="reservation-date">
 								<?php echo "Du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end'])."."; ?>
 							</span>
-
-							<!-- BOUTON TERMINER -->
-							<?php if($reservation['date_end']<time()): ?>
-								<form method="POST" action="account/reserve/delete/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
-									<input type="submit" class="delete-bouton" value="Terminer la location">
-								</form>
-							<?php endif; ?>
 							
 						</div>	
 					<?php endif; ?>
