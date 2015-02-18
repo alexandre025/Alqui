@@ -183,6 +183,11 @@ class app_controller {
       $f3->reroute('/account?view=wishlist');
     }
 
+    public function addComment($f3,$params){
+      $this->model->addComment($f3->get('SESSION.id'),$params['id'],$f3->get('POST'));
+      $f3->reroute('/account?view=reserv');
+    }
+
     // MODIFIER SA PHOTO DE PROFIL
     public function photoEdit($f3){
       if($f3->get('VERB')=='POST'){

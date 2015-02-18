@@ -258,6 +258,29 @@ class app_model {
 		return $this->dB->exec("DELETE FROM wish WHERE id='".$id."'");
 	}
 
+	public function addComment($id,$id_to,$form){
+		$query="INSERT INTO comment (id_from,id_to,content,mark,created_at) VALUES (:id_from,:id_to,:content,:mark,:created_at)";
+		$timestamp=time();
+		$val=array(
+			':id_from'=>$id,
+			':id_to'=>$id_to,
+			'content'=>$form['content'],
+			':mark'=>$form['mark'],
+			':created_at'=>$timestamp
+		);
+		$this->dB->exec($query,$val);
+		$allMark = $this->dB->exec("SELECT mark FROM comment WHERE id_to='".$id_to."'");
+		$average=0;
+		$count=0;
+		foreach($allMark as $mark){
+			$average=$average+$mark['mark'];
+			$count++;
+		}
+		$average=intval(round($average/$count));
+		$this->dB->exec("UPDATE user SET mark='".$average."' WHERE id='".$id_to."'");
+		$this->dB->exec("UPDATE reservation SET commented='1' WHERE id='".$form['reservation_id']."'");
+	}
+
 }
 
 ?>
