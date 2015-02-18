@@ -179,6 +179,7 @@ class app_controller {
     // SUPPRIMER UN SOUHAIT
     public function deleteWish($f3,$params){
       $this->model->deleteWish($params['id']);
+      $f3->set('SESSION.wishlist',$this->model->getWishlist($f3->get('SESSION.id')));
       $f3->reroute('/account?view=wishlist');
     }
 
