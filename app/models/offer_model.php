@@ -81,23 +81,34 @@ class offer_model {
 			$category="offer.id_category IS NOT NULL";
 		}
 		if($f3->get('search.order')){
-			$order="ORDER BY '".$f3->get('search.order')."'";
+			$order="ORDER BY ".$f3->get('search.order');
 		}else{
 			$order="ORDER BY offer.created_at DESC";
 		}
-
-		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." AND offer.availability='1' GROUP BY offer.id ".$order;
+		if($f3->get('search.availability')){
+			if($f3->get('search.availability')==1){
+				$availability="offer.availability='".$f3->get('search.availability')."'";
+			}else{
+				$availability="offer.availability IS NOT NULL";
+			}
+		}else{
+			$availability="offer.availability='1'";
+		}
+		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." AND ".$availability." AND offer.disabled_at='0' GROUP BY offer.id ".$order;
+		print_r($query);
 		return $this->dB->exec($query);
 	}
 
 	public function getOffer($id_offer){
 		$query="SELECT 
 			category.name AS category_name,
+			category.id AS category_id,
 			offer.id,
 			offer.location,
 			offer.price_per_day,
 			offer.availability,
 			offer.name,
+			offer.content,
 			user.firstname AS user_name,
 			user.photo AS user_photo,
 			user.mark AS user_rank,
@@ -145,6 +156,19 @@ class offer_model {
 			':created_at'=>$timestamp
 		);
 		$this->dB->exec($query,$val);
+	}
+
+	public function addToWishlist($id_user,$id_offer){
+		$query="INSERT INTO wish (id_user,id_offer) VALUES (:id_user,:id_offer)";
+		$val=array(
+			':id_user'=>$id_user,
+			':id_offer'=>$id_offer
+		);
+		$this->dB->exec($query,$val);
+	}
+
+	public function isInWishlist($id_offer,$id_user){
+		return $this->dB->exec("SELECT id FROM wish WHERE id_user='".$id_user."' AND id_offer='".$id_offer."'");
 	}
 
 	public function log(){

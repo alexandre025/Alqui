@@ -47,7 +47,7 @@ class offer_controller {
           $this->model->offerAddPhoto($file,$id);
         }
       }
-      $this->tpl['sync']='account.html';
+      $f3->reroute('/account?view=offers');
     }
   }
 
@@ -61,6 +61,9 @@ class offer_controller {
       }
       if($f3->get('POST.price')){
         $f3->set('search.price',$f3->get('POST.price'));
+      }
+      if($f3->get('POST.availability')){
+        $f3->set('search.availability',$f3->get('POST.availability'));
       }
     }
     $f3->set('search.category',$params['cat']);
@@ -89,6 +92,17 @@ class offer_controller {
     }
     $f3->set('data',$this->result);
     $this->tpl['sync']='offer.html';
+  }
+
+  //AJOUTER UNE ENVIE
+  public function addToWishlist($f3,$params){
+    if(!$this->model->isInWishlist($params['id'],$f3->get('SESSION.id'))){
+      $this->model->addToWishlist($f3->get('SESSION.id'),$params['id']);
+      $wishlist=$f3->get('SESSION.wishlist');
+      array_push($wishlist,$params['id']);
+      $f3->set('SESSION.wishlist',$wishlist);
+    }
+    exit;
   }
 
   function afterroute($f3){

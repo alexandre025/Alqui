@@ -5,23 +5,10 @@ var Masonry = require('masonry-layout');
 
 var search = {
 	init : function(){
-		//search.submitForm();
+		search.selectOrder();
 		search.initMasonry();
+		search.rangePrice();
 	},
-	// submitForm : function(){
-	// 	var form = $.byId('select-order');
-	// 	form.addEventListener('submit',function(e){
-	// 		e.preventDefault();
-	// 		var order = this.value;
-	// 		var data=new FormData();
-	// 		data.append('order',order);
-	// 		console.log(data);
-	// 		$.async('POST','search/'+cat,data,function(xhr){
-	// 			$.byId('display-result').innerHTML=xhr.response;
-	// 		});
-	// 		return false;
-	// 	},false);
-	// }
 	initMasonry: function(){
 		var container = $.selector('#search-display-result-all');
 		if(container){
@@ -30,6 +17,16 @@ var search = {
 				itemSelector: '.search-display-result-single'
 			});
 		}
+	},
+	rangePrice : function(){
+		$.byId('input-price').addEventListener('change',function(e){
+			$.byId('value-price').innerHTML=this.value;
+		},false);
+	},
+	selectOrder : function(){
+		$.byId('select-order').addEventListener('change',function(e){
+			$.byId('search-form').submit();
+		},false);
 	}
 };
 module.exports = search;
