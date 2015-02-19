@@ -1,4 +1,5 @@
-<div id="resutlt-count"><?php echo count($data);if(count($data)>1)echo" offres trouvés";else echo" offre trouvé";?></div>
+<div id="resutlt-count"><?php echo count($data);if(count($data)>1)echo" offres trouvées";else echo" offre trouvée";?></div>
+
 <ul id='search-display-result-all'>
 <?php 
 	if(!isset($data)||empty($data)):
@@ -8,7 +9,8 @@
 
 	<li class='search-display-result-single'>
 		<a href="offer/<?php echo $offer['id']; ?>">
-			<img src="<?php echo $offer['photo_name']; ?>"/>
+			<div id="image-product" style="background: <?php echo $offer['photo_name']; ?> center center no-repeat"/>
+			</div>
 		</a>
 		<p id="product-name"><?php echo $offer['name']; ?></p>
 		<p id="product-location"><?php echo $offer['location']; ?></p>

@@ -81,11 +81,12 @@
 			<div id="search-content">
 				<!-- SEARCH FORM -->
 				<form id="search-form" method="POST" action="search/<?php echo $search['category'];?>">
+
 					<select id="select-order" name="order">
-						<option <?php if(isset($search['order'])&&$search['order']=="offer.price_per_day ASC")echo"selected";?> value="offer.price_per_day ASC">Trié par PRIX : le moins chère</option>
-						<option <?php if(isset($search['order'])&&$search['order']=="offer.price_per_day DESC")echo"selected";?> value="offer.price_per_day DESC">Trié par PRIX : le plus chère</option>
-						<option <?php if((isset($search['order'])&&$search['order']=="offer.created_at DESC")||!isset($search['order']))echo"selected";?> value="offer.created_at DESC">Trié par DATE : le plus récent</option>
-						<option <?php if(isset($search['order'])&&$search['order']=="offer.created_at ASC")echo"selected";?> value="offer.created_at ASC">Trié par DATE : le moins récent</option>
+						<option <?php if(isset($search['order'])&&$search['order']=="offer.price_per_day ASC")echo"selected";?> value="offer.price_per_day ASC">Trier par PRIX : le - cher</option>
+						<option <?php if(isset($search['order'])&&$search['order']=="offer.price_per_day DESC")echo"selected";?> value="offer.price_per_day DESC">Trier par PRIX : le + cher</option>
+						<option <?php if((isset($search['order'])&&$search['order']=="offer.created_at DESC")||!isset($search['order']))echo"selected";?> value="offer.created_at DESC">Trier par DATE : la + récente</option>
+						<option <?php if(isset($search['order'])&&$search['order']=="offer.created_at ASC")echo"selected";?> value="offer.created_at ASC">Trier par DATE : la - récente</option>
 					</select>
 
 					<input type="text" name="name" value="<?php if(isset($search['name'])){echo $search['name'];}?>" placeholder='Recherche...'>
@@ -93,13 +94,13 @@
 					<input type="number" name="location" value="<?php if(isset($search['location'])){echo $search['location'];} ?>" placeholder='CODE POSTAL'>
 
 					<div name='price-handler'>
-						Prix max : <span id="value-price"><?php if(isset($search['price']))echo $search['price'];else echo '100';?></span>
+						Prix max : <span id="value-price"><?php if(isset($search['price']))echo $search['price'].'€';else echo '100€';?></span>
 					</div>
 					<div name='price-under'>
 						<input id="input-price" type="range" name="price" value="<?php if(isset($search['price']))echo $search['price'];else echo '100';?>" step="10" min="10" max="1000"> 
 					</div>
 					
-					<select name="availability">
+					<select id='select-availability' name="availability">
 						<option value="1" <?php if((isset($search['availability'])&&$search['availability']==1)||!isset($search['availability']))echo "selected";?>>Offre disponible uniquement</option>
 						<option value="2"<?php if((isset($search['availability'])&&$search['availability']==2))echo "selected";?>>Toute les offres</option>
 					</select>

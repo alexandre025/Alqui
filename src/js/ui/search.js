@@ -20,7 +20,7 @@ var search = {
 	},
 	rangePrice : function(){
 		$.byId('input-price').addEventListener('change',function(e){
-			$.byId('value-price').innerHTML=this.value;
+			$.byId('value-price').innerHTML=this.value + '€';
 		},false);
 	},
 	selectOrder : function(){
