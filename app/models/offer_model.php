@@ -95,7 +95,6 @@ class offer_model {
 			$availability="offer.availability='1'";
 		}
 		$query .= " WHERE ".$name." AND ".$location." AND ".$price." AND ".$category." AND ".$availability." AND offer.disabled_at='0' GROUP BY offer.id ".$order;
-		print_r($query);
 		return $this->dB->exec($query);
 	}
 
