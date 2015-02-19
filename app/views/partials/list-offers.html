@@ -6,7 +6,9 @@
 	foreach ($data as $offer): ?>
 
 	<li class='search-display-result-single'>
-		<img src="<?php echo $offer['photo_name']; ?>"/>
+		<a href="offer/<?php echo $offer['id']; ?>">
+			<img src="<?php echo $offer['photo_name']; ?>"/>
+		</a>
 		<p id="product-name"><?php echo $offer['name']; ?></p>
 		<p id="product-location"><?php echo $offer['location']; ?></p>
 		<p id="product-price-handler">
