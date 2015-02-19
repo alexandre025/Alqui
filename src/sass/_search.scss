@@ -124,7 +124,8 @@
 	width: calc(100% - 170px);
 	height: 320px;
 
-	background: red;
+	background: rgba(210,210,210,1);
+	border-bottom: 1px solid #cccccc;
 
 	text-align: center;
 	line-height: 400px;
@@ -138,7 +139,7 @@
 	position: absolute;
 	top: 320px; left: 170px;
 	width: calc(100% - 170px);
-	padding: 60px;
+	padding: 60px 60px 40px 60px;
 
 	background: rgba(235,235,235,1);
 
@@ -176,22 +177,19 @@
 			font-size: 12px;
 			letter-spacing: 2px;
 		}
-		div[name='price-handler']{
+		input[name='price']{
 			margin: 15px 0 0 0;
-			padding: 0 20px;
+			padding: 5px 20px;
 			height: 40px;
 
 			background: white;
-			border-top-left-radius: 6px;
-			border-top-right-radius: 6px;
+			border-radius: 6px;
 			border: 0 none;
-			border-bottom: 1px solid rgba(235,235,235,1);
 
-			font-weight: 900;
+			font-weight: 300;
+			font-weight: 700;
 			font-size: 12px;
 			letter-spacing: 2px;
-			line-height: 40px;
-			text-transform: uppercase;
 		}
 		div[name='price-under']{
 			margin: 0;
@@ -240,7 +238,7 @@
 		ul{
 			list-style: none;
 			padding: 0;
-			margin: 0;
+			margin: 11px 0 0 0;
 		}
 		#no-result{
 			width: 350px;
@@ -254,7 +252,7 @@
 		}
 		li{
 			width: calc(33% - 11px);
-			margin: 16px 0 0 11px;
+			margin: 0 0 15px 11px;
 
 			display: inline-block;
 			vertical-align: top;

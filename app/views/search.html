@@ -70,12 +70,13 @@
 
 					<input type="number" name="location" value="<?php if(isset($search['location'])){echo $search['location'];} ?>" placeholder='CODE POSTAL'>
 
-					<div name='price-handler'>
+					<input type="number" name="price" placeholder='PRIX'>
+					<!-- <div name='price-handler'>
 						Prix
-					</div>
-					<div name='price-under'>
-						<input type="range" name="price" value="100" step="10" min="10" max="1000"> 
-					</div>
+					</div> -->
+					<!-- <div name='price-under'>
+						<input type="range" name="price" value="10" step="10" min="1" max="1000"> 
+					</div> -->
 
 					<input type="submit" value="Lancer la recherche">
 				</form>
