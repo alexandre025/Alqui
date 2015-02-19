@@ -30,6 +30,17 @@ class app_model {
       return $this->getMapper('user')->load(array('email=:email and password=:password',':email'=>$params['email'],':password'=>$params['password']));
     }
 
+    public function getWish($id){
+    	$query="SELECT id_offer FROM wish WHERE id_user=:id_user";
+    	$val=array(':id_user'=>$id);
+    	$result=$this->dB->exec($query,$val);
+    	$wishlist=array();
+    	foreach($result as $value){
+    		array_push($wishlist, $value['id_offer']);
+    	}
+    	return $wishlist;
+    }
+
 	public function log(){
 		return $this->dB->log();
 	}
@@ -39,16 +50,18 @@ class app_model {
 	}
 
 	public function register($params){
-		$query='INSERT INTO user (email,password,firstname,lastname,mark,created_at) VALUES (:email,:password,:firstname,:lastname,:mark,:created_at)';  
+		$query='INSERT INTO user (email,password,firstname,lastname,photo,mark,created_at) VALUES (:email,:password,:firstname,:lastname,:photo,:mark,:created_at)';  
 		$mark=-1;
 		$timestamp=time();
 		$password=sha1($params['password']);
+		$photo='img/profil_default.png';
 		$val=array(
 			':email'=>$params['email'],
 			':password'=>$password,
 			':firstname'=>$params['firstname'],
 			':lastname'=>$params['lastname'],
 			':mark'=>$mark,
+			':photo'=>$photo,
 			':created_at'=>$timestamp
 		);
 		$this->dB->exec($query,$val);
@@ -91,7 +104,8 @@ class app_model {
 		$query="SELECT 
 			offer.id, 
 			offer.name, 
-			offer.price_per_day 
+			offer.price_per_day,
+			offer.availability 
 			FROM offer 
 			WHERE offer.id_user=:id_user
 			AND offer.disabled_at='O'
@@ -120,6 +134,7 @@ class app_model {
 				WHERE reservation.id_offer=:offer_id 
 				AND reservation.status!='2'
 				AND reservation.disabled_at='0'
+				ORDER BY reservation.created_at DESC
 				";
 				$val=array(':offer_id'=>$offer['id']);
 				$reservations = $this->dB->exec($query,$val);
@@ -129,28 +144,143 @@ class app_model {
 		return $result;
 	}
 
+	public function getOwnReserv($id){
+		$query="SELECT
+			reservation.id AS reservation_id,
+			reservation.date_start,
+			reservation.date_end,
+			reservation.status,
+			reservation.commented,
+			offer.name AS offer_name,
+			offer.id AS offer_id,
+			user.firstname AS user_name, 
+			user.email AS user_email,
+			user.id AS user_id
+			FROM reservation, offer, user
+			WHERE reservation.id_user=:id
+			AND reservation.id_offer=offer.id
+			AND offer.id_user=user.id
+			AND reservation.disabled_at='0'
+			AND offer.disabled_at='0'
+			GROUP BY reservation.id
+			ORDER BY reservation.created_at DESC
+		";
+		$val=array(':id'=>$id);
+		return $this->dB->exec($query,$val);
+	}
+
 	public function selectNotifications($id_user){
 		$query="SELECT 
-			COUNT(*) FROM reservation WHERE id_";
-		$this->dB->exec($query);
+			reservation.id AS reservation_id, 
+			reservation.date_start, 
+			reservation.date_end, 
+			reservation.created_at,
+			reservation.status,
+			offer.name AS offer_name,
+			offer.id AS offer_id,
+			user.firstname AS user_name, 
+			user.photo AS user_photo
+			FROM reservation,offer,user 
+			WHERE reservation.id_user=user.id
+			AND reservation.id_offer=offer.id
+			AND offer.id_user=:id_user 
+			AND reservation.status='0'
+			AND reservation.disabled_at='0'
+			ORDER BY reservation.created_at DESC";
+		$val=array(':id_user'=>$id_user);
+		$second_query="SELECT 
+			reservation.id AS reservation_id, 
+			reservation.date_start, 
+			reservation.date_end, 
+			reservation.created_at,
+			reservation.status,
+			offer.id AS offer_id,
+			user.firstname AS user_name, 
+			user.photo AS user_photo
+			FROM reservation,user,offer
+			WHERE reservation.id_user=:id_user
+			AND reservation.id_offer=offer.id
+			AND offer.id_user=user.id
+			AND reservation.status!='0'
+			AND reservation.disabled_at='0'
+			AND offer.disabled_at='0'
+			ORDER BY reservation.created_at DESC";
+		$result=array(
+			'new_reserv'=>$this->dB->exec($query,$val), /* Les nouvelles demandes sur NOS produits */
+			'own_reserv'=>$this->dB->exec($second_query,$val) /* Demande accepté sur une offre d'un autre */
+		);
+		return $result;
+	}
+
+	public function getWishlist($id){
+		$query="SELECT
+			wish.id AS wish_id,
+			offer.name AS offer_name,
+			offer.id AS offer_id,
+			offer.price_per_day AS offer_price,
+			user.firstname AS user_name
+			FROM user,offer,wish
+			WHERE wish.id_user=:id
+			AND wish.id_offer=offer.id
+			AND user.id=offer.id_user
+			ORDER BY wish.id DESC
+		";
+		$val=array(':id'=>$id);
+		return $this->dB->exec($query,$val);
 	}
 
 	public function refuseReservation($id_reservation){
-		$this->dB->exec("UPDATE reservation SET status='2' WHERE id='".$id_reservation."'");	
+		return $this->dB->exec("UPDATE reservation SET status='2', created_at='".time()."' WHERE id='".$id_reservation."'");	
 	}
 
 	public function acceptReservation($id_reservation){
-		$this->dB->exec("UPDATE reservation SET status='1' WHERE id='".$id_reservation."'");	
+		return $this->dB->exec("UPDATE reservation SET status='1', created_at='".time()."' WHERE id='".$id_reservation."'");	
 	}
 
 	public function deleteReservation($id_reservation){
 		$timestamp=time();
-		$this->dB->exec("UPDATE reservation SET disabled_at='".$timestamp."' WHERE id='".$id_reservation."'");
+		return $this->dB->exec("UPDATE reservation SET disabled_at='".$timestamp."' WHERE id='".$id_reservation."'");
 	}
 
 	public function deleteOffer($id_offer){
-		$this->dB->exec("UPDATE offer SET disabled_at='".$timestamp."',availability='2' WHERE id='".$id_reservation."'");
+		$timestamp=time();
+		return $this->dB->exec("UPDATE offer SET disabled_at='".$timestamp."',availability='2' WHERE id='".$id_offer."'");
 	}
+
+	public function unavailableOffer($id_offer){
+		return $this->dB->exec("UPDATE offer SET availability='2' WHERE id='".$id_offer."'");
+	}
+	public function availableOffer($id_offer){
+		return $this->dB->exec("UPDATE offer SET availability='1' WHERE id='".$id_offer."'");
+	}
+
+	public function deleteWish($id){
+		return $this->dB->exec("DELETE FROM wish WHERE id='".$id."'");
+	}
+
+	public function addComment($id,$id_to,$form){
+		$query="INSERT INTO comment (id_from,id_to,content,mark,created_at) VALUES (:id_from,:id_to,:content,:mark,:created_at)";
+		$timestamp=time();
+		$val=array(
+			':id_from'=>$id,
+			':id_to'=>$id_to,
+			'content'=>$form['content'],
+			':mark'=>$form['mark'],
+			':created_at'=>$timestamp
+		);
+		$this->dB->exec($query,$val);
+		$allMark = $this->dB->exec("SELECT mark FROM comment WHERE id_to='".$id_to."'");
+		$average=0;
+		$count=0;
+		foreach($allMark as $mark){
+			$average=$average+$mark['mark'];
+			$count++;
+		}
+		$average=intval(round($average/$count));
+		$this->dB->exec("UPDATE user SET mark='".$average."' WHERE id='".$id_to."'");
+		$this->dB->exec("UPDATE reservation SET commented='1' WHERE id='".$form['reservation_id']."'");
+	}
+
 }
 
 ?>
