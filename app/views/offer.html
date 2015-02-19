@@ -70,66 +70,77 @@
 
 			
 
-			<div id="location" data-location="<?php echo $data['location'];?>"></div>
+			<div id="offer-location" data-location="<?php echo $data['location'];?>">
+			
+			</div>
 
-			<div id="main-content">
+			<div id="offer-content">
 
-				<h2><?php echo $data['name'];?></h2>
+				<div id="left">
+					<h2><?php echo $data['name'];?></h2>
 
-				<div id="slider">
-					<ul>
-						<?php if(isset($data['photo_1'])): ?>
-							<li><img src="<?php echo $data['photo_1'];?>"/></li>
-						<?php endif; if(isset($data['photo_2'])): ?>
-							<li><img src="<?php echo $data['photo_2'];?>"/></li>
-						<?php endif; if(isset($data['photo_3'])): ?>
-							<li><img src="<?php echo $data['photo_3'];?>"/></li>
-						<?php endif; ?>
-					</ul>
-				</div>
+					<div id="slider-view-photo">
+						<img src="" alt="">
+					</div>
 
-				<div id="category">
-					<a href="search/<?php echo $data['category_id'];?>">
-						<img src="img/search/icon_<?php echo $data['category_name']; ?>.png"/>
-						<?php echo $data['category_name']; ?>
-					</a>
-				</div>
-				<div id="content">
-					<p><?php echo $data['content'];?></p>
-				</div>
+					<div id="slider">
+						<ul>
+							<?php if(isset($data['photo_1'])): ?>
+								<li><img src="<?php echo $data['photo_1'];?>"/></li>
+							<?php endif; if(isset($data['photo_2'])): ?>
+								<li><img src="<?php echo $data['photo_2'];?>"/></li>
+							<?php endif; if(isset($data['photo_3'])): ?>
+								<li><img src="<?php echo $data['photo_3'];?>"/></li>
+							<?php endif; ?>
+						</ul>
+					</div>
 
-				<div id="comments">
-					<?php foreach($data['comments'] as $comment):?>
-						<div class="comment">
-							<img src="<?php echo $comment['user_photo'];?>"/>
-							<?php echo $comment['user_name']; ?>
-							<?php echo $comment['content']; ?>
-							<?php echo "Le ".date('d/m/Y',$comment['comment_date']); ?>
+					<div id="category">
+						<div id="cat-img">
+							<a href="search/<?php echo $data['category_id'];?>">
+								<img src="img/search/icon_<?php echo $data['category_name']; ?>.png"/>
+							<?php echo $data['category_name']; ?>
+							</a>
 						</div>
-					<?php endforeach; ?>
+					</div>
+					<div id="content">
+						<?php echo $data['content'];?>
+					</div>
+
+					<div id="comments">
+						<?php foreach($data['comments'] as $comment):?>
+							<div class="comment">
+								<img src="<?php echo $comment['user_photo'];?>"/>
+								<?php echo $comment['user_name']; ?>
+								<?php echo $comment['content']; ?>
+								<?php echo "Le ".date('d/m/Y',$comment['comment_date']); ?>
+							</div>
+						<?php endforeach; ?>
+					</div>
+				</div>
+
+				<!-- LEFT BAR -->
+				<div id="right">
+					<!-- INFO LOUEUR -->
+					<div id="user">
+						<img src="<?php echo $data['user_photo'];?>"/>
+						<?php echo $data['user_name'];?>
+						<?php 
+							$i=0;
+							while($data['user_rank']>$i){
+								echo "(*)"; // A REMPLACER PAR LA VRAIE ETOILE DOREE
+								$i++;
+							}
+							while($i<5){
+								echo "(-)"; // A REMPLACER PAR LA VRAIE ETOILE GRISE
+								$i++;
+							}
+							echo " (".$data['user_nb_of_comments'].")";
+						?>
+					</div>
 				</div>
 
 			</div>
-
-			<!-- LEFT BAR -->
-			<div id="left-bar">
-				<!-- INFO LOUEUR -->
-				<div id="user">
-					<img src="<?php echo $data['user_photo'];?>"/>
-					<?php echo $data['user_name'];?>
-					<?php 
-						$i=0;
-						while($data['user_rank']>$i){
-							echo "(*)"; // A REMPLACER PAR LA VRAIE ETOILE DOREE
-							$i++;
-						}
-						while($i<5){
-							echo "(-)"; // A REMPLACER PAR LA VRAIE ETOILE GRISE
-							$i++;
-						}
-						echo " (".$data['user_nb_of_comments'].")";
-					?>
-				</div>
 		
 
 			<script src="public/js/app.js" type="text/javascript"></script>
