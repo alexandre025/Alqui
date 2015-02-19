@@ -3,6 +3,7 @@
 @import 'normalize';
 @import 'register';
 @import 'search';
+@import 'offer';
 
 a.wished[data-title]:hover:after, a.not-wished[data-title]:hover:after, a.wish-not-logged[data-title]:hover:after{
   content: attr(data-title);
