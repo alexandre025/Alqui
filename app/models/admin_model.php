@@ -18,8 +18,13 @@ class admin_model {
 	}
   
     public function login($params){
-      $params['password']=sha1($params['password']);
-      return $this->getMapper('admin')->load(array('login=:login and password=:password',':login'=>$params['login'],':password'=>$params['password']));
+    $params['password']=sha1($params['password']);
+    $query="SELECT * FROM admin WHERE password=:password AND login=:login AND disabled_at='0'";
+    $val=array(
+    	':password'=>$params['password'],
+    	':login'=>$params['login']
+	);
+    return $this->dB->exec($query,$val);
     }
 
 	public function log(){

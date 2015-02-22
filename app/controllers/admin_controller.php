@@ -5,7 +5,7 @@
 // Gestion de ses offres, commentaires, envies et réservations
 namespace APP\CONTROLLERS;
 
-class app_controller {
+class admin_controller {
 
   	private $model;
   	private $tpl;  
@@ -13,36 +13,56 @@ class app_controller {
   	function __construct(){
       $f3=\Base::instance();
       $this->tpl=array(
-        'sync'=>'admin_login.html',
+        'sync'=>'admin_dashboard.html',
         'async'=>''
       );
-      $this->model=new \APP\MODELS\app_model();
+      $this->model=new \APP\MODELS\admin_model();
     	new \DB\SQL\Session($this->model->dB,'sess_handler',true);
       $pattern=explode('/',$f3->get('PATTERN'));
       $pattern=$pattern[1];
-      if($pattern=='admin'&&!$f3->get('SESSION.id')){
-        $f3->reroute('/');
+      if($pattern=='admin'&&!$f3->get('SESSION.admin_id')){
+        $f3->reroute('/admin-login');
       }
   	}
 
+    function admin($f3){
+      
+    }
 
-
-	function afterroute($f3){
-    // API ENDPOINT
-    if(isset($_GET['format'])&&$_GET['format']=='json'){
-      if(isset($_GET['callback'])){ // JS OBJECT
-        header('Content-Type: application/javascript');
-        echo $_GET['callback'].'('.json_encode($this->result).')';
-      }else{ // JSON
-        header('Content-Type: application/json');
-        echo json_encode($this->result);
+    function login($f3){
+      if($f3->get('VERB')=='POST'){
+        $auth=$this->model->login($f3->get('POST'));
+        if($auth){
+          $auth=$auth[0];
+          $admin=array(
+            'admin_id'=>$auth['id'],
+            'admin_name'=>$auth['login'],
+          );
+          $f3->set('SESSION',$admin);
+          $f3->reroute('/admin');
+        }
+      }else{ // GET
+        $this->tpl['sync']='admin_login.html';
       }
     }
-    else{ // TEMPLATING RENDER
-      $tpl=$f3->get('AJAX')?$this->tpl['async']:$this->tpl['sync'];
-      echo \View::instance()->render($tpl);
+
+
+  	function afterroute($f3){
+      // API ENDPOINT
+      if(isset($_GET['format'])&&$_GET['format']=='json'){
+        if(isset($_GET['callback'])){ // JS OBJECT
+          header('Content-Type: application/javascript');
+          echo $_GET['callback'].'('.json_encode($this->result).')';
+        }else{ // JSON
+          header('Content-Type: application/json');
+          echo json_encode($this->result);
+        }
+      }
+      else{ // TEMPLATING RENDER
+        $tpl=$f3->get('AJAX')?$this->tpl['async']:$this->tpl['sync'];
+        echo \View::instance()->render($tpl);
+      }
     }
-  }
 
 }
 
