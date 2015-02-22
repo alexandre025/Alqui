@@ -46,6 +46,20 @@ class admin_controller {
       }
     }
 
+    function getAllOffers($f3){
+      $f3->set('offers',$this->model->getAllOffers());
+      $this->tpl['async']='partials/admin_offers.html';
+    }
+    function getNewOffers($f3){
+      $f3->set('offers',$this->model->getNewOffers());
+      $this->tpl['async']='partials/admin_offers.html';
+    }
+
+    function logout($f3){
+      $f3->clear('SESSION');
+      $f3->reroute('/admin');
+    }
+
 
   	function afterroute($f3){
       // API ENDPOINT

@@ -27,6 +27,41 @@ class admin_model {
     return $this->dB->exec($query,$val);
     }
 
+    public function getAllOffers(){
+    	$query="SELECT
+    	offer.name AS offer_name,
+    	offer.id AS offer_id,
+    	offer.created_at AS offer_created_at,
+    	offer.availability AS offer_availability,
+    	user.id AS user_id,
+    	user.firstname AS user_firstname,
+    	user.lastname AS user_lastname
+    	FROM user,offer
+    	WHERE offer.id_user=user.id
+    	AND offer.disabled_at='0'
+    	AND offer.availability!='0'
+    	ORDER BY offer.availability ASC, offer.created_at DESC
+    	";
+    	return $this->dB->exec($query);
+    }
+    public function getnewOffers(){
+    	$query="SELECT
+    	offer.name AS offer_name,
+    	offer.id AS offer_id,
+    	offer.created_at AS offer_created_at,
+    	offer.availability AS offer_availability,
+    	user.id AS user_id,
+    	user.firstname AS user_firstname,
+    	user.lastname AS user_lastname
+    	FROM user,offer
+    	WHERE offer.id_user=user.id
+    	AND offer.disabled_at='0'
+    	AND offer.availability='0'
+    	ORDER BY offer.availability ASC, offer.created_at DESC
+    	";
+    	return $this->dB->exec($query);
+    }
+
 	public function log(){
 		return $this->dB->log();
 	}
