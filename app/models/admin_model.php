@@ -61,6 +61,35 @@ class admin_model {
     	";
     	return $this->dB->exec($query);
     }
+    public function getOffer($id_offer){
+    	$query="SELECT 
+			category.name AS category_name,
+			offer.id,
+			offer.location,
+			offer.price_per_day,
+			offer.availability,
+			offer.name,
+			offer.content,
+			user.id AS user_id,
+			user.firstname AS user_firstname,
+			user.lastname AS user_lastname
+			FROM offer,user,category 
+			WHERE offer.id_category=category.id 
+			AND offer.id_user=user.id
+			AND offer.id='".$id_offer."'";
+		$offer=$this->dB->exec($query)[0];
+		$photos=$this->dB->exec("SELECT photo_name FROM photo WHERE id_offer='".$id_offer."'");
+		for ($i=0; $i < count($photos); $i++) { 
+			$offer['photo_'.($i+1)]=$photos[$i]['photo_name'];
+		}
+		return $offer;
+    }
+    public function refuseOffer($id_offer){
+    	$this->dB->exec("UPDATE offer SET disabled_at='".time()."' WHERE id='".$id_offer."'");
+    }
+    public function acceptOffer($id_offer){
+    	$this->dB->exec("UPDATE offer SET created_at='".time()."', availability='1' WHERE id='".$id_offer."'");
+    }
 
 	public function log(){
 		return $this->dB->log();

@@ -9,6 +9,19 @@ body,html {
 	overflow: hidden;
 }
 
+.italic {
+	font-style: italic;
+}
+.offer-name {
+	font-weight: 700;
+	text-transform: capitalize;
+}
+h2{
+	font-size: 30px;
+	padding-left: 40px;
+	color: $primary-color;
+}
+
 nav {
 	width: 250px;
 	height: 100%;
@@ -34,7 +47,7 @@ nav {
 			display: inline-block;
 			width: 250px;
 			height: 60px;
-			border-bottom: 1px solid rgb(235,235,235);;
+			border-bottom: 1px solid rgb(235,235,235);
 			text-align: center;
 		}
 	}
@@ -54,20 +67,49 @@ nav {
 
 ul.offers{
 	padding: 0;
-	h2{
-		color: $primary-color;
-	}
 	li.half{
 		background-color: rgb(244,244,244);
 	}
 	li{
+
+		line-height: 40px;
+		padding-left: 40px;
 		display: inline-block;
 		width: 100%;
-		height: 40px;
+		min-height: 40px;
 
 		a.right{
 			position:absolute;
 			right: 40px;
+		}
+		a{
+			color: $primary-color;
+			text-decoration: none;
+		}
+		p{
+			margin: 0;
+			padding: 0px 0px 11px 40px;
+		}
+		img.photo-offer{
+			max-width: 250px;
+			padding-top: 11px;
+		}
+		.form{
+			text-align: center;
+		}
+		form{
+			margin-left: 40px;
+			margin-top: 5px; 
+			display: inline-block;
+			text-align: center;
+			input[type="submit"]{
+				display: inline-block;
+				background-color: $primary-color;
+				border: none;
+				border-radius: 20px;
+				padding: 5px 10px 5px 10px;
+				color: rgb(255,255,255);
+			}
 		}
 	}
 }

@@ -15,7 +15,7 @@
 			
 			<nav>
 				<ul>
-					<li> ALQUI | ADMIN</li>
+					<li>ALQUI | ADMIN</li>
 					<a href="admin/users" class="nav-async"><li>Utilisateurs</li></a>
 					<a href="admin/new-offers" class="nav-async"><li>Offres à valider</li></a>
 					<a href="admin/offers" class="nav-async"><li>Offres en ligne</li></a>
@@ -24,6 +24,8 @@
 			</nav>
 
 			<div id="display">
+				<?php if(isset($offer)) include('partials/admin_offer.html'); ?>
+				<?php if(isset($offers)) include('partials/admin_offers.html'); ?>
 
 			</div>
 
