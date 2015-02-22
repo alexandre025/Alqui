@@ -1,8 +1,5 @@
 <?php
 
-// Édition d'informations
-// Création de compte, connexion, déconnexion
-// Gestion de ses offres, commentaires, envies et réservations
 namespace APP\CONTROLLERS;
 
 class admin_controller {
@@ -45,7 +42,14 @@ class admin_controller {
         $this->tpl['sync']='admin_login.html';
       }
     }
-
+    function refuseOffer($f3,$params){
+      $this->model->refuseOffer($params['id']);
+      $f3->set('offer',$this->model->getOffer($params['id']));
+    }
+    function acceptOffer($f3,$params){
+      $this->model->acceptOffer($params['id']);
+      $f3->set('offer',$this->model->getOffer($params['id']));
+    }
     function getAllOffers($f3){
       $f3->set('offers',$this->model->getAllOffers());
       $this->tpl['async']='partials/admin_offers.html';
@@ -53,6 +57,10 @@ class admin_controller {
     function getNewOffers($f3){
       $f3->set('offers',$this->model->getNewOffers());
       $this->tpl['async']='partials/admin_offers.html';
+    }
+    function getOffer($f3,$params){
+      $f3->set('offer',$this->model->getOffer($params['id']));
+      $this->tpl['async']='partials/admin_offer.html';
     }
 
     function logout($f3){
