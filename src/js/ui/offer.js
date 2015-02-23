@@ -37,3 +37,4 @@ var offer = {
 		_.byId('slider-view-photo').querySelector('img').src = this.querySelector('img').src;
 	}
 }
+module.exports = offer;
