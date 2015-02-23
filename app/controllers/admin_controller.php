@@ -42,6 +42,10 @@ class admin_controller {
         $this->tpl['sync']='admin_login.html';
       }
     }
+    function getUser($f3,$params){
+      $f3->set('user',$this->model->getUser($params['id']));
+      $this->tpl['async']='partials/admin_user.html';
+    }
     function getUsers($f3){
       $f3->set('users',$this->model->getUsers());
       $this->tpl['async']='partials/admin_users.html';
@@ -71,7 +75,6 @@ class admin_controller {
       $f3->clear('SESSION');
       $f3->reroute('/admin');
     }
-
 
   	function afterroute($f3){
       // API ENDPOINT
