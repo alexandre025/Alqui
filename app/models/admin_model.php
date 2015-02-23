@@ -38,6 +38,11 @@ class admin_model {
         ";
         return $this->dB->exec($query);
     }
+    public function getUser($id){
+        $query="SELECT * FROM user WHERE id=:id";
+        $val=array(':id'=>$id);
+        return $this->dB->exec($query,$val)[0];
+    }
 
     public function getAllOffers(){
     	$query="SELECT
@@ -82,6 +87,7 @@ class admin_model {
 			offer.availability,
 			offer.name,
 			offer.content,
+            offer.created_at,
 			user.id AS user_id,
 			user.firstname AS user_firstname,
 			user.lastname AS user_lastname
@@ -98,17 +104,40 @@ class admin_model {
     }
     public function refuseOffer($id_offer){
     	$this->dB->exec("UPDATE offer SET disabled_at='".time()."' WHERE id='".$id_offer."'");
+        $this->dB->exec("UPDATE reservation SET status='2' WHERE id_offer='".$id_offer."'");
+    }
+    public function banUser($id_user){
+        $query="UPDATE reservation 
+        SET reservation.status='2' 
+        WHERE reservation.id_offer=offer.id
+        AND offer.id_user=:id
+        ";
+        $val=array(':id'=>$id_user);
+        $this->dB->exec($query,$val);
+
+        $query="UPDATE offer
+        SET offer.availability='2',
+        offer.disabled_at=:time,
+        WHERE offer.id_user=:id
+        ";
+        $val=array(
+            ':id'=>$id_user,
+            ':time'=>time()
+        );
+        $this->dB->exec($query,$val);
+
+        $query="UPDATE user
+        SET user.disabled_at=:time
+        WHERE user.id=:id
+        ";
+        $this->dB->exec($query);
     }
     public function acceptOffer($id_offer){
     	$this->dB->exec("UPDATE offer SET created_at='".time()."', availability='1' WHERE id='".$id_offer."'");
     }
-
 	public function log(){
 		return $this->dB->log();
 	}
-
-	
-
 }
 
 ?>
