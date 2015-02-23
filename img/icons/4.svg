@@ -1,0 +1,27 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="114.433px" height="130.928px" viewBox="0 0 114.433 130.928" enable-background="new 0 0 114.433 130.928"
+	 xml:space="preserve">
+<g>
+	<polygon fill="none"  class='icon_4' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" points="22.164,39.9 31.756,87.857 79.713,87.857 
+		89.305,39.9 	"/>
+	<g>
+		<line fill="none" class='icon_4' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" x1="41.348" y1="39.9" x2="47.742" y2="87.857"/>
+		<line fill="none" class='icon_4' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" x1="63.727" y1="87.857" x2="70.121" y2="39.9"/>
+	</g>
+	<polygon fill="none" class='icon_4' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" points="87.172,125.156 79.713,95.316 
+		31.756,95.316 24.297,125.156 	"/>
+	<g>
+		<line fill="none" class='icon_4' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" x1="67.99" y1="125.156" x2="63.727" y2="95.316"/>
+		<line fill="none" class='icon_4' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" x1="47.742" y1="95.316" x2="43.478" y2="125.156"/>
+	</g>
+	<polyline fill="none" class='icon_4' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" points="27.972,69.002 9.363,39.9 22.151,39.9 	
+		"/>
+	<circle fill="none" class='icon_4' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" cx="55.734" cy="111.256" r="4.013"/>
+	<path fill="none" class='icon_4' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" d="M89.291,39.9h6.604c0,0,9.498,0,9.498,9.498
+		c0,9.498,0,28.496,0,28.496s0,9.498-9.498,9.498h-6.333"/>
+	<path fill="none" class='icon_4' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" d="M55.734,22.162
+		c-10.852,0-20.684,4.344-27.869,11.381h55.738C76.418,26.506,66.586,22.162,55.734,22.162z"/>
+	<path fill="none" class='icon_4' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" d="M59.747,12.099c0,2.215-1.796,4.012-4.013,4.012
+		s-4.013-1.797-4.013-4.012c0-2.219,1.796-4.014,4.013-4.014S59.747,9.881,59.747,12.099z"/>
+</g>
+</svg>

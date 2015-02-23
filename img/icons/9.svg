@@ -1,0 +1,28 @@
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="106.186px" height="100px" viewBox="0 0 106.186 100" enable-background="new 0 0 106.186 100" xml:space="preserve">
+<g>
+	<g>
+		<line fill="none" class='icon_9' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" x1="75.425" y1="60.205" x2="75.425" y2="71.834"/>
+		<line fill="none" class='icon_9' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" x1="81.239" y1="66.02" x2="69.61" y2="66.02"/>
+	</g>
+	<path fill="none" class='icon_9' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" d="M33.191,72.76h19.901
+		c3.678,0,6.657,2.981,6.657,6.657h21.32c7.4,0,13.398-5.999,13.398-13.398c0-7.4-5.998-13.399-13.398-13.399H25.116
+		c-7.4,0-13.398,5.999-13.398,13.399c0,7.398,5.998,13.398,13.398,13.398h1.419C26.535,75.741,29.515,72.76,33.191,72.76z"/>
+	<g>
+		<line fill="none" class='icon_9' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" x1="54.285" y1="76.74" x2="54.285" y2="82.121"/>
+		<line fill="none" class='icon_9' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" x1="48.771" y1="76.74" x2="48.771" y2="82.121"/>
+		<line fill="none" class='icon_9' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" x1="43.255" y1="76.74" x2="43.255" y2="82.121"/>
+		<line fill="none" class='icon_9' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" x1="37.741" y1="76.74" x2="37.741" y2="82.121"/>
+		<line fill="none" class='icon_9' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" x1="32.225" y1="76.74" x2="32.225" y2="82.121"/>
+	</g>
+	<g>
+		<path fill="none" class='icon_9' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" d="M77.443,53.189L60.387,33.343
+			c-6.103-7.1-13.617-12.273-21.77-15.464l0,0c-1.186,7.034,0.674,14.558,5.686,20.39l13.554,14.426"/>
+		<line fill="none" class='icon_9' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" x1="48.641" y1="28.154" x2="56.456" y2="35.969"/>
+	</g>
+	<g>
+		<path fill="none" class='icon_9' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" d="M20.552,53.639l-1.33-17.591
+			c-0.476-6.295,0.64-12.341,3.006-17.749l0,0c3.918,2.787,6.618,7.26,7.009,12.431l-0.162,21.818"/>
+	</g>
+</g>
+</svg>

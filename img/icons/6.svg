@@ -1,0 +1,14 @@
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="106.186px" height="100px" viewBox="0 0 106.186 100" enable-background="new 0 0 106.186 100" xml:space="preserve">
+<g>
+	<path fill="none" class='icon_6' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" d="M16.468,39.391c-0.8-4.794,2.523-8.717,7.384-8.717
+		h47.794c4.861,0,8.184,3.923,7.385,8.717L77.26,50.015c-0.799,4.794-5.43,8.717-10.29,8.717h-3.369
+		c-4.86,0-10.416-3.156-12.345-7.015c-1.929-3.858-5.086-3.858-7.015,0c-1.929,3.858-7.483,7.015-12.345,7.015h-3.368
+		c-4.86,0-9.491-3.923-10.29-8.717L16.468,39.391z"/>
+	<path fill="none" class='icon_6' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" d="M54.764,65.748H40.735
+		c-3.874,0-7.015,3.14-7.015,7.015c0,3.874,3.141,7.014,7.015,7.014h14.029c3.874,0,7.015-3.14,7.015-7.014
+		C61.779,68.887,58.638,65.748,54.764,65.748z"/>
+	<path fill="none" class='icon_6' stroke="#9D9D9D" stroke-width="4" stroke-miterlimit="10" d="M61.779,72.762h14.028
+		c7.748,0,14.029-6.281,14.029-14.029V9.631"/>
+</g>
+</svg>
