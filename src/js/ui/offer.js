@@ -25,5 +25,5 @@ for(var i = 0, l = slider_photos.length; i < l; i++){
 }
 
 function clickPhotos(){
-	
+	_.byId('slider-view-photo').querySelector('img').src = this.querySelector('img').src;
 }
