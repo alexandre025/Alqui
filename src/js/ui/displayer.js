@@ -1,11 +1,11 @@
 'use.strict'
 
-var $ = require('../tools.js');
+var _ = require('../tools.js');
 
 var displayer = {
 
 	init : function(){
-        if($.byId('login-link')){
+        if(_.byId('login-link')){
             displayer.loginPopup();
         }
         displayer.wish();
@@ -14,9 +14,9 @@ var displayer = {
 	loginPopup : function(){
 
 		// Click on login link      
-        $.byId('login-link').addEventListener('click',function(e){
+        _.byId('login-link').addEventListener('click',function(e){
             e.preventDefault();
-            $.byId('login-overlay').classList.add('active');
+            _.byId('login-overlay').classList.add('active');
         },false);
 
 		// Press escape 
@@ -27,40 +27,40 @@ var displayer = {
         },false);
 
 		// Click on overlay
-        $.byId('login-overlay').addEventListener('click',function(e){
+        _.byId('login-overlay').addEventListener('click',function(e){
         	displayer.closeLogin();
         },false);
         // Stop bubbling when clicking on the form
-        $.byClass('login-form')[0].addEventListener('click',function(e){
+        _.byClass('login-form')[0].addEventListener('click',function(e){
           e.stopPropagation();
         },false);
 
 	},
 	closeLogin : function(){
-		$.byId('login-overlay').classList.remove('active');
+		_.byId('login-overlay').classList.remove('active');
 	},
     wish : function(){
-        var wished=$.byClass('wished'); // DEJA DANS LA LISTE
+        var wished=_.byClass('wished'); // DEJA DANS LA LISTE
         for (var i = 0; i < wished.length; i++) {
             wished[i].addEventListener('click',function(e){
                 e.preventDefault();
             },false);
         };
 
-        var notLogged=$.byClass('wish-not-logged'); // PAS CONNECTE
+        var notLogged=_.byClass('wish-not-logged'); // PAS CONNECTE
         for (var i = 0; i < notLogged.length; i++) {
             notLogged[i].addEventListener('click',function(e){
                 e.preventDefault();
             },false);
         };
 
-        var wishable=$.byClass('not-wished');
+        var wishable=_.byClass('not-wished');
         for (var i = 0; i < wishable.length; i++) {
             wishable[i].addEventListener('click',function(e){
                 var self=this;
                 e.preventDefault();
                 var url=self.getAttribute('href');
-                $.async('POST',url,'',function(xhr){
+                _.async('POST',url,'',function(xhr){
                     self.classList.remove('not-wished');
                     self.classList.add('wished');
                     self.setAttribute('data-title','Cette offre est déjà dans votre liste de souhaits');

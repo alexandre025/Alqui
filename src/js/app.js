@@ -1,6 +1,6 @@
 'use.strict'
 
-var $ = require ('./tools.js');
+var _ = require ('./tools.js');
 
 var displayer = require('./ui/displayer.js');
 var home = require('./ui/home.js');
@@ -13,15 +13,15 @@ document.addEventListener('DOMContentLoaded',function(){
 
 	displayer.init();
 	home.init();
-	if($.byId('register-link')){
+	if(_.byId('register-link')){
 		register.init();
 		console.log('register form init');
 	}
-	if($.byId('password-form')){
+	if(_.byId('password-form')){
 		userEdit.init();
 		console.log('edit form init');
 	}
-	if($.byId('search-display-result')){
+	if(_.byId('search-display-result')){
 		search.init();
 		console.log('edit search form');
 	}
