@@ -5,8 +5,10 @@
 		</li>
 	<?php foreach($categories as $category): ?>
 		<a href="search/<?php echo $category['id'];?>">
-			<li>
-				<img src="img/search/icon_<?php echo $category['name']; ?>.png"/>
+			<li class='li_<?php echo $category['id']; ?>'>
+				<?php 
+					$id = $category['id'];
+					include("img/icons/".$id.".svg"); ?>
 				<br>
 				<?php echo $category['name']; ?>
 			</li>

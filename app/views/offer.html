@@ -74,72 +74,90 @@
 			
 			</div>
 
-			<div id="offer-content">
+			<div id="offer-handler">
+				<div id="offer-content">
 
-				<div id="left">
 					<h2><?php echo $data['name'];?></h2>
+					<div id="left">
 
-					<div id="slider-view-photo">
-						<img src="" alt="">
-					</div>
+						<div id="slider-view-photo">
+							<img src="" alt="">
+						</div>
 
-					<div id="slider">
-						<ul>
-							<?php if(isset($data['photo_1'])): ?>
-								<li><img src="<?php echo $data['photo_1'];?>"/></li>
-							<?php endif; if(isset($data['photo_2'])): ?>
-								<li><img src="<?php echo $data['photo_2'];?>"/></li>
-							<?php endif; if(isset($data['photo_3'])): ?>
-								<li><img src="<?php echo $data['photo_3'];?>"/></li>
-							<?php endif; ?>
-						</ul>
-					</div>
+						<div id="slider">
+							<ul>
+								<?php if(isset($data['photo_1'])): ?>
+									<li><img src="<?php echo $data['photo_1'];?>"/></li>
+								<?php endif; if(isset($data['photo_2'])): ?>
+									<li><img src="<?php echo $data['photo_2'];?>"/></li>
+								<?php endif; if(isset($data['photo_3'])): ?>
+									<li><img src="<?php echo $data['photo_3'];?>"/></li>
+								<?php endif; ?>
+							</ul>
+						</div>
 
-					<div id="category">
-						<div id="cat-img">
+						<div id="category">
 							<a href="search/<?php echo $data['category_id'];?>">
-								<img src="img/search/icon_<?php echo $data['category_name']; ?>.png"/>
-							<?php echo $data['category_name']; ?>
+								<div id="cat-img">
+									<?php 
+										$id = $data['category_id'];
+										include("img/icons/".$id.".svg"); ?>
+									<br>
+									<?php echo $data['category_name']; ?>
+								</div>
 							</a>
+							<div id="content">
+								<?php echo $data['content'];?>
+							</div>
+						</div>
+
+						<div id="comments">
+							<?php foreach($data['comments'] as $comment):?>
+								<div class="comment">
+									<img src="<?php echo $comment['user_photo'];?>"/>
+									<?php echo $comment['user_name']; ?>
+									<?php echo $comment['content']; ?>
+									<?php echo "Le ".date('d/m/Y',$comment['comment_date']); ?>
+								</div>
+							<?php endforeach; ?>
 						</div>
 					</div>
-					<div id="content">
-						<?php echo $data['content'];?>
-					</div>
 
-					<div id="comments">
-						<?php foreach($data['comments'] as $comment):?>
-							<div class="comment">
-								<img src="<?php echo $comment['user_photo'];?>"/>
-								<?php echo $comment['user_name']; ?>
-								<?php echo $comment['content']; ?>
-								<?php echo "Le ".date('d/m/Y',$comment['comment_date']); ?>
+					<!-- LEFT BAR -->
+					<div id="right">
+						<div id="reserve">
+							<h4>Réservez en ligne</h4>
+							<div id="start">
+								début
+								<input type="text" placeholder='jj/mm/aaaa'>
 							</div>
-						<?php endforeach; ?>
-					</div>
-				</div>
+							<div id="end">
+								fin
+								<input type="text" placeholder='jj/mm/aaaa'>
+							</div>
+						</div>
+						<button><?php echo $data['price_per_day']; ?>€/j</button>
 
-				<!-- LEFT BAR -->
-				<div id="right">
-					<!-- INFO LOUEUR -->
-					<div id="user">
-						<img src="<?php echo $data['user_photo'];?>"/>
-						<?php echo $data['user_name'];?>
-						<?php 
-							$i=0;
-							while($data['user_rank']>$i){
-								echo "(*)"; // A REMPLACER PAR LA VRAIE ETOILE DOREE
-								$i++;
-							}
-							while($i<5){
-								echo "(-)"; // A REMPLACER PAR LA VRAIE ETOILE GRISE
-								$i++;
-							}
-							echo " (".$data['user_nb_of_comments'].")";
-						?>
+						<!-- INFO LOUEUR -->
+						<div id="user">
+							<img src="<?php echo $data['user_photo'];?>"/>
+							<?php echo $data['user_name'];?>
+							<?php 
+								$i=0;
+								while($data['user_rank']>$i){
+									echo "(*)"; // A REMPLACER PAR LA VRAIE ETOILE DOREE
+									$i++;
+								}
+								while($i<5){
+									echo "(-)"; // A REMPLACER PAR LA VRAIE ETOILE GRISE
+									$i++;
+								}
+								echo " (".$data['user_nb_of_comments'].")";
+							?>
+						</div>
 					</div>
-				</div>
 
+				</div>
 			</div>
 		
 

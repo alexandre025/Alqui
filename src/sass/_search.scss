@@ -74,8 +74,8 @@
 		}
 		#search-category-title{
 			width: 100%;
-			height: 92px;
-			margin: 0 0 28px 0;
+			height: 46px;
+			margin: 0 0 20px 0;
 
 			text-transform: uppercase;
 			font-family: 'Lato', sans-serif;
@@ -85,22 +85,54 @@
 
 			line-height: 46px;
 
-			color: white;
-			border-bottom: 1px solid #bbbbbb;
+			color: rgba(218,218,218,1);
 		}
 		li{
 			width: 100%;
-			padding: 24px 0;
+			padding: 20px 0;
 
-			font-weight: 300;
+			font-weight: 100;
 			letter-spacing: 2px;
-			font-size: 14px;
+			font-size: 12px;
+			font-family: 'Palatino-Italic';
 
-			color: white;
+			color: rgba(157,157,157,1);
 			text-decoration: none;
+			svg{
+				width: 50px;
+				padding: 0;
+				margin: -30px 0 -30px 0;
+			}
 		}
-		li:hover{
-			color: #d0bb6a;
+		.li_4:hover{
+			color: rgba(255,224,142,1);
+		}
+		.li_4:hover .icon_4{
+			stroke: rgba(255,224,142,1);
+		}
+		.li_5:hover{
+			color: rgba(0,132,113,1);
+		}
+		.li_5:hover .icon_5{
+			stroke: rgba(0,132,113,1);
+		}
+		.li_6:hover{
+			color: rgba(227,99,89,1);
+		}
+		.li_6:hover .icon_6{
+			stroke: rgba(227,99,89,1);
+		}
+		.li_8:hover{
+			color: rgba(70,26,60,1);
+		}
+		.li_8:hover .icon_8{
+			stroke: rgba(70,26,60,1);
+		}
+		.li_9:hover{
+			color: rgba(156,198,185,1);
+		}
+		.li_9:hover .icon_9{
+			stroke: rgba(156,198,185,1);
 		}
 		button{
 			padding: 8px 20px;
@@ -111,9 +143,13 @@
 			border: 0 none;
 
 			text-transform: uppercase;
-			font-weight: 700;
+			font-weight: 500;
 			letter-spacing: 2px;
 			font-size: 12px;
+			font-family: 'Lato',sans-serif;
+		}
+		button:hover{
+			background: #d0bb6a;
 		}
 	}
 }
@@ -191,15 +227,19 @@
 			width: 100%;
 		}
 		input[name='name']{
-			padding: 0 20px;
-			height: 30px;
+			margin: 0;
+			padding: 5px 20px;
+			height: 40px;
 
 			background: white;
-			border-radius: 50px;
+			border-radius: 6px;
 			border: 0 none;
 
-			line-height: 30px;
 			font-weight: 300;
+			font-weight: 700;
+			font-size: 12px;
+			letter-spacing: 2px;
+			text-transform: uppercase;
 		}
 		input[name='location']{
 			margin: 15px 0 0 0;
@@ -299,6 +339,7 @@
 
 		#resutlt-count{
 			margin: 5px 0 24px 11px;
+			font-family: 'Palatino-Italic', serif;
 		}
 
 		ul{
