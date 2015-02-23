@@ -1,6 +1,7 @@
 'use.strict';
 
 var _ = require('../tools.js');
+var $ = require('jquery-browserify');
 
 var offer = {
 	init: function(){
