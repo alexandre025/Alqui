@@ -7,6 +7,7 @@ var home = require('./ui/home.js');
 var register = require('./ui/register.js');
 var userEdit = require('./ui/userEdit.js');
 var search = require('./ui/search.js');
+var offer = require('./ui/offer.js');
 
 document.addEventListener('DOMContentLoaded',function(){
 
