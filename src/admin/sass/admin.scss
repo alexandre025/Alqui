@@ -12,7 +12,7 @@ body,html {
 .italic {
 	font-style: italic;
 }
-.offer-name {
+.offer-name,.user-name {
 	font-weight: 700;
 	text-transform: capitalize;
 }
@@ -20,6 +20,21 @@ h2{
 	font-size: 30px;
 	padding-left: 40px;
 	color: $primary-color;
+	text-transform: capitalize;
+}
+
+form#form-delete{
+	position: fixed;
+	right:40px;
+	top:24.9px;
+	input[type="submit"]{
+		display: inline-block;
+		background-color: $primary-color;
+		border: none;
+		border-radius: 20px;
+		padding: 5px 10px 5px 10px;
+		color: rgb(255,255,255);
+	}
 }
 
 nav {
@@ -65,7 +80,7 @@ nav {
 
 }
 
-ul.offers{
+ul.offers,ul.users{
 	padding: 0;
 	li.half{
 		background-color: rgb(244,244,244);
