@@ -26,6 +26,18 @@ class admin_model {
 	);
     return $this->dB->exec($query,$val);
     }
+    public function getUsers(){
+        $query="SELECT
+        user.firstname,
+        user.lastname,
+        user.created_at,
+        user.id
+        FROM user
+        WHERE user.disabled_at='0'
+        ORDER BY user.created_at DESC
+        ";
+        return $this->dB->exec($query);
+    }
 
     public function getAllOffers(){
     	$query="SELECT

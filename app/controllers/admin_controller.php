@@ -42,6 +42,10 @@ class admin_controller {
         $this->tpl['sync']='admin_login.html';
       }
     }
+    function getUsers($f3){
+      $f3->set('users',$this->model->getUsers());
+      $this->tpl['async']='partials/admin_users.html';
+    }
     function refuseOffer($f3,$params){
       $this->model->refuseOffer($params['id']);
       $f3->set('offer',$this->model->getOffer($params['id']));
