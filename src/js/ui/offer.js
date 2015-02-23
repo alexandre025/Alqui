@@ -1,5 +1,7 @@
 'use.strict';
 
+var _ = require('../tools.js');
+
 $('.pickadate').pickadate({
 	monthsFull: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
 	wekkdaysFull: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
@@ -16,3 +18,12 @@ $('.pickadate').pickadate({
 	selectMonths: true,
 	min: new Date()
 });
+
+var slider_photos = _.selectorAll('#slider > ul > li');
+for(var i = 0, l = slider_photos.length; i < l; i++){
+	slider_photos[i].addEventListener('click',clickPhotos,false);
+}
+
+function clickPhotos(){
+	
+}

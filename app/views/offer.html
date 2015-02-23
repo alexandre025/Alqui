@@ -114,11 +114,10 @@
 						<div id="comments">
 							<?php foreach($data['comments'] as $comment):?>
 								<div class="comment">
-									<img src="<?php echo $comment['user_photo'];?>"/>
-									<?php echo $comment['user_name']; ?>
+									<img src="assets/<?php echo $comment['user_photo'];?>"/>
 									<?php echo $comment['content']; ?>
-									<?php echo "Le ".date('d/m/Y',$comment['comment_date']); ?>
 								</div>
+								<div class="separator"></div>
 							<?php endforeach; ?>
 						</div>
 					</div>
@@ -137,20 +136,24 @@
 								<input type="text" class='pickadate' placeholder='jj/mm/aaaa'>
 							</div>
 						</div>
-						<button id='i-reserve'>RESERVER</button>
+						<button id='i-reserve'>je réserve</button>
+
+						<div id="wishlist">
+							<span>&#9734;</span> &nbsp; Ajouter à ma wishlist
+						</div>
 
 						<!-- INFO LOUEUR -->
 						<div id="user">
-							<img src="<?php echo $data['user_photo'];?>"/>
-							<?php echo $data['user_name'];?>
+							<img src="assets/<?php echo $data['user_photo'];?>"/>
+							<p><?php echo $data['user_name'];?></p>
 							<?php 
 								$i=0;
 								while($data['user_rank']>$i){
-									echo "(*)"; // A REMPLACER PAR LA VRAIE ETOILE DOREE
+									echo "&#9733;"; // A REMPLACER PAR LA VRAIE ETOILE DOREE
 									$i++;
 								}
 								while($i<5){
-									echo "(-)"; // A REMPLACER PAR LA VRAIE ETOILE GRISE
+									echo "&#9734;"; // A REMPLACER PAR LA VRAIE ETOILE GRISE
 									$i++;
 								}
 								echo " (".$data['user_nb_of_comments'].")";
