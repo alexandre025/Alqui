@@ -1,42 +1,45 @@
 <div id="notifications" class="dashboard-display<?php if(!isset($GET['view']))echo " active";?>">
-	<?php if($notifs_count>1): ?>
-		<h2><?php echo $notifs_count;?> NOTIFICATIONS</h2>
-	<?php else: ?>
-		<h2><?php echo $notifs_count;?> NOTIFICATION</h2>
-	<?php endif; ?>
-	<div id="notifs-own-offers">
-		<h3>Vos offres</h3>
+
+	<div id="content">
+
+		<?php
+			if(!$notifs['own_reserv'] && !$notifs['new_reserv']):
+		?>
+				<div id="header">Pas de nouvelles notifications :(</div>
+		<?php
+			else:
+		?>
+				<div id="header">Mes dernières notifications</div>
+		<?php
+			endif;
+		?>
+
 		<?php $new_reserv=$notifs['new_reserv'];
 		if($new_reserv):
 			foreach($new_reserv as $notif): ?>
-
 				<div class="notif">
 					<img src="<?php echo $notif['user_photo'];?>"/>
-					<span class="details"><?php echo $notif['user_name'];?> voudrait louer votre <?php echo $notif['offer_name']; ?> du <?php echo date('d/m/Y',$notif['date_start']);?> au <?php echo date('d/m/Y',$notif['date_end']);?>.
+					<span class="details">
+						<?php echo $notif['user_name'];?> voudrait louer votre "<?php echo $notif['offer_name']; ?>" du <?php echo date('d/m/Y',$notif['date_start']);?> au <?php echo date('d/m/Y',$notif['date_end']);?>.
+						<br>
 						<a href="offer/<?php echo $notif['offer_id'];?>">Voir l'annonce</a>
-						<br>Le <?php echo date('d/m/Y',$notif['created_at']);?>
 					</span>
 				</div>
 		<?php
 			endforeach; 
-		else:
-			echo "Vous n'avez aucunes notifications concernant vos offres";
 		endif;
 		?>
-	</div>
 
-
-	<div id="notifs-own-reserv">
-		<h3>Vos réservations</h3>
 		<?php $own_reserv=$notifs['own_reserv'];
 		if($own_reserv):
 			foreach($own_reserv as $notif): ?>
 				<?php if($notif['status']==1): ?>
 					<div class="notif">
 						<img src="<?php echo $notif['user_photo'];?>"/>
-						<span class="details"><?php echo $notif['user_name'];?> a accepté votre demande de réservation. 
+						<span class="details">
+							<?php echo $notif['user_name'];?> a accepté votre demande de réservation. 
+							<br>
 							<a href="offer/<?php echo $notif['offer_id'];?>">Voir l'annonce</a>
-							<br>Le <?php echo date('d/m/Y',$notif['created_at']);?>
 						</span>
 					</div>	
 				<?php elseif($notif['status']==2): ?>
@@ -47,11 +50,10 @@
 							<br>Le <?php echo date('d/m/Y',$notif['created_at']);?>
 						</span>
 					</div>			
-				<?php endif;?>
-		<?php endforeach; ?>
-		<?php else:
-			echo "Vous n'avez aucunes notifications concernant vos demandes de réservations";
-		endif;
+				<?php 
+			endif;
+			endforeach;
+			endif;
 		?>
 	</div>
 </div>

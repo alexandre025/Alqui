@@ -8,6 +8,7 @@ var register = require('./ui/register.js');
 var userEdit = require('./ui/userEdit.js');
 var search = require('./ui/search.js');
 var offer = require('./ui/offer.js');
+var dashboard = require('./ui/dashboard.js');
 
 document.addEventListener('DOMContentLoaded',function(){
 
@@ -25,9 +26,13 @@ document.addEventListener('DOMContentLoaded',function(){
 		search.init();
 		console.log('edit search form');
 	}
-	if(_.byClass('pickadate')){
+	if(_.byClass('pickadate').length != 0){
 		offer.init();
 		console.log('offer view');
+	}
+	if(_.byId('dashboard-notifs')){
+		dashboard.init();
+		console.log('dashboard view');
 	}
 
 },false);

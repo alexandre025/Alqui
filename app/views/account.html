@@ -13,54 +13,74 @@
 		</head>
 		<body>
 	
-			<header>
+			<header  id='headerAccount'>
 				<div>
 					<!-- <img src="" id='header-logo' alt='Alqui - Logo' title='Alqui'/> -->
 					<div id="header-logo"></div>
-					<ul>
-					  <?php if(!isset($SESSION['id'])): ?>
-						<a href="register" id="register-link"><li>Inscription</li></a>
-						<a href="" id='login-link'><li>Connexion</li></a>
-				      <?php else: ?>
-				        <a href="account"><li>Bonjour, <?php echo $SESSION['firstname']; 
-				        if($SESSION['notif']!=0){
-				        	echo "<span class='notif'>".$SESSION['notif']."</span>";
-				        } ?></li></a>
-				        <a href="logout"><li>Deconnexion</li></a>
-				      <?php endif; ?>
-					</ul>
 				</div>
 			</header> 
 			
-			<div id="account-info" style="margin-top:200px;">
-				<img src="<?php echo !empty($SESSION['photo'])?$SESSION['photo']:''; ?>"/>
-				<span class="account-name">
-					<?php echo $SESSION['firstname']." ".$SESSION['lastname']; ?>
-				</span>
-				<span class="account-email">
-					<?php echo $SESSION['email']; ?>
-				</span>	
-			<?php if(!empty($SESSION['address'])&&!empty($SESSION['postal'])&&!empty($SESSION['city'])&&!empty($SESSION['country'])): ?>			
-				<span class="account-address">
-					<?php echo $SESSION['address']; ?>
-				</span>
-				<span class="account-postal">
-					<?php echo $SESSION['postal']; ?>
-				</span>
-				<span class="account-city">
-					<?php echo $SESSION['city']; ?>
-				</span>
-				<span class="account-country">
-					<?php echo $SESSION['country']; ?>
-				</span>
-			<?php endif; ?>
-				Membre depuis le <?php echo date('d/m/Y',$SESSION['created_at']); ?>
-				<a href="account/edit">Modifier</a>
+			<div id="account-info-wrapper">
+				<div id="account-info">
+					<img src="<?php echo !empty($SESSION['photo'])?$SESSION['photo']:''; ?>"/>
+					<span class="account-name">
+						<?php echo $SESSION['firstname']." ".$SESSION['lastname']; ?>
+					</span>
+					<span class="account-email">
+						<?php echo $SESSION['email']; ?>
+					</span>	
+				<?php if(!empty($SESSION['address'])&&!empty($SESSION['postal'])&&!empty($SESSION['city'])&&!empty($SESSION['country'])): ?>			
+					<span class="account-address">
+						<?php echo $SESSION['address'].', '; ?>
+					</span>
+					<span class="account-postal">
+						<?php echo $SESSION['postal']; ?>
+					</span>
+					<span class="account-city">
+						<?php echo $SESSION['city'].', '; ?>
+					</span>
+					<span class="account-country">
+						<?php echo $SESSION['country']; ?>
+					</span>
+				<?php endif; ?>
+				<br>
+					<a href="account/edit">Modifier</a>
+					<a href="logout">Se déconnecter</a>
+				</div>
+			</div>
+
+			<div id="container">
+				<div id="head">
+					<span id="notifications">
+						<span class='nb'>55</span> <span class='txt'>notifications</span>
+					</span>
+					<span id="locations">
+						<span class='nb'>55</span> <span class='txt'>en location</span>
+					</span>
+					<span id="reservations">
+						<span class='nb'>55</span> <span class='txt'>demandes</span>
+					</span>
+					<span id="wishlists">
+						<span class='nb'>55</span> <span class='txt'>dans ma wishlist</span>
+					</span>
+				</div>
+				<div id="content">
+					<div id="dashboard-notifs">
+						<?php include('partials/dashboard_notifs.html'); ?>
+					</div>
+					<div id="dashboard-locations">
+						LOCATION
+					</div>
+					<div id="dashboard-reservations">
+						RESERVATION
+					</div>
+					<div id="dashboard-wishlists">
+						WISHLIST
+					</div>
+				</div>
 			</div>
 
 			<div id="dashboard">
-				<!-- NOTIFICATIONS -->
-				<?php include('partials/dashboard_notifs.html'); ?>
 
 				<!-- VOS OFFRES -->
 				<?php include('partials/dashboard_offers.html'); ?>
