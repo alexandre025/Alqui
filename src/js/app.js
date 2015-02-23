@@ -25,5 +25,8 @@ document.addEventListener('DOMContentLoaded',function(){
 		search.init();
 		console.log('edit search form');
 	}
+	if(_.byClass('pickadate')){
+		offer.init();
+	}
 
 },false);
