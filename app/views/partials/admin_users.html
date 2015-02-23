@@ -1,0 +1,19 @@
+<h2>Utilisateurs</h2>
+<ul class="users">
+<?php 
+	if(isset($users)): 
+		$count=2;
+		foreach($users AS $user):
+?>
+	<li <?php if($count%2==0)echo "class=\"half\"" ;?>>
+		<span class="user-name"><?php echo $user['firstname'].' '.$user['lastname']; ?></span>, <span class="italic">inscrit depuis le <?php echo date('d/m/Y',$user['created_at']); ?></span>
+		<a class="right nav-async" href="admin/user/<?php echo $user['id'];?>">Voir l'utilisateur</a>
+	</li>
+
+
+<?php 
+		$count++;
+		endforeach;
+	endif; 
+?>
+</ul>
