@@ -1,4 +1,4 @@
-'use.strict'
+'use.strict';
 
 var $ = require('../tools.js');
 var countUp = require('../dependencies/countup.js');
