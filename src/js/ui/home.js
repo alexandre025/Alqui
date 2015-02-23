@@ -1,6 +1,6 @@
 'use.strict';
 
-var $ = require('../tools.js');
+var _ = require('../tools.js');
 var countUp = require('../dependencies/countup.js');
 // Home specific JS 
 var home = {
@@ -11,7 +11,7 @@ var home = {
 	},
 	// Number animation
 	number : function(){
-		home.numbCount($.byClass('count-it'));				
+		home.numbCount(_.byClass('count-it'));				
 	},
 	numbCount : function(elem){
 		var value, count;
@@ -32,12 +32,12 @@ var home = {
 	onScroll: function(){
 		window.onscroll = function(){
 			if(document.body.scrollTop >= window.innerHeight - 142){
-				if($.byId('headerLanding'))
-					$.byId('headerLanding').setAttribute('id','headerLandingScroll');
+				if(_.byId('headerLanding'))
+					_.byId('headerLanding').setAttribute('id','headerLandingScroll');
 			}
 			else{
-				if($.byId('headerLandingScroll'))
-				$.byId('headerLandingScroll').setAttribute('id','headerLanding');
+				if(_.byId('headerLandingScroll'))
+				_.byId('headerLandingScroll').setAttribute('id','headerLanding');
 			}
 		}
 	}

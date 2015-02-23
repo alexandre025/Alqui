@@ -1,6 +1,6 @@
 'use.strict'
 
-var $ = require('../tools.js');
+var _ = require('../tools.js');
 var Masonry = require('masonry-layout');
 
 var search = {
@@ -10,7 +10,7 @@ var search = {
 		search.rangePrice();
 	},
 	initMasonry: function(){
-		var container = $.selector('#search-display-result-all');
+		var container = _.selector('#search-display-result-all');
 		if(container){
 			var msnry = new Masonry(container,{
 				columnWidth: 10,
@@ -19,13 +19,13 @@ var search = {
 		}
 	},
 	rangePrice : function(){
-		$.byId('input-price').addEventListener('change',function(e){
-			$.byId('value-price').innerHTML=this.value + '€';
+		_.byId('input-price').addEventListener('change',function(e){
+			_.byId('value-price').innerHTML=this.value + '€';
 		},false);
 	},
 	selectOrder : function(){
-		$.byId('select-order').addEventListener('change',function(e){
-			$.byId('search-form').submit();
+		_.byId('select-order').addEventListener('change',function(e){
+			_.byId('search-form').submit();
 		},false);
 	}
 };

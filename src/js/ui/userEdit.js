@@ -1,6 +1,6 @@
 'use.strict'
 
-var $ = require('../tools.js');
+var _ = require('../tools.js');
 
 var userEdit = {
 
@@ -9,20 +9,20 @@ var userEdit = {
 		userEdit.passwordSubmit()
 	},
 	checkConfirm : function(){
-		var input = $.selectorAll('input[type="password"]');
+		var input = _.selectorAll('input[type="password"]');
 		for (var i = 0; i < input.length; i++) {
 			input[i].addEventListener('keyup',function(e){			
 				if(userEdit.checkPwd()){
-					$.byId('password-check').innerHTML='Le mot de passe ne correspond pas';
+					_.byId('password-check').innerHTML='Le mot de passe ne correspond pas';
 				}else{
-					$.byId('password-check').innerHTML='Mot de passse valide';
+					_.byId('password-check').innerHTML='Mot de passse valide';
 				}
 			},false);
 		}
 	},
 	checkPwd : function(){
-		var confirm = $.byId('password-confirm').value;
-		var password = $.byId('password').value;
+		var confirm = _.byId('password-confirm').value;
+		var password = _.byId('password').value;
 		if(confirm!=password || password.length<1){
 			return true;
 		}else{
@@ -30,7 +30,7 @@ var userEdit = {
 		}
 	},
 	passwordSubmit : function(){
-		$.byId('password-form').addEventListener('submit',function(e){
+		_.byId('password-form').addEventListener('submit',function(e){
 			if(userEdit.checkPwd()){
 				e.preventDefault();
 				return false;
