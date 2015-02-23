@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded',function(){
 	}
 	if(_.byClass('pickadate')){
 		offer.init();
+		console.log('offer view');
 	}
 
 },false);
