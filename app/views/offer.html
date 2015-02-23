@@ -107,7 +107,7 @@
 								</div>
 							</a>
 							<div id="content">
-								<?php echo $data['content'];?>
+								<?php echo html_entity_decode($data['content']);?>
 							</div>
 						</div>
 
@@ -122,11 +122,8 @@
 							<?php endforeach; ?>
 						</div>
 					</div>
-					<!-- <div id="content">
-						<?php echo html_entity_decode($data['content']);?>
-					</div> -->
 
-					
+
 					<!-- LEFT BAR -->
 					<div id="right">
 						<div id="reserve">
