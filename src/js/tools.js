@@ -1,4 +1,4 @@
-var $ = {
+var _ = {
     byId: function(id){
         return document.getElementById(id);
     },
@@ -27,4 +27,4 @@ var $ = {
 		xhr.send(datas);
     }
 };
-module.exports = $;
+module.exports = _;
