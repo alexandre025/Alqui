@@ -30,12 +30,9 @@ var offer = {
 		var slider_photos = _.selectorAll('#slider > ul > li');
 		for(var i = 0, l = slider_photos.length; i < l; i++){
 			slider_photos[i].addEventListener('click',function(){
-				offer.clickPhotos();
+				_.byId('slider-view-photo').querySelector('img').src = this.querySelector('img').src;
 			},false);
 		}
-	},
-	clickPhotos: function(){
-		_.byId('slider-view-photo').querySelector('img').src = this.querySelector('img').src;
 	}
 }
 module.exports = offer;
