@@ -1,0 +1,23 @@
+<ul class="offers">
+<?php 
+	if($offers):
+		$count=2;
+		if($offers[0]['offer_availability']==0) 
+			echo "<h2>Offres à valider</h2>";
+		else
+			echo
+				"<h2>Offres en ligne</h2>";
+	foreach($offers AS $offer): 
+?>
+	<li <?php if($count%2==0)echo "class=\"half\"" ;?>>
+		<span class="offer-name"><?php echo $offer['offer_name'];?></span>, <span class="italic">ajoutée le <?php echo date('d/m/Y',$offer['offer_created_at']);?></span>
+		<a class="right nav-async" href="admin/offer/<?php echo $offer['offer_id'];?>">Voir l'annonce</a>
+	</li>
+<?php 
+	$count++;
+	endforeach; 
+	else:
+?>
+	<li>Aucune offre</li>
+<?php endif; ?>
+</ul>

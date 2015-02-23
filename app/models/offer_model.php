@@ -106,6 +106,7 @@ class offer_model {
 			offer.location,
 			offer.price_per_day,
 			offer.availability,
+			offer.disabled_at,
 			offer.name,
 			offer.content,
 			user.firstname AS user_name,
