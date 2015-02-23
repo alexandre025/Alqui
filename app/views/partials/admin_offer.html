@@ -5,7 +5,7 @@
 	<input type="submit" value="Supprimer cette offre">
 </form>
 <ul class="offers">
-	<li>Loueur : <a href="/admin/user/<?php echo $offer['user_id'];?>"><?php echo $offer['user_firstname']." ".$offer['user_lastname'];?></a></li>
+	<li>Loueur : <a class="nav-async" href="/admin/user/<?php echo $offer['user_id'];?>"><?php echo $offer['user_firstname']." ".$offer['user_lastname'];?></a></li>
 	<li class="half">Catégorie : <?php echo $offer['category_name'];?></li>
 	<li>Localisation : <?php echo $offer['location'];?></li>
 	<li class="half">Prix : <?php echo $offer['price_per_day'];?> € / jours</li>
@@ -16,6 +16,7 @@
 		<?php if(isset($offer['photo_3'])) echo "<img class='photo-offer' src='".$offer['photo_3']."'>"; ?>
 	</li>
 	<?php if($offer['availability']==0): ?>
+		<li>Crée le : <?php echo date('d/m/Y',$offer['created_at']);?></li>
 		<li class="form">
 			<form action="admin/offer/accept/<?php echo $offer['id'];?>" method="POST">
 				<input type="submit" value="Valider cette offre">
@@ -24,7 +25,9 @@
 				<input type="submit" value="Refuser cette offre">
 			</form>
 		</li>
+
 	<?php else: ?>
-		<li><a target="_blank" href="offer/<?php echo $offer['id'];?>">Visualiser l'annonce sur le site</a></li>
+		<li>En ligne depuis le : <?php echo date('d/m/Y',$offer['created_at']);?></li>
+		<li class="half"><a target="_blank" href="offer/<?php echo $offer['id'];?>">Visualiser l'annonce sur le site</a></li>
 	<?php endif; ?>
 </ul>

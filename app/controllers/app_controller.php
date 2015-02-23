@@ -33,7 +33,7 @@ class app_controller {
     public function login($f3){
       if($f3->get('VERB')=='POST'){
         $auth=$this->model->login($f3->get('POST'));
-        if($auth){ // auth succes -> set SESSION and reroute
+        if($auth&&$auth->disabled_at==0){ // auth succes -> set SESSION and reroute
           $user=$this->userArray($auth);
           $f3->set('SESSION',$user);
           $f3->clear('login_error');

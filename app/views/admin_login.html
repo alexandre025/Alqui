@@ -12,13 +12,17 @@
 			<link href="public/css/admin.css" rel="stylesheet" type="text/css" />
 		</head>
 		<body>
-			
-			<form id="admin-login" method="POST" action="admin-login">
-				<input type="text" placeholder="Identifiant" name="login" required>
-				<input type="password" name="password" placeholder="Mot de passe" required>
-				<input type="submit" name="login-submit" value="Connexion">
-			</form>
-		
+			<div id="login-display">
+
+				<form id="admin-login" method="POST" action="admin-login">
+					<header>ALQUI | ADMIN</header>
+					<input type="text" placeholder="Identifiant" name="login" required>
+					<input type="password" name="password" placeholder="Mot de passe" required>
+					<input type="submit" name="login-submit" value="Connexion">
+					<a href=""><- Retour au site</a> 
+				</form>
+
+			</div>
 
 			<script src="public/js/admin.js" type="text/javascript"></script>
 		</body>
