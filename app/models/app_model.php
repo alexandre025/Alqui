@@ -105,11 +105,14 @@ class app_model {
 			offer.id, 
 			offer.name, 
 			offer.price_per_day,
-			offer.availability 
-			FROM offer 
+			offer.availability,
+			photo.photo_name
+			FROM offer,photo 
 			WHERE offer.id_user=:id_user
+			AND photo.id_offer=offer.id
 			AND offer.disabled_at='O'
 			AND offer.availability!='0'
+			GROUP BY offer.id
 			";
 		$val=array(
 			':id_user'=>$id
