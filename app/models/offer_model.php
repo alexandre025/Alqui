@@ -144,7 +144,11 @@ class offer_model {
 	}
 
 	public function newReservation($params,$id_offer,$id_user){
-		$query="INSERT INTO reservation (id_user,id_offer,status,date_start,date_end,created_at) VALUES (:id_user,:id_offer,;status,:date_start,:date_end,:created_at)";
+		$query="INSERT INTO reservation (id_user,id_offer,status,date_start,date_end,created_at) VALUES (:id_user,:id_offer,:status,:date_start,:date_end,:created_at)";
+		list($day, $month, $year) = explode('/',$params['date_start']);
+		$params['date_start'] = mktime(0, 0, 0, $month, $day, $year);
+		list($day, $month, $year) = explode('/',$params['date_end']);
+		$params['date_end'] = mktime(0, 0, 0, $month, $day, $year);
 		$status=0;
 		$timestamp=time();
 		$val=array(
