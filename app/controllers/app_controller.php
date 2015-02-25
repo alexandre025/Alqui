@@ -124,12 +124,6 @@ class app_controller {
       $f3->reroute('/account?view=offers');
     }
 
-    // CREER UNE NOUVELLE RESERVATION
-    public function newReservation($f3,$params){
-      $this->model->newReservation($f3->get('POST'),$params['offer'],$f3->get('SESSION.id'));
-      $f3->reroute('/account?view=reserv');
-    }
-
     // SUPPRIMER DEFINITVEMENT UNE RESERVATION
     public function deleteReservation($f3,$params){ 
       $this->model->deleteReservation($params['reserv']);

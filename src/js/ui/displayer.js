@@ -63,6 +63,9 @@ var displayer = {
                 _.async('POST',url,'',function(xhr){
                     self.classList.remove('not-wished');
                     self.classList.add('wished');
+                    if(_.byId('offer-content')){
+                        self.innerHTML="<span>&#9734;</span> &nbsp; Déjà dans votre wishlist";
+                    }
                     self.setAttribute('data-title','Cette offre est déjà dans votre liste de souhaits');
                     self.addEventListener('click',function(e){
                         e.preventDefault();

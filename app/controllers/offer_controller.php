@@ -104,6 +104,11 @@ class offer_controller {
     }
     exit;
   }
+  // CREER UNE NOUVELLE RESERVATION
+  public function newReservation($f3,$params){
+    $this->model->newReservation($f3->get('POST'),$params['offer'],$f3->get('SESSION.id'));
+    $f3->reroute('/account?view=reserv');
+  }
 
   function afterroute($f3){
     if(isset($_GET['format'])&&$_GET['format']=='json'){
