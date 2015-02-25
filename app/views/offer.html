@@ -128,23 +128,39 @@
 					</div>
 
 
-					<!-- LEFT BAR -->
+					<!-- RIGHT BAR -->
 					<div id="right">
-						<div id="reserve">
-							<h4>Réservez en ligne</h4>
-							<div id="start">
-								début
-								<input type="text" class='pickadate' placeholder='jj/mm/aaaa'>
+						<form action="account/reserve/<?php echo $data['id'];?>" method="POST">
+							<div id="reserve">
+								<h4>Réservez en ligne</h4>
+								<div id="start">
+									début
+									<input type="text" name="date_start" class='pickadate' required placeholder='jj/mm/aaaa'>
+								</div>
+								<div id="end">
+									fin
+									<input type="text" name="date_end" class='pickadate' required placeholder='jj/mm/aaaa'>
+								</div>
 							</div>
-							<div id="end">
-								fin
-								<input type="text" class='pickadate' placeholder='jj/mm/aaaa'>
-							</div>
-						</div>
-						<button id='i-reserve'>je réserve</button>
-
+							<div><?php echo $data['price_per_day'];?> € / jours</div>
+							<?php if(isset($SESSION['id'])&&$data['disabled_at']==0&&$data['availability']==1): ?>
+								<button type="submit" id='i-reserve'>je réserve</button>
+							<?php elseif($data['disabled_at']!=0): ?>
+								<div class="unreservable" id='i-reserve'>Ce produit n'est plus disponible</div>
+							<?php elseif($data['availability']==2): ?>
+								<div class="unreservable" id='i-reserve'>Momentanement indisponible</div>
+							<?php elseif(!isset($SESSION['id'])): ?>
+								<div class="unreservable" id='i-reserve'>Vous devez vous connecter</div>								
+							<?php endif; ?>
+						</form>
 						<div id="wishlist">
-							<span>&#9734;</span> &nbsp; Ajouter à ma wishlist
+							<?php if(isset($SESSION['id'])&&!in_array($data['id'],$SESSION['wishlist'])): // CONNECTE ET PAS DANS LA LISTE?>
+								<a class="not-wished" data-title="Ajoutez cette offre à votre liste de souhaits" href="account/wish/<?php echo $data['id']; ?>"><span>&#9734;</span> &nbsp; Ajouter à ma wishlist</a>
+							<?php elseif(!isset($SESSION['id'])): // PAS CONNECTE?>
+								<a class="wish-not-logged" data-title="Connectez vous pour ajouter cette offre à votre liste de souhaits" href=""><span>&#9734;</span> &nbsp; Ajouter à ma wishlist</a>
+							<?php else: // CONNECTE ET DEJA DANS LA LISTE?>
+								<a class="wished" data-title="Cette offre est déjà dans votre liste de souhaits" href=""><span>&#9734;</span> &nbsp; Déjà dans votre wishlist</a>
+							<?php endif; ?>
 						</div>
 
 						<!-- INFO LOUEUR -->
