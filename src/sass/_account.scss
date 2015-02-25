@@ -13,11 +13,8 @@
 		margin: 0 auto;
 	}
 	#header-logo{
-		margin: 26px 0 0 0;
-		width: 40px;
-		height: 40px;
-
-		background: $primary-color;
+		margin: 32px 0 0 0;
+		width: 70px;
 	}
 }
 
@@ -88,8 +85,6 @@
 	width: 960px;
 	margin: 0 auto;
 
-	text-align: center;
-
 	#head{
 		border-bottom: 1px solid #C8C8C8;
 		margin: 10px 0 0 0;
@@ -98,7 +93,7 @@
 			display: inline-block;
 			width: 25%;
 			margin: 0 0 0 -4px;
-			padding: 15px 0;
+			padding: 25px 0;
 
 			text-transform: uppercase;
 			border-bottom: 3px solid transparent;
@@ -108,11 +103,9 @@
 			&:first-child{
 				margin: 0;
 			}
-			&:hover{
-				border-bottom: 3px solid $primary-color;
-			}
 			.nb{
-				width: auto;
+				padding: 0;
+				width: 20%;
 				dispaly: inline-block;
 				vertical-align: middle;
 
@@ -123,17 +116,35 @@
 				border: 0 none;
 			}
 			.txt{
+				padding: 0;
 				margin: 0 0 0 5px;
-				width: auto;
+				width: calc(80% - 9px);
 				dispaly: inline-block;
 				vertical-align: middle;
 
 				border: 0 none;
+
+				font-weight: 700;
+				letter-spacing: 1px;
 			}
+		}
+		#notifications,
+		#locations,
+		#reservations,
+		#wishlists{
+			color: #656565;
+		}
+		#notifications:hover,
+		#locations:hover,
+		#reservations:hover,
+		#wishlists:hover{
+			border-bottom: 3px solid $primary-color;
+			color: #303030;
 		}
 	}
 	#content{
 		#dashboard-notifs{
+			display: none;
 			#notifications{
 				width: 100%;
 				padding: 0;
@@ -171,7 +182,189 @@
 			}
 		}
 		#dashboard-locations{
-			display: none;
+
+			#own-offer{
+				width: 100%;
+				padding: 0;
+				margin: 25px 0 0 0;
+
+				border-radius: 3px;
+				background: #EBEBEB;
+
+				text-align: left;
+
+				#header,
+				#footer{
+					padding: 25px 50px;
+
+					font-size: 14px;
+					text-transform: uppercase;
+					font-weight: 900;
+					letter-spacing: 1px;
+					text-align: center;
+
+					button{
+						padding: 7px 20px;
+						width: 230px;
+
+						border-radius: 50px;
+						border: 0 none;
+						background: 0 none;
+						background: linear-gradient(to right,rgba(12,157,80,1),rgba(51,184,163,1));
+						color: white;
+
+						text-transform: uppercase;
+						font-size: 12px;
+						letter-spacing: 2px;
+						font-weight: 500;
+						text-align: center;
+					}
+				}
+				#header{
+					border-bottom: 1px solid #cfcfcf;
+				}
+				.own-offer{
+					padding: 25px 50px;
+
+					border-bottom: 1px solid #cfcfcf;
+
+					.offer-name{
+						color: #656565;
+
+						text-transform: uppercase;
+						font-weight: 700;
+						letter-spacing: 1px;
+
+						a{
+							color: #000000;
+
+							text-decoration: none;
+							font-weight: 900;
+
+							&:hover{
+								text-decoration: underline;
+							}
+						}
+					}
+					.offer-infos{
+						display: inline-block;
+						vertical-align: top;
+
+						width: 200px;
+						margin: 15px 0 30px 0;
+
+						background: white;
+						border-bottom-left-radius: 5px;
+						border-bottom-right-radius: 5px;
+
+						img{
+							width: 100%;
+							border-bottom: 2px solid $primary-color;
+						}
+						p{
+							margin: 0;
+							padding: 15px;
+
+							text-align: center;
+
+							span{
+								padding: 2px 10px;
+
+								border-radius: 50px;
+								background: rgba(225,225,225,1);
+								color: rgba(100,100,100,1);
+
+								letter-spacing: 1px;
+								font-weight: 500;
+							}
+						}
+					}
+					.offer-reservations-handler{
+						display: inline-block;
+						vertical-align: top;
+
+						width: 660px;
+						margin: 15px 0 0 -4px;
+
+						.offer-reservation{
+							margin: 0 0 0 25px;
+							padding: 25px 50px 25px 0;
+
+							border-bottom: 1px solid #cfcfcf;
+
+							img{
+								width: 50px;
+
+								border-radius: 50px;
+								vertical-align: top;
+							}
+							span{
+								display: inline-block;
+								vertical-align: top;
+								width: calc(100% - 75px);
+								margin: 0 0 0 21px;
+
+								form{
+									margin: 10px 0 0 0;
+									display: inline-block;
+									vertical-align: middle;
+
+									width: 110px;
+
+									input{
+										width: 100px;
+										padding: 4px 0;
+
+										text-align: center;
+										font-size: 14px;
+										font-weight: 300;
+										letter-spacing: 1px;
+
+										background: #cfcfcf;
+										border: 1px solid #cfcfcf;
+										border-radius: 10px;
+										color: #808080;
+									}
+
+								}
+							}
+						}
+					}
+					.offer-actions{
+						position: absolute;
+						margin: -25px 0 0 0;
+						width: 200px;
+						height: 20px;
+
+						form{
+							padding: 0;
+							display: inline-block;
+							vertical-align: middle;
+							width: 120px;
+
+							text-align: center;
+
+							&:last-child{
+								width: 80px;
+								margin: 0 0 0 -4px;
+
+								border-left: 1px solid #cfcfcf;
+							}
+
+							input{
+								margin: 0;
+								width: 100%;
+
+								border: 0 none;
+								background: transparent;
+
+								font-size: 11px;
+								text-align: center;
+							}
+						}
+					}
+				}
+			}
 		}
 		#dashboard-reservations{
 			display: none;

@@ -1,83 +1,117 @@
 <div id="own-offer" class="dashboard-display<?php if(isset($GET['view'])&&$GET['view']=='offers')echo " active";?>">
-	<?php if(count($offers)>1): ?>
-		<h2><?php echo count($offers);?> PRODUITS EN LOCATION</h2>
-	<?php else: ?>
-		<h2><?php echo count($offers);?> PRODUIT EN LOCATION</h2>
-	<?php endif; ?>
-<?php if(count($offers)>0):?>
-	<?php foreach($offers as $offer): ?>
 
-	<div class="own-offer">
-		<span class="offer-name">
-			<a href="offer/<?php echo $offer['id']; ?>"><?php echo $offer['name']; ?></a>
-			<?php if($offer['availability']==1): ?>
-				<form action="account/offer/unavailable/<?php echo $offer['id']; ?>" method="POST"><input type="submit" value="Rendre cettre offre indisponible à de nouvelles réservations">
-				</form>
-			<?php elseif($offer['availability']==2): ?>
-				<form action="account/offer/available/<?php echo $offer['id']; ?>" method="POST">
-					<input type="submit" value="Rendre cettre offre disponible à de nouvelles réservations">
-				</form>
-			<?php endif; ?>
-		</span>
-		<span class="offer-price">
-			<?php echo $offer['price_per_day']; ?> € / jours
-		</span>
-		<?php if(count($offer['reservations'])>0): 
-				foreach ($offer['reservations'] as $reservation): 
-					// RESERVATIONS EN ATTENTE
-					if($reservation['status']==0):?>
-						<div class="offer-reservation">
-							<span class="reservation-info">
-								<img class="reservation-photo" href="<?php echo $reservation['user_photo'];?>"/>
-								<?php echo "Proposition de réservation de : ".$reservation['user_name']."."; ?>
-								<br>
-							</span>
-							<span class="reservation-date">
-								<?php echo "Du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end'])."."; ?>
-							</span>
-							<span class="reservation-price">
-								<?php 
-									$price=(($reservation['date_end']-$reservation['date_start'])/60/60/24)*$offer['price_per_day'];
-									echo $price;
-								?> €
-							<!-- ICI CALCULER LE NOMBRES DE JOURS * $offer['price_per_day'] -->
-							</span>
-							<!-- BOUTON SUPPRIMER / VALIDER -->
-							<form method="POST" action="account/reserve/accept/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
-								<input type="submit" class="validation-bouton" value="Accepter la proposition">
-							</form>
-							<form method="POST" action="account/reserve/refuse/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
-								<input type="submit" class="delete-bouton" value="Refuser définitivement la proposition">
-							</form>
-
-							
-						</div>
-						
-					<!-- RESERVATIONS VALIDES -->
-					<?php elseif($reservation['status']==1&&$reservation['date_end']>time()): ?>
-						<div class="offer-reservation">
-							<span class="reservation-info">
-								<img class="reservation-photo" href="<?php echo $reservation['user_photo'];?>"/>
-								<?php echo "Vous avez accepté la proposition de ".$reservation['user_name'].". Vous pouvez maintenant vous contacter par email : ";?><a href="mailto:<?php echo $reservation['user_email']; ?>?subject=<?php echo "[ALQUI]--".$offer['name'];?>"><?php echo $reservation['user_email']; ?></a>
-							</span>
-							<span class="reservation-date">
-								<?php echo "Du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end'])."."; ?>
-							</span>
-							
-						</div>	
-					<?php endif; ?>
-				<?php endforeach; ?>
-		<?php else: ?>
-			<span class="delete-offer">
-				<form method="POST" action="account/offer/delete/<?php echo $offer['id'];?>">
-					<input value="Supprimer" type="submit">
-				</form>
-		<?php endif; ?>
-
+	<div id="header">
+		<button>Ajouter un produit</button>
 	</div>
 
-	<?php endforeach; ?>
-<?php else: ?>
-	Vous n'avez pas encore ajouté d'offres ou vos offres n'ont pas encore été validés par nos administrateurs.
-<?php endif; ?>
+	<?php if(count($offers)>0):?>
+		<?php foreach($offers as $offer): ?>
+
+			<div class="own-offer">
+				<div class="offer-name">
+					<a href="offer/<?php echo $offer['id']; ?>">
+						<?php echo $offer['name']; ?>
+					</a>
+					<?php if(count($offer['reservations']) > 0): ?>
+						• <?php echo count($offer['reservations']); ?> demandes de locations
+					<?php endif; ?>
+
+				</div>
+				<div class="offer-infos">
+					<img src="dsf"/>
+					<p>
+						<span><?php echo $offer['price_per_day']; ?>€/j</span>
+					</p>
+				</div>
+
+				<div class="offer-reservations-handler">
+
+								<div class="offer-reservation">
+									<img class="reservation-photo" src="dsfj"/>
+									
+									<span class="reservation-info">
+										<?php echo "Florian voudrait louer ton Titre du 55/55/5555 au 55/55/5555"; ?>
+
+										<!-- BOUTON SUPPRIMER / VALIDER -->
+										<form method="POST" action="account/reserve/accept/17" class="validation-form">
+											<input type="submit" class="validation-bouton" value="Accepter">
+										</form>
+										<form method="POST" action="account/reserve/refuse/17" class="validation-form">
+											<input type="submit" class="delete-bouton" value="Refuser">
+										</form>
+									</span>
+								</div>
+
+					<?php if(count($offer['reservations'])>0): ?>
+						<?php foreach ($offer['reservations'] as $reservation): ?>
+							// RESERVATIONS EN ATTENTE
+							<?php if($reservation['status']==0):?>
+								<div class="offer-reservation">
+									<span class="reservation-info">
+										<img class="reservation-photo" href="<?php echo $reservation['user_photo'];?>"/>
+										<?php echo "Proposition de réservation de : ".$reservation['user_name']."."; ?>
+									</span>
+									<span class="reservation-date">
+										<?php echo "Du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end'])."."; ?>
+									</span>
+									<span class="reservation-price">
+										<?php 
+											$price = (($reservation['date_end']-$reservation['date_start'])/60/60/24)*$offer['price_per_day'];
+											echo $price;
+										?> €
+									<!-- ICI CALCULER LE NOMBRES DE JOURS * $offer['price_per_day'] -->
+									</span>
+									<!-- BOUTON SUPPRIMER / VALIDER -->
+									<form method="POST" action="account/reserve/accept/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
+										<input type="submit" class="validation-bouton" value="Accepter la proposition">
+									</form>
+									<form method="POST" action="account/reserve/refuse/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
+										<input type="submit" class="delete-bouton" value="Refuser définitivement la proposition">
+									</form>
+								</div>
+								
+							<!-- RESERVATIONS VALIDES -->
+							<?php elseif($reservation['status']==1 && $reservation['date_end']>time()): ?>
+								<div class="offer-reservation">
+									<span class="reservation-info">
+										<img class="reservation-photo" href="<?php echo $reservation['user_photo'];?>"/>
+										<?php echo "Vous avez accepté la proposition de ".$reservation['user_name'].". Vous pouvez maintenant vous contacter par email : ";?>
+										<a href="mailto:<?php echo $reservation['user_email']; ?>?subject=<?php echo "[ALQUI]--".$offer['name'];?>">
+											<?php echo $reservation['user_email']; ?>
+										</a>
+									</span>
+									<span class="reservation-date">
+										<?php echo "Du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end'])."."; ?>
+									</span>
+								</div>	
+							<?php endif; ?>
+						<?php endforeach; ?>
+					<?php endif; ?>
+				</div>
+
+				<div class="offer-actions">
+					<?php if($offer['availability']==1): ?>
+						<form action="account/offer/unavailable/<?php echo $offer['id']; ?>" method="POST">
+							<input type="submit" value="Mettre indisplonible">
+						</form>
+					<?php elseif($offer['availability']==2): ?>
+						<form action="account/offer/available/<?php echo $offer['id']; ?>" method="POST">
+							<input type="submit" value="Mettre disponible">
+						</form>
+					<?php endif; ?>
+					<?php if(count($offer['reservations']) == 0): ?>
+						<form method="POST" action="account/offer/delete/<?php echo $offer['id'];?>">
+							<input value="Supprimer" type="submit">
+						</form>
+					<?php endif; ?>
+				</div>
+			</div>
+		<?php endforeach; ?>
+	<?php else: ?>
+		Vous n'avez pas encore ajouté d'offres ou vos offres n'ont pas encore été validés par nos administrateurs.
+	<?php endif; ?>
+
+	<div id="footer">
+		<button>Ajouter un produit</button>
+	</div>
 </div>
