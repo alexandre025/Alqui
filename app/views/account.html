@@ -15,8 +15,8 @@
 	
 			<header  id='headerAccount'>
 				<div>
-					<!-- <img src="" id='header-logo' alt='Alqui - Logo' title='Alqui'/> -->
-					<div id="header-logo"></div>
+					<img src="assets/img/logo.png" id='header-logo' alt='Alqui - Logo' title='Alqui'/>
+					<!-- <div id="header-logo"></div> -->
 				</div>
 			</header> 
 			
@@ -55,13 +55,13 @@
 						<span class='nb'>55</span> <span class='txt'>notifications</span>
 					</span>
 					<span id="locations">
-						<span class='nb'>55</span> <span class='txt'>en location</span>
-					</span>
-					<span id="reservations">
-						<span class='nb'>55</span> <span class='txt'>demandes</span>
+						<span class='nb'>55</span> <span class='txt'>produits <br>en location</span>
 					</span>
 					<span id="wishlists">
-						<span class='nb'>55</span> <span class='txt'>dans ma wishlist</span>
+						<span class='nb'>55</span> <span class='txt'>articles <br>dans ma wishlist</span>
+					</span>
+					<span id="reservations">
+						<span class='nb'>55</span> <span class='txt'>reservations</span>
 					</span>
 				</div>
 				<div id="content">
@@ -69,7 +69,7 @@
 						<?php include('partials/dashboard_notifs.html'); ?>
 					</div>
 					<div id="dashboard-locations">
-						LOCATION
+						<?php include('partials/dashboard_offers.html'); ?>
 					</div>
 					<div id="dashboard-reservations">
 						RESERVATION
@@ -81,9 +81,6 @@
 			</div>
 
 			<div id="dashboard">
-
-				<!-- VOS OFFRES -->
-				<?php include('partials/dashboard_offers.html'); ?>
 
 				<!-- VOS DEMANDES -->
 				<?php include('partials/dashboard_reservations.html'); ?>
