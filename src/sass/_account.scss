@@ -147,11 +147,14 @@
 			border-bottom: 3px solid $primary-color;
 			color: #303030;
 		}
+		.active{
+			border-bottom: 3px solid $primary-color;
+			color: #303030;
+		}
 	}
 	#content{
 		#dashboard-notifs{
-			display: none;
-			#notifications{
+			#notifications-container{
 				width: 100%;
 				padding: 0;
 				margin: 25px 0 0 0;
@@ -188,8 +191,7 @@
 			}
 		}
 		#dashboard-locations{
-			display: none;
-			#own-offer{
+			#own-offer-container{
 				width: 100%;
 				padding: 0;
 				margin: 25px 0 0 0;
@@ -371,8 +373,7 @@
 					}
 				}
 			}
-			#add-offer{
-				display: none;
+			#add-offer-container{
 				width: 100%;
 				padding: 0;
 				margin: 25px 0 0 0;
@@ -529,8 +530,7 @@
 			}
 		}
 		#dashboard-wishlists{
-			display: none;
-			#wishlist{
+			#wishlist-container{
 				width: 100%;
 				padding: 0;
 				margin: 25px 0 0 0;
@@ -643,9 +643,7 @@
 			}
 		}
 		#dashboard-reservations{
-			display: none;
-
-			#reservations{
+			#reservations-container{
 				width: 100%;
 				padding: 0;
 				margin: 25px 0 0 0;
@@ -820,6 +818,9 @@
 					}
 				}
 			}
+		}
+		.dashboard-display{
+			display: none;
 		}
 		.active{
 			display: block;
