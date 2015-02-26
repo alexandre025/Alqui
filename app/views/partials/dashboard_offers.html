@@ -1,7 +1,7 @@
 <div id="own-offer" class="dashboard-display<?php if(isset($GET['view'])&&$GET['view']=='offers')echo " active";?>">
 
 	<div id="header">
-		<button>Ajouter un produit</button>
+		<button class='add-offer-button'>Ajouter un produit</button>
 	</div>
 
 	<?php if(count($offers)>0):?>
@@ -14,6 +14,8 @@
 					</a>
 					<?php if(count($offer['reservations']) > 0): ?>
 						• <?php echo count($offer['reservations']); ?> demandes de locations
+					<?php else: ?>
+						• Aucune demandes
 					<?php endif; ?>
 
 				</div>
@@ -25,12 +27,15 @@
 				</div>
 
 				<div class="offer-reservations-handler">
-
+					<?php if(count($offer['reservations'])>0): ?>
+						<?php foreach ($offer['reservations'] as $reservation): ?>
+							// RESERVATIONS EN ATTENTE
+							<?php if($reservation['status']==0):?>
 								<div class="offer-reservation">
-									<img class="reservation-photo" src="dsfj"/>
+									<img class="reservation-photo" src="<?php echo $reservation['user_photo'];?>"/>
 									
 									<span class="reservation-info">
-										<?php echo "Florian voudrait louer ton Titre du 55/55/5555 au 55/55/5555"; ?>
+										<?php echo $reservation['user_name']." voudrait louer ton Titre du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end']); ?>
 
 										<!-- BOUTON SUPPRIMER / VALIDER -->
 										<form method="POST" action="account/reserve/accept/17" class="validation-form">
@@ -40,20 +45,7 @@
 											<input type="submit" class="delete-bouton" value="Refuser">
 										</form>
 									</span>
-								</div>
 
-					<?php if(count($offer['reservations'])>0): ?>
-						<?php foreach ($offer['reservations'] as $reservation): ?>
-							// RESERVATIONS EN ATTENTE
-							<?php if($reservation['status']==0):?>
-								<div class="offer-reservation">
-									<span class="reservation-info">
-										<img class="reservation-photo" href="<?php echo $reservation['user_photo'];?>"/>
-										<?php echo "Proposition de réservation de : ".$reservation['user_name']."."; ?>
-									</span>
-									<span class="reservation-date">
-										<?php echo "Du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end'])."."; ?>
-									</span>
 									<span class="reservation-price">
 										<?php 
 											$price = (($reservation['date_end']-$reservation['date_start'])/60/60/24)*$offer['price_per_day'];
@@ -108,10 +100,60 @@
 			</div>
 		<?php endforeach; ?>
 	<?php else: ?>
-		Vous n'avez pas encore ajouté d'offres ou vos offres n'ont pas encore été validés par nos administrateurs.
+		Vous n'avez pas encore ajouté d'offres ou vos offres n'ont pas encore été validées par nos administrateurs.
 	<?php endif; ?>
 
 	<div id="footer">
-		<button>Ajouter un produit</button>
+		<button class='add-offer-button'>Ajouter un produit</button>
+	</div>
+</div>
+
+<div id="add-offer">
+	<div id="header">
+		<span id='return-offer-location'>
+			<
+		</span>
+		<span>
+			retour produits en location
+		</span>
+	</div>
+	<div id="content">
+		<form action="" method='post' enctype="multipart/form-data">
+			<div id="col-l">
+				Catégorie <font class='colored'>*</font> <input type="text">
+				<br>
+				<br>
+				<br>
+				Nom du produit <font class='colored'>*</font> <input type="text">
+				<br>
+				<br>
+				<br>
+				Localisation <font class='colored'>*</font> <input type="text">
+				<br>
+				<br>
+				<br>
+				prix / jour <font class='colored'>*</font> <input id='add-offer-price' type="text">
+			</div>
+			<div id="col-r">
+				
+			</div>
+			<div id="col-b">
+				<p>
+					Description <br> du produit
+				</p>
+				<textarea name="" id=""></textarea>
+				<input type="file" id='add-picture-1'/>
+				<input type="file" id='add-picture-2'/>
+				<input type="file" id='add-picture-3'/>
+				<button id='add-picture-1-fake'>Ajouter la première photo</button>
+				<button id='add-picture-2-fake'>Ajouter la deuxième photo</button>
+				<button id='add-picture-3-fake'>Ajouter la troisième photo</button>
+				<div class="photos" id='picture-1'></div>
+				<div class="photos" id='picture-2'></div>
+				<div class="photos" id='picture-3'></div>
+
+				<input type="submit" value='ajouter mon produit'>
+			</div>
+		</form>
 	</div>
 </div>
