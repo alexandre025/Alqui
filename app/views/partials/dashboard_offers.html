@@ -118,21 +118,21 @@
 		</span>
 	</div>
 	<div id="content">
-		<form action="" method='post' enctype="multipart/form-data">
+		<form action="account/offer/add" method='post' enctype="multipart/form-data">
 			<div id="col-l">
 				Catégorie <font class='colored'>*</font> <input type="text">
 				<br>
 				<br>
 				<br>
-				Nom du produit <font class='colored'>*</font> <input type="text">
+				Nom du produit <font class='colored'>*</font> <input name="name" type="text">
 				<br>
 				<br>
 				<br>
-				Localisation <font class='colored'>*</font> <input type="text">
+				Localisation <font class='colored'>*</font> <input type="number" name="location">
 				<br>
 				<br>
 				<br>
-				prix / jour <font class='colored'>*</font> <input id='add-offer-price' type="text">
+				prix / jour <font class='colored'>*</font> <input type="number" name="price" id='add-offer-price'>
 			</div>
 			<div id="col-r">
 				
@@ -141,10 +141,10 @@
 				<p>
 					Description <br> du produit
 				</p>
-				<textarea name="" id=""></textarea>
-				<input type="file" id='add-picture-1'/>
-				<input type="file" id='add-picture-2'/>
-				<input type="file" id='add-picture-3'/>
+				<textarea name="content"></textarea>
+				<input type="file" name="main-photo" id='add-picture-1'/>
+				<input type="file" name="second-photo" id='add-picture-2'/>
+				<input type="file" name="third-photo" id='add-picture-3'/>
 				<button id='add-picture-1-fake'>Ajouter la première photo</button>
 				<button id='add-picture-2-fake'>Ajouter la deuxième photo</button>
 				<button id='add-picture-3-fake'>Ajouter la troisième photo</button>
