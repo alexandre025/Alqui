@@ -44,8 +44,8 @@
 					</span>
 				<?php endif; ?>
 				<br>
-					<a href="account/edit">Modifier</a>
-					<a href="logout">Se déconnecter</a>
+					<a href="account/edit"><?php include('assets/img/icons/edit.svg'); ?> Modifier</a>
+					<a href="logout"><?php include('assets/img/icons/logout.svg'); ?> Se déconnecter</a>
 				</div>
 			</div>
 
@@ -75,15 +75,9 @@
 						<?php include('partials/dashboard_wishlist.html'); ?>
 					</div>
 					<div id="dashboard-reservations">
-						RESERVATION
+						<?php include('partials/dashboard_reservations.html'); ?>
 					</div>
 				</div>
-			</div>
-
-			<div id="dashboard">
-
-				<!-- VOS DEMANDES -->
-				<?php include('partials/dashboard_reservations.html'); ?>
 			</div>
 		
 			<script src="public/js/app.js" type="text/javascript"></script>

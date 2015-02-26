@@ -11,14 +11,28 @@
 	<div id="all_wish">
 		<?php foreach($wishlist as $wish): ?>
 			<div class="wish">
-				<?php echo $wish['offer_name']." de ".$wish['user_name']." pour ".$wish['offer_price']." €/jours.";?>
+				<div>
+					<img src="dsqf" alt="">
+					<p id='title'>
+						<?php echo $wish['offer_name']; ?>
+					</p>
+					<p id='user'>
+						<?php echo $wish['user_name']; ?>
+					</p>
+					<p id='price'>
+						<span>
+							<?php echo $wish['offer_price']." €/j"; ?>
+						</span>
+					</p>
+					<br>
+					<a href="offer/<?php echo $wish['offer_id'];?>">
+						Détails
+					</a>	
+				</div>
+
 				<form method="POST" action="account/wish/delete/<?php echo $wish['wish_id'];?>">
-					<input type="submit" value="X">
+					<input type="submit" value="Retirer de la wishlist">
 				</form>
-				<br>
-				<a href="offer/<?php echo $wish['offer_id'];?>">
-					Voir l'annonce
-				</a>	
 			</div>
 		<?php endforeach; ?>
 	</div>
