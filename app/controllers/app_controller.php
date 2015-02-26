@@ -98,12 +98,38 @@ class app_controller {
       $f3->set('offers',$this->model->getOwnOffers($f3->get('SESSION.id')));
       $f3->set('reservations',$this->model->getOwnReserv($f3->get('SESSION.id')));
       $f3->set('wishlist',$this->model->getWishlist($f3->get('SESSION.id')));
+      $f3->set('categories',$this->model->getCategories());
       $notifs=$this->model->selectNotifications($f3->get('SESSION.id'));
       $f3->set('notifs',$notifs);
       $notifs_count=count($notifs['new_reserv'])+count($notifs['own_reserv']);
       $f3->set('notifs_count',$notifs_count);
-      $this->result=array($f3->get('offers'),$f3->get('reservations'),$f3->get('wishlist'),$f3->get('notifs'));
+      $this->result=array($f3->get('offers'),$f3->get('reservations'),$f3->get('wishlist'),$f3->get('notifs'),$f3->get('categories'));
       $this->tpl['sync']="account.html";
+    }
+
+    function offerAdd($f3){
+      if($f3->get('VERB')=='POST'){
+        $id=$this->model->offerAdd($f3->get('POST'),$f3->get('SESSION.id'));
+        $id=$id[0]['id'];
+        $files=\Web::instance()->receive(function($file,$formFieldName){
+            $type = explode('/',$file['type']);
+            if($file['size'] < (2 * 1024 * 1024) && $type[0] == 'image'){
+              return true;
+            }
+            return false;
+          },true,function($fileBaseName, $formFieldName){
+            $ext=explode('.',$fileBaseName);
+            $ext='.'.end($ext);
+            $name='offer_'.time().'_'.rand().$ext;
+            return $name;
+        });
+        foreach ($files as $file => $isUpload) {
+          if($isUpload==1){
+            $this->model->offerAddPhoto($file,$id);
+          }
+        }
+        $f3->reroute('/account?view=offers');
+      }
     }
 
     // SUPPRIMER DEFINITIVEMENT UNE OFFRE
