@@ -23,34 +23,6 @@ class offer_controller {
     }
 	}
 
-	function offerAdd($f3){
-    if($f3->get('VERB')=='GET'){
-      $f3->set('categories',$this->model->getCategories());
-      $this->tpl['sync']='offerAdd.html';
-    }else{
-      $id=$this->model->offerAdd($f3->get('POST'),$f3->get('SESSION.id'));
-      $id=$id[0]['id'];
-      $files=\Web::instance()->receive(function($file,$formFieldName){
-          $type = explode('/',$file['type']);
-          if($file['size'] < (2 * 1024 * 1024) && $type[0] == 'image'){
-            return true;
-          }
-          return false;
-        },true,function($fileBaseName, $formFieldName){
-          $ext=explode('.',$fileBaseName);
-          $ext='.'.end($ext);
-          $name='offer_'.time().'_'.rand().$ext;
-          return $name;
-      });
-      foreach ($files as $file => $isUpload) {
-        if($isUpload==1){
-          $this->model->offerAddPhoto($file,$id);
-        }
-      }
-      $f3->reroute('/account?view=offers');
-    }
-  }
-
   function search($f3,$params){
     if($f3->get('VERB')=='POST'){
       $f3->set('search.name',$f3->get('POST.name'));
