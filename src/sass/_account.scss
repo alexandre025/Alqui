@@ -182,7 +182,7 @@
 			}
 		}
 		#dashboard-locations{
-
+			display: none;
 			#own-offer{
 				width: 100%;
 				padding: 0;
@@ -365,12 +365,195 @@
 					}
 				}
 			}
+			#add-offer{
+				display: none;
+				width: 100%;
+				padding: 0;
+				margin: 25px 0 0 0;
+
+				border-radius: 3px;
+				background: #EBEBEB;
+
+				text-align: left;
+
+				#header{
+					font-size: 14px;
+					text-transform: uppercase;
+					font-weight: 900;
+					letter-spacing: 1px;
+					text-align: left;
+
+					border-bottom: 1px solid #cfcfcf;
+
+					span{
+						display: inline-block;
+						vertical-align: middle;
+						padding: 25px;
+
+						&:first-child{
+							border-right: 1px solid #cfcfcf;
+							cursor: pointer;
+						}
+					}
+				}
+				#content{
+					padding: 25px 50px;
+
+					text-transform: uppercase;
+					font-size: 12px;
+					letter-spacing: 1px;
+					font-weight: 700;
+
+					color: #505050;
+
+					.colored{
+						color: $primary-color;
+					}
+					input{
+						margin: -15px -4px 0 15px;
+						padding: 0 15px;
+						height: 40px;
+						width: 50%;
+
+						border-radius: 10px;
+						border: 0 none;
+						color: black;
+
+						font-weight: 500;
+						font-size: 14px;	
+
+						&:last-child{
+							margin: -15px 0 0 15px;
+						}
+					}
+					input[type=file]{
+						position: absolute;
+						top: -9999px;
+					}
+					#col-l,
+					#col-r{
+						display: inline-block;
+						vertical-align: top;
+						width: 50%;
+					}
+					#col-l{
+						text-align: right;
+					}
+					#col-r{
+						margin: 0 0 0 -4px;
+					}
+					#col-b{
+						width: 100%;
+
+						p{
+							display: inline-block;
+							vertical-align: top;
+							width: calc(25% - 15px);
+							margin: 16px 0 0 0;
+							
+							text-align: right;
+						}
+						textarea{
+							display: inline-block;
+							vertical-align: top;
+							width: 75%;
+							height: 200px;
+							margin: 16px 0 0 11px;
+							padding: 15px;
+
+							border: 0 none;
+							border-radius: 10px;
+							resize: none;
+							color: black;
+
+							font-weight: 500;
+							font-size: 14px;
+						}
+						button{
+							display: inline-block;
+							vertical-align: top;
+							width: 75%;
+							height: 40px;
+							margin: 16px 0 0 25%;
+
+							border-radius: 10px;
+							border: 0 none;
+							background: white;
+
+							text-transform: uppercase;
+							letter-spacing: 1px;
+						}
+						button:focus,
+						button:hover{
+							opacity: .75;
+						}
+						.photos{
+							display: inline-block;
+							vertical-align: top;
+							width: 210px;
+							height: 210px;
+							margin: 15px 0 0 4px;
+
+							background: #cfcfcf;
+							border-radius: 10px;
+
+							&:hover{
+								opacity: .75;
+							}
+						}
+						#picture-1{
+							margin: 15px 0 0 25%;
+						}
+						input[type=submit]{
+							margin: 30px 0 0 calc(50% - 165px);
+							width: 230px;
+							height: 30px;
+
+							line-height: 30px;
+							text-align: center;
+							text-transform: uppercase;
+							letter-spacing: 1px;
+
+							color: white;
+							border-radius: 50px;
+							background: linear-gradient(to right,rgba(12,157,80,1),rgba(51,184,163,1));
+						}
+					}
+				}
+			}
+		}
+		#dashboard-wishlists{
+			display: none;
+			#wishlist{
+				width: 100%;
+				padding: 0;
+				margin: 25px 0 0 0;
+
+				border-radius: 3px;
+				background: #EBEBEB;
+
+				text-align: left;
+
+				#header{
+					padding: 25px 50px;
+
+					font-size: 14px;
+					text-transform: uppercase;
+					font-weight: 900;
+					letter-spacing: 1px;
+
+					border-bottom: 1px solid #cfcfcf;
+				}
+				.wish{
+					
+				}
+			}
 		}
 		#dashboard-reservations{
 			display: none;
 		}
-		#dashboard-wishlists{
-			display: none;
+		.active{
+			display: block;
 		}
 	}
 }
