@@ -74,8 +74,8 @@
 					<?php endif; ?>
 
 					<?php if(time()>$reservation['date_end']&&$reservation['commented']==1):?>
-						Votre commentaire a bien été enregistrer, merci !
 						<form action="account/reserve/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
+							Votre commentaire a bien été enregistrer, merci !
 							<input type="submit" value="Terminer la transaction">
 						</form>
 					<?php endif; ?>

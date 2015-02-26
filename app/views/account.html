@@ -51,16 +51,16 @@
 
 			<div id="container">
 				<div id="head">
-					<span id="notifications">
+					<span id="notifications" class="<?php if(!isset($GET['view']))echo " active";?>">
 						<span class='nb'>55</span> <span class='txt'>notifications</span>
 					</span>
-					<span id="locations">
+					<span id="locations" class="<?php if(isset($GET['view'])&&$GET['view']=='offers')echo " active";?>">
 						<span class='nb'>55</span> <span class='txt'>produits <br>en location</span>
 					</span>
-					<span id="wishlists">
+					<span id="wishlists" class="<?php if(isset($GET['view'])&&$GET['view']=='wishlist')echo " active";?>">
 						<span class='nb'>55</span> <span class='txt'>articles <br>dans ma wishlist</span>
 					</span>
-					<span id="reservations">
+					<span id="reservations" class="<?php if(isset($GET['view'])&&$GET['view']=='reserv')echo " active";?>">
 						<span class='nb'>55</span> <span class='txt'>reservations</span>
 					</span>
 				</div>
