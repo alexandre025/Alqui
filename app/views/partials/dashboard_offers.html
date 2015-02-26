@@ -120,7 +120,12 @@
 	<div id="content">
 		<form action="account/offer/add" method='post' enctype="multipart/form-data">
 			<div id="col-l">
-				Catégorie <font class='colored'>*</font> <input type="text">
+				Catégorie <font class='colored'>*</font>
+				<select name="category" required>
+					<?php foreach ($categories as $category): ?>
+						<option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+					<?php endforeach; ?>
+				</select>
 				<br>
 				<br>
 				<br>
@@ -141,7 +146,7 @@
 				<p>
 					Description <br> du produit
 				</p>
-				<textarea name="content"></textarea>
+				<textarea name="content" class='description-offer' placeholder='Écrivez ici...'></textarea>
 				<input type="file" name="main-photo" id='add-picture-1'/>
 				<input type="file" name="second-photo" id='add-picture-2'/>
 				<input type="file" name="third-photo" id='add-picture-3'/>
