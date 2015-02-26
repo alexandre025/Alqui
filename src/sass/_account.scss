@@ -416,7 +416,8 @@
 					.colored{
 						color: $primary-color;
 					}
-					input{
+					input,
+					select{
 						margin: -15px -4px 0 15px;
 						padding: 0 15px;
 						height: 40px;
@@ -460,13 +461,13 @@
 							
 							text-align: right;
 						}
-						textarea{
+						textarea,
+						#mceu_6{
 							display: inline-block;
 							vertical-align: top;
 							width: 75%;
-							height: 200px;
+							height: 270px;
 							margin: 16px 0 0 11px;
-							padding: 15px;
 
 							border: 0 none;
 							border-radius: 10px;
@@ -476,7 +477,9 @@
 							font-weight: 500;
 							font-size: 14px;
 						}
-						button{
+						#add-picture-1-fake,
+						#add-picture-2-fake,
+						#add-picture-3-fake{
 							display: inline-block;
 							vertical-align: top;
 							width: 75%;
@@ -490,8 +493,12 @@
 							text-transform: uppercase;
 							letter-spacing: 1px;
 						}
-						button:focus,
-						button:hover{
+						#add-picture-1-fake,
+						#add-picture-2-fake,
+						#add-picture-3-fake:focus,
+						#add-picture-1-fake,
+						#add-picture-2-fake,
+						#add-picture-3-fake:hover{
 							opacity: .75;
 						}
 						.photos{
