@@ -13,40 +13,72 @@ var dashboard = {
 		var wishlists = _.byId('wishlists');
 
 		notifs.addEventListener('click',function(){
-			_.byId('dashboard-notifs').style.display = 'block';
-			_.byId('dashboard-locations').style.display = 'none';
-			_.byId('dashboard-reservations').style.display = 'none';
-			_.byId('dashboard-wishlists').style.display = 'none';
+			// change header
+			this.setAttribute('class','active');
+			locations.removeAttribute('class');
+			reservations.removeAttribute('class');
+			wishlists.removeAttribute('class');
+
+			// change content
+			_.byId('notifications-container').setAttribute('class','active');
+			_.byId('own-offer-container').setAttribute('class','dashboard-display');
+			_.byId('add-offer-container').setAttribute('class','dashboard-display');
+			_.byId('wishlist-container').setAttribute('class','dashboard-display');
+			_.byId('reservations-container').setAttribute('class','dashboard-display');
 		},false);
 		locations.addEventListener('click',function(){
-			_.byId('dashboard-locations').style.display = 'block';
-			_.byId('dashboard-notifs').style.display = 'none';
-			_.byId('dashboard-reservations').style.display = 'none';
-			_.byId('dashboard-wishlists').style.display = 'none';
-		},false);
-		reservations.addEventListener('click',function(){
-			_.byId('dashboard-reservations').style.display = 'block';
-			_.byId('dashboard-locations').style.display = 'none';
-			_.byId('dashboard-notifs').style.display = 'none';
-			_.byId('dashboard-wishlists').style.display = 'none';
+			// change header
+			this.setAttribute('class','active');
+			notifs.removeAttribute('class');
+			reservations.removeAttribute('class');
+			wishlists.removeAttribute('class');
+
+			// change content
+			_.byId('notifications-container').setAttribute('class','dashboard-display');
+			_.byId('own-offer-container').setAttribute('class','active');
+			_.byId('add-offer-container').setAttribute('class','dashboard-display');
+			_.byId('wishlist-container').setAttribute('class','dashboard-display');
+			_.byId('reservations-container').setAttribute('class','dashboard-display');
 		},false);
 		wishlists.addEventListener('click',function(){
-			_.byId('dashboard-wishlists').style.display = 'block';
-			_.byId('dashboard-locations').style.display = 'none';
-			_.byId('dashboard-reservations').style.display = 'none';
-			_.byId('dashboard-notifs').style.display = 'none';
+			// change header
+			this.setAttribute('class','active');
+			locations.removeAttribute('class');
+			reservations.removeAttribute('class');
+			notifs.removeAttribute('class');
+
+			// change content
+			_.byId('notifications-container').setAttribute('class','dashboard-display');
+			_.byId('own-offer-container').setAttribute('class','dashboard-display');
+			_.byId('add-offer-container').setAttribute('class','dashboard-display');
+			_.byId('wishlist-container').setAttribute('class','active');
+			_.byId('reservations-container').setAttribute('class','dashboard-display');
+		},false);
+		reservations.addEventListener('click',function(){
+			// change header
+			this.setAttribute('class','active');
+			locations.removeAttribute('class');
+			notifs.removeAttribute('class');
+			wishlists.removeAttribute('class');
+
+			// change content
+			_.byId('notifications-container').setAttribute('class','dashboard-display');
+			_.byId('own-offer-container').setAttribute('class','dashboard-display');
+			_.byId('add-offer-container').setAttribute('class','dashboard-display');
+			_.byId('wishlist-container').setAttribute('class','dashboard-display');
+			_.byId('reservations-container').setAttribute('class','active');
 		},false);
 
 		var add_offer_button = _.byClass('add-offer-button');
 		for(var i = 0; i < add_offer_button.length; i++){
 			add_offer_button[i].addEventListener('click',function(){
-				_.byId('own-offer').style.display = 'none';
-				_.byId('add-offer').style.display = 'block';
+				_.byId('own-offer-container').setAttribute('class','dashboard-display');
+				_.byId('add-offer-container').setAttribute('class','active');
 			},false);
 		}
 		_.byId('return-offer-location').addEventListener('click',function(){
-			_.byId('own-offer').style.display = 'block';
-			_.byId('add-offer').style.display = 'none';
+			_.byId('own-offer-container').setAttribute('class','active');
+			_.byId('add-offer-container').setAttribute('class','dashboard-display');
 		},false);
 
 
