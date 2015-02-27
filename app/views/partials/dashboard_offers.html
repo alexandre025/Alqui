@@ -4,6 +4,7 @@
 		<button class='add-offer-button'>Ajouter un produit</button>
 	</div>
 
+	
 	<?php if(count($offers)>0):?>
 		<?php foreach($offers as $offer): ?>
 
@@ -12,15 +13,17 @@
 					<a href="offer/<?php echo $offer['id']; ?>">
 						<?php echo $offer['name']; ?>
 					</a>
-					<?php if(count($offer['reservations']) > 0): ?>
-						• <?php echo count($offer['reservations']); ?> demandes de locations
+					<?php if(count($offer['reservations']) == 1): ?>
+						• <?php echo count($offer['reservations']); ?> demande de location
+					<?php elseif(count($offer['reservations']) > 0): ?>
+						• <?php echo count($offer['reservations']); ?> demandes de location
 					<?php else: ?>
-						• Aucune demandes
+						• Aucune demande
 					<?php endif; ?>
 
 				</div>
 				<div class="offer-infos">
-					<img src="dsf"/>
+					<img src="<?php echo $offer['photo_name']; ?>"/>
 					<p>
 						<span><?php echo $offer['price_per_day']; ?>€/j</span>
 					</p>
@@ -29,51 +32,34 @@
 				<div class="offer-reservations-handler">
 					<?php if(count($offer['reservations'])>0): ?>
 						<?php foreach ($offer['reservations'] as $reservation): ?>
-							// RESERVATIONS EN ATTENTE
 							<?php if($reservation['status']==0):?>
 								<div class="offer-reservation">
 									<img class="reservation-photo" src="<?php echo $reservation['user_photo'];?>"/>
 									
 									<span class="reservation-info">
-										<?php echo $reservation['user_name']." voudrait louer ton Titre du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end']); ?>
+										<?php 
+											echo $reservation['user_name']." voudrait louer cet objet du <strong>".date('d/m/Y',$reservation['date_start'])."</strong> au <strong>".date('d/m/Y',$reservation['date_end'])."</strong>."; ?>
 
 										<!-- BOUTON SUPPRIMER / VALIDER -->
-										<form method="POST" action="account/reserve/accept/17" class="validation-form">
+										<form method="POST" action="account/reserve/accept/<?php echo $reservation['reservation_id'];?>" class="validation-form">
 											<input type="submit" class="validation-bouton" value="Accepter">
 										</form>
-										<form method="POST" action="account/reserve/refuse/17" class="validation-form">
+										<form method="POST" action="account/reserve/refuse/<?php echo $reservation['reservation_id'];?>" class="validation-form">
 											<input type="submit" class="delete-bouton" value="Refuser">
 										</form>
 									</span>
-
-									<span class="reservation-price">
-										<?php 
-											$price = (($reservation['date_end']-$reservation['date_start'])/60/60/24)*$offer['price_per_day'];
-											echo $price;
-										?> €
-									<!-- ICI CALCULER LE NOMBRES DE JOURS * $offer['price_per_day'] -->
-									</span>
-									<!-- BOUTON SUPPRIMER / VALIDER -->
-									<form method="POST" action="account/reserve/accept/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
-										<input type="submit" class="validation-bouton" value="Accepter la proposition">
-									</form>
-									<form method="POST" action="account/reserve/refuse/<?php echo $reservation['reservation_id']; ?>" class="validation-form">
-										<input type="submit" class="delete-bouton" value="Refuser définitivement la proposition">
-									</form>
 								</div>
 								
 							<!-- RESERVATIONS VALIDES -->
 							<?php elseif($reservation['status']==1 && $reservation['date_end']>time()): ?>
 								<div class="offer-reservation">
 									<span class="reservation-info">
-										<img class="reservation-photo" href="<?php echo $reservation['user_photo'];?>"/>
-										<?php echo "Vous avez accepté la proposition de ".$reservation['user_name'].". Vous pouvez maintenant vous contacter par email : ";?>
-										<a href="mailto:<?php echo $reservation['user_email']; ?>?subject=<?php echo "[ALQUI]--".$offer['name'];?>">
-											<?php echo $reservation['user_email']; ?>
-										</a>
-									</span>
-									<span class="reservation-date">
-										<?php echo "Du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end'])."."; ?>
+										<img class="reservation-photo" src="<?php echo $reservation['user_photo'];?>"/>
+										<span>
+											<a href="mailto:<?php echo $reservation['user_email']; ?>?subject=<?php echo "[ALQUI] > Offre &#34;".$offer['name']."&#34;";?>">
+												Contacter le loueur
+											</a>
+										</span>
 									</span>
 								</div>	
 							<?php endif; ?>
@@ -83,11 +69,11 @@
 
 				<div class="offer-actions">
 					<?php if($offer['availability']==1): ?>
-						<form action="account/offer/unavailable/<?php echo $offer['id']; ?>" method="POST">
-							<input type="submit" value="Mettre indisplonible">
+						<form action="account/offer/unavailable/<?php echo $offer['id']; ?>" method="POST" class='availability' >
+							<input type="submit"value="Mettre indisponible">
 						</form>
 					<?php elseif($offer['availability']==2): ?>
-						<form action="account/offer/available/<?php echo $offer['id']; ?>" method="POST">
+						<form action="account/offer/available/<?php echo $offer['id']; ?>" method="POST" class='availability' >
 							<input type="submit" value="Mettre disponible">
 						</form>
 					<?php endif; ?>

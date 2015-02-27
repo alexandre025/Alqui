@@ -1,4 +1,4 @@
-<!-- <?php print_r($offers); ?> -->
+
 <!doctype html>
 	<html lang="fr">
 		<head>
@@ -65,16 +65,53 @@
 			<div id="container">
 				<div id="head">
 					<span id="notifications" class="<?php if(!isset($GET['view']))echo " active";?>">
-						<span class='nb'>55</span> <span class='txt'>notifications</span>
+						<span class='nb'>
+							<?php 
+								$ct = count($notifs['own_reserv']) + count($notifs['new_reserv']);
+								if($ct < 10):
+									echo '0'.$ct;
+								else: 
+									echo $ct;
+								endif;
+							?>
+						</span> 
+						<span class='txt'>notification(s)</span>
 					</span>
 					<span id="locations" class="<?php if(isset($GET['view'])&&$GET['view']=='offers')echo " active";?>">
-						<span class='nb'>55</span> <span class='txt'>produits <br>en location</span>
+						<span class='nb'>
+							<?php 
+								if(count($offers) < 10):
+									echo '0'.count($offers);
+								else:
+									echo count($offers);
+								endif;
+							?>
+						</span> 
+						<span class='txt'>produit(s) <br>en location</span>
 					</span>
 					<span id="wishlists" class="<?php if(isset($GET['view'])&&$GET['view']=='wishlist')echo " active";?>">
-						<span class='nb'>55</span> <span class='txt'>articles <br>dans ma wishlist</span>
+						<span class='nb'>
+							<?php 
+								if(count($wishlist) < 10):
+									echo '0'.count($wishlist);
+								else:
+									echo count($wishlist);
+								endif;
+							?>
+						</span> 
+						<span class='txt'>article(s) <br>dans ma wishlist</span>
 					</span>
 					<span id="reservations" class="<?php if(isset($GET['view'])&&$GET['view']=='reserv')echo " active";?>">
-						<span class='nb'>55</span> <span class='txt'>reservations</span>
+						<span class='nb'>
+							<?php 
+								if(count($reservations) < 10):
+									echo '0'.count($reservations);
+								else:
+									echo count($reservations);
+								endif;
+							?>
+						</span> 
+						<span class='txt'>reservation(s)</span>
 					</span>
 				</div>
 				<div id="content">

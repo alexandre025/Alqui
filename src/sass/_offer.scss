@@ -102,7 +102,8 @@
 		text-align: center;
 
 		img{
-			height: 100%;
+			max-height: 100%;
+			max-width: 100%;
 		}
 	}
 	#slider{
@@ -154,8 +155,9 @@
 			font-family: 'Palatino-Italic',serif;
 
 			svg{
-				margin: 0 0 -15px 0;
-				width: 60px;
+				margin: 20px 0 0 0;
+				max-width: 60px;
+				max-height: 60px;
 			}
 		}
 		#cat-img:after{
@@ -268,6 +270,10 @@
 			vertical-align: middle;
 
 			color: $primary-color;
+		}
+		a{
+			color: black;
+			text-decoration: none;
 		}
 	}
 	#user{
