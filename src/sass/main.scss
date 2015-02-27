@@ -58,6 +58,11 @@ a.wished[data-title]:hover:after, a.not-wished[data-title]:hover:after, a.wish-n
 
 	cursor: pointer;
 
+	.login-error{
+		color: #E15931;
+
+		font-size: 14px;
+	}
 	.login-form {
 		display: block;
 		position: fixed;
@@ -122,7 +127,7 @@ a.wished[data-title]:hover:after, a.not-wished[data-title]:hover:after, a.wish-n
 		}
 		input[type='submit']{
 			color: white;
-			background: $primary-color;
+			background: linear-gradient(to right,rgba(12,157,80,1),rgba(51,184,163,1));
 			border: 0 none;
 		}
 		input[type='submit']:active{
@@ -183,6 +188,24 @@ header#headerLanding{
 		}
 		li:hover{
 			border-bottom: 2px solid rgba(255,255,255,1);
+		}
+		img{
+			width: 50px;
+			vertical-align: middle;
+			margin: 0;
+
+			border-radius: 50px;
+		}
+		.notif{
+			margin: 0 0 0 -15px;
+			padding: 0 4px;
+			display: inline-block;
+			vertical-align: top;
+
+			background: #E15931;
+			border-radius: 50px;
+
+			font-size: 12px;
 		}
 	}
 }
@@ -288,6 +311,7 @@ header#headerLandingScroll{
 		font-weight: 300;
 		font-size: 16px;
 		letter-spacing: 1px;
+		font-family: 'Palatino-Italic', serif;
 
 		border: 0 none;
 		border-right: 1px solid #bbbbbb;
@@ -298,6 +322,8 @@ header#headerLandingScroll{
 	input[name='location']{
 		width: 100px;
 		margin: 0 0 0 -3px;
+
+		font-family: 'Palatino-Italic', serif;
 
 		border-right: 0 none;
 		border-radius: 0;
@@ -311,7 +337,7 @@ header#headerLandingScroll{
 
 		border: 0 none;
 		border-radius: 0;
-		background: $primary-color;
+		background: linear-gradient(to right,rgba(12,157,80,1),rgba(51,184,163,1));
 		color: white;
 		border-radius: 2px;
 
@@ -319,15 +345,9 @@ header#headerLandingScroll{
 		font-size: 16px;
 		letter-spacing: 1px;
 	}
-	input[type='submit']:hover,
-	input[type='submit']:focus{
-		background: lighten($primary-color,5%);
-	}
 	input[type='submit']:active{
 		position: relative;
 		top: 2px;
-
-		background: $primary-color;
 	}
 }
 
