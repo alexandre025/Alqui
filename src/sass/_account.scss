@@ -37,6 +37,19 @@
 
 			border-radius: 50%;
 		}
+		#wishlist-nb{
+			padding: 2px 6px;
+
+			background: rgba(255,255,255,.15);
+			border-radius: 6px;
+
+			font-weight: 100;
+			font-size: 12px;
+
+			font{
+				color: #F8E79D;
+			}
+		}
 		.account-name,
 		.account-email{
 			display: block;
@@ -197,6 +210,23 @@
 					.details{
 						display: inline-block;
 						vertical-align: middle;
+						width: 732px;
+					}
+					form{
+						display: inline-block;
+						vertical-align: middle;
+						width: 50px;
+						margin: 0 0 0 -4px;
+
+						text-align: center;
+
+						input{
+							visibility: hidden;
+						}
+					}
+
+					&:hover > form input{
+						visibility: visible;
 					}
 				}
 			}
