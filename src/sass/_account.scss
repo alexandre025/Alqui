@@ -37,6 +37,19 @@
 
 			border-radius: 50%;
 		}
+		#wishlist-nb{
+			padding: 2px 6px;
+
+			background: rgba(255,255,255,.15);
+			border-radius: 6px;
+
+			font-weight: 100;
+			font-size: 12px;
+
+			font{
+				color: #F8E79D;
+			}
+		}
 		.account-name,
 		.account-email{
 			display: block;
@@ -182,10 +195,38 @@
 						width: 50px;
 						margin: 0 25px 0 0;
 						vertical-align: middle;
+
+						border-radius: 50px;
+					}
+					a{
+						color: $primary-color;
+
+						text-decoration: none;
+
+						&:hover{
+							text-decoration: underline;
+						}
 					}
 					.details{
 						display: inline-block;
 						vertical-align: middle;
+						width: 732px;
+					}
+					form{
+						display: inline-block;
+						vertical-align: middle;
+						width: 50px;
+						margin: 0 0 0 -4px;
+
+						text-align: center;
+
+						input{
+							visibility: hidden;
+						}
+					}
+
+					&:hover > form input{
+						visibility: visible;
 					}
 				}
 			}
@@ -265,8 +306,11 @@
 						border-bottom-left-radius: 5px;
 						border-bottom-right-radius: 5px;
 
+						text-align: center;
+
 						img{
-							width: 100%;
+							max-width: 100%;
+							max-height: 200px;
 							border-bottom: 2px solid $primary-color;
 						}
 						p{
@@ -336,6 +380,23 @@
 
 								}
 							}
+							.reservation-info{
+								img{
+									vertical-align: middle;
+								}
+								a{
+									display: inline-block;
+									vertical-align: middle;
+									padding: 7px 10px;
+
+									color: white;
+									background: linear-gradient(to right,rgba(12,157,80,1),rgba(51,184,163,1));
+									border-radius: 50px;
+
+									text-decoration: none;
+									text-align: center;
+								}
+							}
 						}
 					}
 					.offer-actions{
@@ -348,16 +409,12 @@
 							padding: 0;
 							display: inline-block;
 							vertical-align: middle;
-							width: 120px;
+							width: 80px;
+							margin: 0 0 0 -4px;
 
 							text-align: center;
 
-							&:last-child{
-								width: 80px;
-								margin: 0 0 0 -4px;
-
-								border-left: 1px solid #cfcfcf;
-							}
+							border-left: 1px solid #cfcfcf;
 
 							input{
 								margin: 0;
@@ -369,6 +426,12 @@
 								font-size: 11px;
 								text-align: center;
 							}
+						}
+						.availability{
+							width: 120px;
+							margin: 0;
+
+							border-left: 0 none;
 						}
 					}
 				}
@@ -416,7 +479,8 @@
 					.colored{
 						color: $primary-color;
 					}
-					input{
+					input,
+					select{
 						margin: -15px -4px 0 15px;
 						padding: 0 15px;
 						height: 40px;
@@ -460,13 +524,13 @@
 							
 							text-align: right;
 						}
-						textarea{
+						textarea,
+						#mceu_6{
 							display: inline-block;
 							vertical-align: top;
 							width: 75%;
-							height: 200px;
+							height: 270px;
 							margin: 16px 0 0 11px;
-							padding: 15px;
 
 							border: 0 none;
 							border-radius: 10px;
@@ -476,7 +540,9 @@
 							font-weight: 500;
 							font-size: 14px;
 						}
-						button{
+						#add-picture-1-fake,
+						#add-picture-2-fake,
+						#add-picture-3-fake{
 							display: inline-block;
 							vertical-align: top;
 							width: 75%;
@@ -490,8 +556,12 @@
 							text-transform: uppercase;
 							letter-spacing: 1px;
 						}
-						button:focus,
-						button:hover{
+						#add-picture-1-fake,
+						#add-picture-2-fake,
+						#add-picture-3-fake:focus,
+						#add-picture-1-fake,
+						#add-picture-2-fake,
+						#add-picture-3-fake:hover{
 							opacity: .75;
 						}
 						.photos{
@@ -631,9 +701,14 @@
 								color: #808080;
 							}
 						}
+						svg{
+							margin: 0 0 0 10px;
+							width: 14px;
+							height: 14px;
+						}
 						input{
 							padding: 0;
-							margin: 5px 0 0 15px;
+							margin: 5px 0 0 5px;
 
 							border: 0 none;
 							background: none;
@@ -660,10 +735,6 @@
 					text-transform: uppercase;
 					font-weight: 900;
 					letter-spacing: 1px;
-
-					&:first-child{
-						border-bottom: 1px solid #cfcfcf;
-					}
 				}
 				#header-n{
 					padding: 25px 50px;
@@ -675,8 +746,55 @@
 				}
 				#all-reserve{
 					width: 100%;
-					padding: 25px 50px; 
+					padding: 0 50px 25px 50px; 
 
+					form{
+						width: calc(100% - 240px);
+						display: inline-block;
+						vertical-align: top;
+
+						margin: 0 0 0 -4px;
+						padding: 0 0 0 25px;
+
+						text-transform: uppercase;
+						font-size: 12px;
+						letter-spacing: 1px;
+						font-weight: 700;
+	
+						color: #505050;
+
+						textarea{
+							width: 100%;
+							height: 200px;
+							padding: 15px;
+							margin: 15px 0 0 0;
+
+							border: 0 none;
+							border-radius: 10px;
+
+							text-align: left;
+							font-weight: 500;
+							font-size: 14px;
+
+							resize: none;
+						}
+						input{
+							float: right;
+							margin: 10px 0 0 0;
+							width: 250px;
+							height: 30px;
+
+							line-height: 30px;
+							text-align: center;
+							text-transform: uppercase;
+							letter-spacing: 1px;
+
+							color: white;
+							border-radius: 50px;
+							border: none;
+							background: linear-gradient(to right,rgba(12,157,80,1),rgba(51,184,163,1));
+						}
+					}
 					.reservation{
 						display: inline-block;
 						vertical-align: top;
@@ -768,52 +886,24 @@
 							border: 0 none;
 							background: none;
 						}
-					}
-					form{
-						width: calc(100% - 240px);
-						display: inline-block;
-						vertical-align: top;
-
-						margin: 0 0 0 -4px;
-						padding: 0 0 0 25px;
-
-						text-transform: uppercase;
-						font-size: 12px;
-						letter-spacing: 1px;
-						font-weight: 700;
-	
-						color: #505050;
-
-						textarea{
+						form{
 							width: 100%;
-							height: 200px;
-							padding: 15px;
-							margin: 15px 0 0 0;
+							margin: 0;
 
-							border: 0 none;
-							border-radius: 10px;
-
-							text-align: left;
-							font-weight: 500;
-							font-size: 14px;
-
-							resize: none;
-						}
-						input{
-							float: right;
-							margin: 10px 0 0 0;
-							width: 250px;
-							height: 30px;
-
-							line-height: 30px;
 							text-align: center;
-							text-transform: uppercase;
-							letter-spacing: 1px;
 
-							color: white;
-							border-radius: 50px;
-							border: none;
-							background: linear-gradient(to right,rgba(12,157,80,1),rgba(51,184,163,1));
+							input{
+								width: 180px;
+								padding: 4px 0;
+								margin: 0 30px 0 0;
+
+								text-align: center;
+								text-decoration: none;
+
+								border-radius: 50px;
+								color: white;
+								background: linear-gradient(to right,rgba(12,157,80,1),rgba(51,184,163,1));
+							}
 						}
 					}
 				}
