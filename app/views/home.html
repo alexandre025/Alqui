@@ -63,8 +63,7 @@
 								<li><?php echo $SESSION['firstname'].' '.$SESSION['lastname']; ?>
 								</li>
 								<img src="<?php echo $SESSION['photo']; ?>" alt="">
-								
-								<?php if($SESSION['notif']!=0){
+								<?php if($SESSION['notif'] != 0){
 									echo "<span class='notif'>".$SESSION['notif']."</span>";
 								}?>
 							</a>

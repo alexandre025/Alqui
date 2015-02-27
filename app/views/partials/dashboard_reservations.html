@@ -24,7 +24,7 @@
 								du <strong><?php echo date('d/m/Y',$reservation['date_start']); ?></strong> au <strong><?php echo date('d/m/Y',$reservation['date_end']); ?></strong>
 							</p>
 							<div>
-								<img src="dsf" alt="">
+								<img src="<?php echo $reservation['photo_name']; ?>" alt="">
 								<p class='title'>
 									<?php echo $reservation['offer_name']; ?>
 								</p>
@@ -82,7 +82,7 @@
 								du <strong><?php echo date('d/m/Y',$reservation['date_start']); ?></strong> au <strong><?php echo date('d/m/Y',$reservation['date_end']); ?></strong>
 							</p>
 							<div>
-								<img src="dsf" alt="">
+								<img src="<?php echo $reservation['photo_name']; ?>" alt="">
 								<p class='title'>
 									<?php echo $reservation['offer_name']; ?>
 								</p>
