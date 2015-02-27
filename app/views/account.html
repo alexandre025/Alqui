@@ -1,4 +1,4 @@
-<!-- <?php print_r($offers); ?> -->
+
 <!doctype html>
 	<html lang="fr">
 		<head>
@@ -10,6 +10,19 @@
 			<base href="<?php echo $BASE; ?>/" />
 			<meta name="viewport" content="width=device-width,initial-scale=1">
 			<link href="public/css/main.css" rel="stylesheet" type="text/css" />
+			<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+			<script>
+				tinymce.init({
+					selector:'textarea.description-offer',
+					menubar: false,
+					toolbar: [
+						"styleselect | bold italic | link image | alignleft aligncenter alignright"
+					],
+					resize: false,
+					width: '75%',
+					height: 200
+				});
+			</script>
 		</head>
 		<body>
 	
@@ -23,6 +36,7 @@
 			<div id="account-info-wrapper">
 				<div id="account-info">
 					<img src="<?php echo !empty($SESSION['photo'])?$SESSION['photo']:''; ?>"/>
+					<span id="wishlist-nb"><?php echo count($wishlist).' &nbsp; <font>&#9733;</font>'; ?></span>
 					<span class="account-name">
 						<?php echo $SESSION['firstname']." ".$SESSION['lastname']; ?>
 					</span>
@@ -52,16 +66,53 @@
 			<div id="container">
 				<div id="head">
 					<span id="notifications" class="<?php if(!isset($GET['view']))echo " active";?>">
-						<span class='nb'>55</span> <span class='txt'>notifications</span>
+						<span class='nb'>
+							<?php 
+								$ct = count($notifs['own_reserv']) + count($notifs['new_reserv']);
+								if($ct < 10):
+									echo '0'.$ct;
+								else: 
+									echo $ct;
+								endif;
+							?>
+						</span> 
+						<span class='txt'>notification(s)</span>
 					</span>
 					<span id="locations" class="<?php if(isset($GET['view'])&&$GET['view']=='offers')echo " active";?>">
-						<span class='nb'>55</span> <span class='txt'>produits <br>en location</span>
+						<span class='nb'>
+							<?php 
+								if(count($offers) < 10):
+									echo '0'.count($offers);
+								else:
+									echo count($offers);
+								endif;
+							?>
+						</span> 
+						<span class='txt'>produit(s) <br>en location</span>
 					</span>
 					<span id="wishlists" class="<?php if(isset($GET['view'])&&$GET['view']=='wishlist')echo " active";?>">
-						<span class='nb'>55</span> <span class='txt'>articles <br>dans ma wishlist</span>
+						<span class='nb'>
+							<?php 
+								if(count($wishlist) < 10):
+									echo '0'.count($wishlist);
+								else:
+									echo count($wishlist);
+								endif;
+							?>
+						</span> 
+						<span class='txt'>article(s) <br>dans ma wishlist</span>
 					</span>
 					<span id="reservations" class="<?php if(isset($GET['view'])&&$GET['view']=='reserv')echo " active";?>">
-						<span class='nb'>55</span> <span class='txt'>reservations</span>
+						<span class='nb'>
+							<?php 
+								if(count($reservations) < 10):
+									echo '0'.count($reservations);
+								else:
+									echo count($reservations);
+								endif;
+							?>
+						</span> 
+						<span class='txt'>reservation(s)</span>
 					</span>
 				</div>
 				<div id="content">
