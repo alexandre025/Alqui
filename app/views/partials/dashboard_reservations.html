@@ -1,142 +1,109 @@
 <div id="reservations-container" class="dashboard-display<?php if(isset($GET['view'])&&$GET['view']=='reserv')echo " active";?>">
 
 
-	<?php echo "<pre>"; var_dump($reservations); echo "</pre>";?>
 	<?php if(count($reservations)>0):?>
-		<div id="header">
-			EN cours de location (5)
-			<!--<?php if(count($reservations)>1): ?>
-				<h2>
-					<?php echo count($reservations);?> DEMANDES DE RESERVATIONS
-				</h2>
-			<?php else: ?>
-				<h2>
-					<?php echo count($reservations);?> DEMANDE DE RESERVATION
-				</h2>
-			<?php endif; ?>-->
-		</div>
-		
-		<div id="header">
-			En attente de confirmation (5)
-			<!--<?php if(count($reservations)>1): ?>
-				<h2>
-					<?php echo count($reservations);?> DEMANDES DE RESERVATIONS
-				</h2>
-			<?php else: ?>
-				<h2>
-					<?php echo count($reservations);?> DEMANDE DE RESERVATION
-				</h2>
-			<?php endif; ?>-->
-		</div>
+		<?php 
+			$confirm = 0;
+			foreach($reservations as $reservation):
+				if($reservation['status'] == 1){
+					$confirm++;
+				}
+			endforeach;
+				
+			if($confirm > 0):
+		?>
+			<div id="header">
+				En cours de location (<?php echo $confirm; ?>)
+			</div>
+			<div id="all-reserve">
+				<?php foreach($reservations as $reservation): ?>
+					<!-- ACCEPTÉ -->
+					<?php if($reservation['status'] == 1): ?>
+						<div class="reservation">
+							<p>
+								du <strong><?php echo date('d/m/Y',$reservation['date_start']); ?></strong> au <strong><?php echo date('d/m/Y',$reservation['date_end']); ?></strong>
+							</p>
+							<div>
+								<img src="dsf" alt="">
+								<p class='title'>
+									<?php echo $reservation['offer_name']; ?>
+								</p>
+								<a href="offer/<?php echo $reservation['offer_id'];?>">
+									Voir l'annonce
+								</a>
+							</div>
+							<br>
+							<a href="mailto:<?php echo $reservation['user_email']; ?>?subject=<?php echo "[ALQUI] > Offre &#34; ".$reservation['offer_name']."&#34;"; ?>">
+								Contacter le loueur
+							</a>
+						</div>
 
-		<?php foreach($reservations as $reservation): ?>
+						<!-- COMMENTAIRE -->
+						<?php if($reservation['commented'] != 1 && time() > $reservation['date_start']): ?>
+							<form method="POST" action="account/comment/<?php echo $reservation['user_id'];?>/">
+								Notez votre loueur :
+								<select name="mark">
+									<option value="0">&#9734;&#9734;&#9734;&#9734;&#9734;</option>
+									<option value="1">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
+									<option value="2">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
+									<option value="3">&#9733;&#9733;&#9733;&#9734;&#9734;</option>
+									<option value="4">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
+									<option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+								</select>
+								<input type="hidden" name="reservation_id" value="<?php echo $reservation['reservation_id'];?>">
+									<br>
+									<textarea name="content" placeholder='Écrivez un commentaire sur le loueur'></textarea>
+									<br>
+									<input type="submit" class="comment-submit" value="Valider votre commentaire">
+							</form>
+						<?php endif; ?>
 
-			<!-- EN ATTENTE -->
-			<?php if($reservation['status']==0): ?>
-				<div class="reservation">
-					Votre demande de réservation de <?php echo $reservation['offer_name']." du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end']); ?> est toujours en attente d'une réponse de <?php echo $reservation['user_name'] ?>.
-					<a href="offer/<?php echo $reservation['offer_id'];?>">
-						Voir l'annonce
-					</a>
-					<form action="account/reserve/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
-						<input type="submit" value="Annuler la réservation">
-					</form>
-				</div>
-
-			<!-- ACCEPTE -->
-			<?php elseif($reservation['status']==1): ?>
-				<div class="reservation">
-					Votre demande de réservation de <?php echo $reservation['offer_name']." du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end']); ?> a été accepté par <?php echo $reservation['user_name'] ?>.
-					<a href="offer/<?php echo $reservation['offer_id'];?>">
-						Voir l'annonce
-					</a>
-					<br>
-					Vous pouvez maintenant entrer en contact par email à l'adresse suivante : 
-					<a href="mailto:<?php echo $reservation['user_email']; ?>?subject=<?php echo "[ALQUI]--".$reservation['offer_name'];?>">
-						<?php echo $reservation['user_email']; ?>
-					</a>
-
-					<!-- COMMENTAIRE -->
-					<?php if($reservation['commented']!=1&&time()>$reservation['date_start']): ?>
-						<form method="POST" action="account/comment/<?php echo $reservation['user_id'];?>/">
-							<select name="mark">
-								<option value="0">0</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-							<input type="hidden" name="reservation_id" value="<?php echo $reservation['reservation_id'];?>">
-							<textarea name="content">
-								Donnez une appréciation au loueur
-							</textarea>
-							<input type="submit" class="comment-submit" value="Valider votre commentaire">
-						</form>
+						<?php if(time() > $reservation['date_end'] && $reservation['commented'] == 1): ?>
+							<form action="account/reserve/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
+								Votre commentaire a bien été enregistrer, merci !
+								<input type="submit" value="Terminer la transaction">
+							</form>
+						<?php endif; ?>
 					<?php endif; ?>
-
-					<?php if(time()>$reservation['date_end']&&$reservation['commented']==1):?>
-						<form action="account/reserve/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
-							Votre commentaire a bien été enregistrer, merci !
-							<input type="submit" value="Terminer la transaction">
-						</form>
+				<?php endforeach; ?>
+			</div>
+		<?php
+			elseif($confirm == 0):
+		?>
+			<div id="header">
+				En attente de confirmation (<?php echo count($reservations) - $confirm; ?>)
+			</div>
+			<div id="all-reserve">
+				<?php foreach($reservations as $reservation): ?>
+					<!-- EN ATTENTE -->
+					<?php if($reservation['status'] == 0): ?>
+						<div class="reservation">
+							<p>
+								du <strong><?php echo date('d/m/Y',$reservation['date_start']); ?></strong> au <strong><?php echo date('d/m/Y',$reservation['date_end']); ?></strong>
+							</p>
+							<div>
+								<img src="dsf" alt="">
+								<p class='title'>
+									<?php echo $reservation['offer_name']; ?>
+								</p>
+								<a href="offer/<?php echo $reservation['offer_id'];?>">
+									Voir l'annonce
+								</a>
+							</div>
+							<br>
+							<form action="account/reserve/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
+								<input type="submit" value="Annuler">
+							</form>
+						</div>
 					<?php endif; ?>
-				</div>
-
-			<!-- REFUSE -->
-			<?php elseif($reservation['status']==2): ?>
-				<div class="reservation">
-					Votre demande de réservation de <?php echo $reservation['offer_name']." du ".date('d/m/Y',$reservation['date_start'])." au ".date('d/m/Y',$reservation['date_end']); ?> a été refusé par <?php echo $reservation['user_name'] ?>.
-					<a href="offer/<?php echo $reservation['offer_id'];?>">
-						Voir l'annonce
-					</a>
-					<form action="account/reserve/delete/<?php echo $reservation['reservation_id'];?>" method="POST">
-						<input type="submit" value="Supprimer l'information">
-					</form>
-				</div>
-			<?php endif; ?>
-		<?php endforeach; ?>
-
+				<?php endforeach; ?>
+			</div>
+		<?php
+			endif;
+		?>
 	<?php else: ?>
 		<div id="header-n">
 			aucune reservation en cours
 		</div>
 	<?php endif; ?>
-
-			<div id="all-reserve">
-				<div class="reservation">
-					<p>
-						du <strong>55/55/5555</strong> au <strong>55/55/5555</strong>
-					</p>
-					<div>
-						<img src="dsf" alt="">
-						<p class='title'>
-							Titre
-						</p>
-						<a href="offer/17">
-							Voir l'annonce
-						</a>
-					</div>
-					<br>
-					<a href="mailto:test?subject=[ALQUI]--Titre">
-						Contacter le loueur
-					</a>
-				</div>
-				<form method="POST" action="account/comment/1/">
-					Notez votre loueur :
-					<select name="mark">
-								<option value="0">&#9734;&#9734;&#9734;&#9734;&#9734;</option>
-								<option value="1">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
-								<option value="2">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
-								<option value="3">&#9733;&#9733;&#9733;&#9734;&#9734;</option>
-								<option value="4">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
-								<option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
-							</select>
-							<input type="hidden" name="reservation_id" value="1">
-							<br>
-							<textarea name="content" placeholder='Écrivez un commentaire sur le loueur'></textarea>
-							<br>
-							<input type="submit" class="comment-submit" value="Valider votre commentaire">
-						</form>
-			</div>
 </div>

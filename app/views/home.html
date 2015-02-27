@@ -20,13 +20,13 @@
 					<p>
 						Veuillez vous identifier pour profiter pleinement d'Alqui !
 					</p>
+					<?php include('partials/login-error.html'); ?>
 					<form method="post" action="login/">
 						<input type="email" name="email" required placeholder='Votre identifiant'>
 						<input type="password" name="password" placeholder='Votre mot de passe'>
 						<a href="">Mot de passe oublié ?</a>
 						<input type="submit" value="Connexion" id="login-submit" name="login">
 					</form>
-					<?php include('partials/login-error.html'); ?>
 				</div>
 			</div>
 
@@ -55,16 +55,20 @@
 					<img src="assets/img/logo.png" id='header-logo' alt='Alqui - Logo' title='Alqui'/>
 					<!-- <div id="header-logo"></div> -->
 					<ul>
-					  <?php if(!isset($SESSION['id'])): ?>
-						<a href="register" id="register-link"><li>Inscription</li></a>
-						<a href="" id='login-link'><li>Connexion</li></a>
-				      <?php else: ?>
-				        <a href="account"><li>Bonjour, <?php echo $SESSION['firstname']; 
-				        if($SESSION['notif']!=0){
-				        	echo "<span class='notif'>".$SESSION['notif']."</span>";
-				        } ?></li></a>
-				        <a href="logout"><li>Deconnexion</li></a>
-				      <?php endif; ?>
+						<?php if(!isset($SESSION['id'])): ?>
+							<a href="register" id="register-link"><li>Inscription</li></a>
+							<a href="" id='login-link'><li>Connexion</li></a>
+						<?php else: ?>
+							<a href="account">
+								<li><?php echo $SESSION['firstname'].' '.$SESSION['lastname']; ?>
+								</li>
+								<img src="<?php echo $SESSION['photo']; ?>" alt="">
+								
+								<?php if($SESSION['notif']!=0){
+									echo "<span class='notif'>".$SESSION['notif']."</span>";
+								}?>
+							</a>
+						<?php endif; ?>
 					</ul>
 				</div>
 			</header> 
@@ -76,8 +80,8 @@
 			</div>
 
 			<form action='search/all' method='POST' id='landing-form'>
-				<input type='text' placeholder='Un objet foooooormidable' name='name'/>
-				<input type='number' placeholder='ZIP' name='location'/>
+				<input type='text' placeholder='De quoi avez-vous besoin ?' name='name'/>
+				<input type='number' placeholder='Où ?' name='location'/>
 				<input type='submit' value='Rechercher' name='object-submit'>
 			</form>
 
