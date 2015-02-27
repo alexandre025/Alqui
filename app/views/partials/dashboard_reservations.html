@@ -1,5 +1,7 @@
 <div id="reservations-container" class="dashboard-display<?php if(isset($GET['view'])&&$GET['view']=='reserv')echo " active";?>">
 
+
+	<?php echo "<pre>"; var_dump($reservations); echo "</pre>";?>
 	<?php if(count($reservations)>0):?>
 		<div id="header">
 			EN cours de location (5)

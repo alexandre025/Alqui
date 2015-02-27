@@ -20,7 +20,7 @@
 				<div class="notif">
 					<img src="<?php echo $notif['user_photo'];?>"/>
 					<span class="details">
-						<?php echo $notif['user_name'];?> voudrait louer votre "<?php echo $notif['offer_name']; ?>" du <?php echo date('d/m/Y',$notif['date_start']);?> au <?php echo date('d/m/Y',$notif['date_end']);?>.
+						<?php echo $notif['user_name'];?> voudrait louer "<?php echo $notif['offer_name']; ?>" du <strong><?php echo date('d/m/Y',$notif['date_start']);?></strong> au <strong><?php echo date('d/m/Y',$notif['date_end']);?></strong>.
 						<br>
 						<a href="offer/<?php echo $notif['offer_id'];?>">Voir l'annonce</a>
 					</span>
