@@ -8,6 +8,7 @@ var home = {
 	init : function(){
 		home.onScroll();
 		home.number();
+		home.menu();
 	},
 	// Number animation
 	number : function(){
@@ -40,6 +41,19 @@ var home = {
 				_.byId('headerLandingScroll').setAttribute('id','headerLanding');
 			}
 		}
+	},
+	menu: function(){
+		var menu = _.byId('action');
+		var sub_menu = _.byId('sub-menu');
+		menu.addEventListener('click',function(e){
+			e.preventDefault();
+			if(sub_menu.getAttribute('class') == 'active'){
+				sub_menu.removeAttribute('class');
+			}
+			else{
+				sub_menu.setAttribute('class','active');
+			}
+		},false);
 	}
 };
 module.exports = home;

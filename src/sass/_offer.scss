@@ -3,31 +3,27 @@
 	top: 0; left: 0; right: 0;
 	z-index: 10;
 
-	height: 92px;
+	height: 124px;
 	width: 100%;
 
-	background: rgba(255,255,255,.8);
-	border-bottom: 1px solid #d9d9d9;
+	background: #191919;
 
 	div{
 		width: 960px;
 		margin: 0 auto;
 	}
 	#header-logo{
-		margin: 26px 0 0 0;
-		width: 40px;
-		height: 40px;
-
-		background: $primary-color;
+		margin: 32px 0 0 0;
+		width: 70px;
 	}
 	ul{
-		margin: -30px -10px 0 0;
+		margin: 46px -10px 0 0;
 		padding: 0;
 
 		float: right;
 
 		a{
-			color: rgba(0,0,0,1);
+			color: white;
 
 			text-decoration: none;
 		}
@@ -37,21 +33,32 @@
 			padding: 8px 16px;
 
 			letter-spacing: 2px;
-			font-weight: 700;
+			font-weight: 400;
 			font-size: 11px;
 			text-transform: uppercase;
 
 			cursor: pointer;
 		}
 		li:hover{
-			border-bottom: 2px solid rgba(0,0,0,1);
+			border-bottom: 2px solid rgba(255,255,255,1);
 		}
-		li#register{
-			background: $primary-color;
-			border-radius: 3px;
-			color: rgba(255,255,255,1);
-			
-			font-weight: 400;
+		img{
+			width: 50px;
+			vertical-align: middle;
+			margin: 0;
+
+			border-radius: 50px;
+		}
+		.notif{
+			margin: 0 0 0 -15px;
+			padding: 0 4px;
+			display: inline-block;
+			vertical-align: top;
+
+			background: #E15931;
+			border-radius: 50px;
+
+			font-size: 12px;
 		}
 	}
 }
