@@ -24,6 +24,9 @@
 						<br>
 						<a href="offer/<?php echo $notif['offer_id'];?>">Voir l'annonce</a>
 					</span>
+					<form action="account/reserve/delete/<?php echo $notif['reservation_id'];?>" method="POST">
+						<input type="submit" value="&times;">
+					</form>
 				</div>
 		<?php
 			endforeach; 
@@ -41,7 +44,10 @@
 							<br>
 							<a href="offer/<?php echo $notif['offer_id'];?>">Voir l'annonce</a>
 						</span>
-					</div>	
+						<form action="account/reserve/delete/<?php echo $notif['reservation_id'];?>" method="POST">
+							<input type="submit" value="&times;">
+						</form>
+					</div>
 				<?php elseif($notif['status']==2): ?>
 					<div class="notif">
 						<img src="<?php echo $notif['user_photo'];?>"/>
@@ -49,6 +55,9 @@
 							<a href="offer/<?php echo $notif['offer_id'];?>">Voir l'annonce</a>
 							<br>Le <?php echo date('d/m/Y',$notif['created_at']);?>
 						</span>
+						<form action="account/reserve/delete/<?php echo $notif['reservation_id'];?>" method="POST">
+							<input type="submit" value="&times;">
+						</form>
 					</div>			
 				<?php 
 			endif;
