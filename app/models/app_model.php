@@ -193,12 +193,14 @@ class app_model {
 			reservation.commented,
 			offer.name AS offer_name,
 			offer.id AS offer_id,
+			photo.photo_name,
 			user.firstname AS user_name, 
 			user.email AS user_email,
 			user.id AS user_id
-			FROM reservation, offer, user
+			FROM reservation, offer, user, photo
 			WHERE reservation.id_user=:id
 			AND reservation.id_offer=offer.id
+			AND photo.id_offer=offer.id
 			AND offer.id_user=user.id
 			AND reservation.disabled_at='0'
 			AND offer.disabled_at='0'
@@ -258,11 +260,14 @@ class app_model {
 			offer.name AS offer_name,
 			offer.id AS offer_id,
 			offer.price_per_day AS offer_price,
-			user.firstname AS user_name
-			FROM user,offer,wish
+			user.firstname AS user_name,
+			photo.photo_name
+			FROM user,offer,wish,photo
 			WHERE wish.id_user=:id
 			AND wish.id_offer=offer.id
+			AND photo.id_offer=offer.id
 			AND user.id=offer.id_user
+			GROUP BY wish.id
 			ORDER BY wish.id DESC
 		";
 		$val=array(':id'=>$id);
