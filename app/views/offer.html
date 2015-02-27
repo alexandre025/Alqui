@@ -51,18 +51,20 @@
 
 			<header id='headerOffer'>
 				<div>
-					<!-- <img src="" id='header-logo' alt='Alqui - Logo' title='Alqui'/> -->
-					<div id="header-logo"></div>
+					<a href='/'><img src="assets/img/logo.png" id='header-logo' alt='Alqui - Logo' title='Alqui'/></a>
 					<ul>
 					  <?php if(!isset($SESSION['id'])): ?>
 						<a href="register" id="register-link"><li>Inscription</li></a>
 						<a href="" id='login-link'><li>Connexion</li></a>
 				      <?php else: ?>
-				        <a href="account"><li>Bonjour, <?php echo $SESSION['firstname']; 
-				        if($SESSION['notif']!=0){
-				        	echo "<span class='notif'>".$SESSION['notif']."</span>";
-				        } ?></li></a>
-				        <a href="logout"><li>Deconnexion</li></a>
+							<a href="account">
+								<li><?php echo $SESSION['firstname'].' '.$SESSION['lastname']; ?>
+								</li>
+								<img src="<?php echo $SESSION['photo']; ?>" alt="">
+								<?php if($SESSION['notif'] != 0){
+									echo "<span class='notif'>".$SESSION['notif']."</span>";
+								}?>
+							</a>
 				      <?php endif; ?>
 					</ul>
 				</div>
