@@ -57,7 +57,7 @@
 						<a href="register" id="register-link"><li>Inscription</li></a>
 						<a href="" id='login-link'><li>Connexion</li></a>
 				      <?php else: ?>
-							<a href="account">
+							<a href="#" id='action'>
 								<li><?php echo $SESSION['firstname'].' '.$SESSION['lastname']; ?>
 								</li>
 								<img src="<?php echo $SESSION['photo']; ?>" alt="">
@@ -65,6 +65,12 @@
 									echo "<span class='notif'>".$SESSION['notif']."</span>";
 								}?>
 							</a>
+							<ul id="sub-menu">
+								<a href='account'><li>Tableau de bord</li></a>
+								<a href='account/edit'><li>Paramètres</li></a>
+								<a href='logout'><li>Déconnexion</li></a>
+								<a href='account?view=addoffers'><li><span>ajouter un produit</span></li></a>
+							</ul>
 				      <?php endif; ?>
 					</ul>
 				</div>
@@ -151,7 +157,7 @@
 							<?php elseif($data['availability']==2): ?>
 								<div class="unreservable" id='i-reserve'>Momentanement indisponible</div>
 							<?php elseif(!isset($SESSION['id'])): ?>
-								<div class="unreservable" id='i-reserve'>Vous devez vous connecter</div>								
+								<div class="unreservable" id='i-reserve'>Vous devez vous connecter</div>
 							<?php endif; ?>
 						</form>
 						<div id="wishlist">
