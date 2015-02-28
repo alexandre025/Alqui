@@ -1,0 +1,27 @@
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="156.701px" height="101.031px" viewBox="0 0 156.701 101.031" enable-background="new 0 0 156.701 101.031"
+	 xml:space="preserve">
+<g>
+	<polygon fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" points="119.913,33.227 86.1,33.227 86.1,81.12 
+		111.015,81.12 	"/>
+	
+		<rect x="92.329" y="81.12" fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" width="13.347" height="10.027"/>
+	
+		<rect x="92.329" y="16.796" fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" width="22.912" height="10.025"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="square" stroke-miterlimit="10" x1="115.241" y1="9.884" x2="92.329" y2="9.884"/>
+	<polygon fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" points="36.788,33.227 70.601,33.227 70.601,81.12 
+		45.686,81.12 	"/>
+	
+		<rect x="51.024" y="81.12" fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" width="13.348" height="10.027"/>
+	
+		<rect x="41.46" y="16.796" fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" width="22.912" height="10.025"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="4" stroke-linecap="square" stroke-miterlimit="10" x1="41.46" y1="9.884" x2="64.372" y2="9.884"/>
+	<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M70.601,75.973c2.459,1.043,5.162,1.619,8,1.619
+		c2.838,0,5.541-0.576,8-1.619"/>
+	<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M86.601,38.141c-2.459-1.041-5.162-1.617-8-1.617
+		c-2.838,0-5.541,0.576-8,1.617"/>
+	<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="78.601" y1="36.524" x2="78.601" y2="77.593"/>
+</g>
+</svg>
