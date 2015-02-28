@@ -23,7 +23,7 @@ class admin_controller {
   	}
 
     function admin($f3){
-      
+      $f3->set('SESSION.count',count($this->model->getnewOffers()));
     }
 
     function login($f3){
@@ -53,10 +53,12 @@ class admin_controller {
     function refuseOffer($f3,$params){
       $this->model->refuseOffer($params['id']);
       $f3->set('offer',$this->model->getOffer($params['id']));
+      $f3->set('SESSION.count',count($this->model->getnewOffers()));
     }
     function acceptOffer($f3,$params){
       $this->model->acceptOffer($params['id']);
       $f3->set('offer',$this->model->getOffer($params['id']));
+      $f3->set('SESSION.count',count($this->model->getnewOffers()));
     }
     function getAllOffers($f3){
       $f3->set('offers',$this->model->getAllOffers());
@@ -69,6 +71,9 @@ class admin_controller {
     function getOffer($f3,$params){
       $f3->set('offer',$this->model->getOffer($params['id']));
       $this->tpl['async']='partials/admin_offer.html';
+    }
+    function banUser($f3,$params){
+      $this->model->banUser($params['id']);
     }
 
     function logout($f3){

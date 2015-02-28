@@ -107,7 +107,7 @@ class admin_model {
         $this->dB->exec("UPDATE reservation SET status='2' WHERE id_offer='".$id_offer."'");
     }
     public function banUser($id_user){
-        $query="UPDATE reservation 
+        $query="UPDATE reservation,offer
         SET reservation.status='2' 
         WHERE reservation.id_offer=offer.id
         AND offer.id_user=:id
@@ -116,13 +116,13 @@ class admin_model {
         $this->dB->exec($query,$val);
 
         $query="UPDATE offer
-        SET offer.availability='2',
-        offer.disabled_at=:time,
+        SET offer.availability='2', 
+        offer.disabled_at=:time
         WHERE offer.id_user=:id
         ";
         $val=array(
-            ':id'=>$id_user,
-            ':time'=>time()
+            ':time'=>time(),
+            ':id'=>$id_user
         );
         $this->dB->exec($query,$val);
 
@@ -130,7 +130,7 @@ class admin_model {
         SET user.disabled_at=:time
         WHERE user.id=:id
         ";
-        $this->dB->exec($query);
+        $this->dB->exec($query,$val);
     }
     public function acceptOffer($id_offer){
     	$this->dB->exec("UPDATE offer SET created_at='".time()."', availability='1' WHERE id='".$id_offer."'");
