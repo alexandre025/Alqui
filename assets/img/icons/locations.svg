@@ -1,0 +1,27 @@
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="156.701px" height="101.031px" viewBox="0 0 156.701 101.031" enable-background="new 0 0 156.701 101.031"
+	 xml:space="preserve">
+<g>
+	<g>
+		<rect x="70.451" y="11.015" fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" width="15.799" height="7.9"/>
+		<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="78.351" y1="18.916" x2="78.351" y2="26.814"/>
+	</g>
+	<g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="58.027" y1="25.281" x2="48.621" y2="33.174"/>
+			<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="53.324" y1="29.228" x2="57.27" y2="33.931"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="98.674" y1="25.281" x2="108.081" y2="33.174"/>
+			<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="103.378" y1="29.228" x2="99.432" y2="33.931"/>
+		</g>
+	</g>
+	<g>
+		<circle fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" cx="78.35" cy="58.416" r="31.601"/>
+		<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M78.351,34.715v23.701h23.7
+			C102.051,45.326,91.439,34.715,78.351,34.715z"/>
+		<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="78.351" y1="82.115" x2="78.351" y2="90.015"/>
+		<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="54.65" y1="58.416" x2="46.75" y2="58.416"/>
+	</g>
+</g>
+</svg>

@@ -13,7 +13,9 @@ var dashboard = require('./ui/dashboard.js');
 document.addEventListener('DOMContentLoaded',function(){
 
 	displayer.init();
-	home.init();
+	if(_.byId('sub-menu')){
+		home.init();
+	}
 	if(_.byId('register-link')){
 		register.init();
 		console.log('register form init');
