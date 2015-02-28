@@ -16,7 +16,36 @@
 		margin: 32px 0 0 0;
 		width: 70px;
 	}
+
+	ul{
+		margin: 46px -10px 0 0;
+		padding: 0;
+
+		float: right;
+
+		a{
+			color: white;
+
+			text-decoration: none;
+		}
+		li{
+			margin: 0 10px;
+			display: inline;
+			padding: 8px 16px;
+
+			letter-spacing: 2px;
+			font-weight: 400;
+			font-size: 11px;
+			text-transform: uppercase;
+
+			cursor: pointer;
+		}
+		li:hover{
+			border-bottom: 2px solid rgba(255,255,255,1);
+		}
+	}
 }
+
 
 #account-info-wrapper{
 	width: 100%;
