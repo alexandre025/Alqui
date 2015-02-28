@@ -4,9 +4,14 @@ var $ = require ('./tools.js');
 
 document.addEventListener('DOMContentLoaded',function(){
 
-	navigationAsync();
-	function navigationAsync(){
-		var $nav = $.selectorAll('a.nav-async');
+	var init = null;
+	navigationAsync(init);
+	function navigationAsync(display){
+		if(display)
+			var $nav = display.querySelectorAll('a.nav-async');
+		else
+			var $nav = $.selectorAll('a.nav-async');
+
 		for (var i = 0; i < $nav.length; i++) {
 			$nav[i].addEventListener('click',function(e){
 				e.preventDefault();
@@ -17,7 +22,8 @@ document.addEventListener('DOMContentLoaded',function(){
 	}
 
 	function inDisplay(xhr){
-		$.byId('display').innerHTML=xhr.response;
-		navigationAsync();
+		var display=$.byId('display');
+		display.innerHTML=xhr.response;
+		navigationAsync(display);
 	}
 },false);

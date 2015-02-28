@@ -1,11 +1,9 @@
-<!-- <?php print_r($offer);?> -->
-
 <h2><?php echo $offer['name']; ?></h2>
 <form id="form-delete" action="admin/offer/refuse/<?php echo $offer['id'];?>" method="POST">
 	<input type="submit" value="Supprimer cette offre">
 </form>
 <ul class="offers">
-	<li>Loueur : <a class="nav-async" href="/admin/user/<?php echo $offer['user_id'];?>"><?php echo $offer['user_firstname']." ".$offer['user_lastname'];?></a></li>
+	<li>Loueur : <a class="nav-async" href="admin/user/<?php echo $offer['user_id'];?>"><?php echo $offer['user_firstname']." ".$offer['user_lastname'];?></a></li>
 	<li class="half">Catégorie : <?php echo $offer['category_name'];?></li>
 	<li>Localisation : <?php echo $offer['location'];?></li>
 	<li class="half">Prix : <?php echo $offer['price_per_day'];?> € / jours</li>

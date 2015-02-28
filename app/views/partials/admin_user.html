@@ -1,4 +1,28 @@
-<?php print_r($user); ?>
-
-<img src="<?php echo $user['photo'];?>" class="photo-user"/>
-<h2><?php echo $user['firstname']." ".$user['lastname']; ?></h2>
+<img src="<?php echo $user['photo'];?>" id="photo-user"/>
+<h2 id="name-user"><?php echo $user['firstname']." ".$user['lastname']; ?></h2>
+<form id="form-delete" action="admin/user/ban/<?php echo $user['id'];?>" method="POST">
+	<input type="submit" value="Bannir cet utilisateur">
+</form>
+<ul class="users">
+	<li>Inscrit depuis le <?php echo date('d/m/Y',$user['created_at']); ?></li>
+	<li class="half">Email : <a href="mailto:<?php echo $user['email']; ?>?subject=[ALQUI] > Message de l'équipe ALQUI"><?php echo $user['email']; ?></a></li>
+	<?php if(!empty($user['postal'])): ?>
+		<li>Adresse :<p><?php echo $user['address'].", ".$user['postal']." ".$user['city'].", ".$user['country']; ?></li>
+		<li class="half">
+	<?php else: ?>
+		<li>
+	<?php endif; ?>
+		Note des utilisateurs : 
+		<?php 
+			$i=0;
+			while($user['mark']>$i){
+				echo "&#9733;"; // A REMPLACER PAR LA VRAIE ETOILE DOREE
+				$i++;
+			}
+			while($i<5){
+				echo "&#9734;"; // A REMPLACER PAR LA VRAIE ETOILE GRISE
+				$i++;
+			}
+		?>
+	</li>
+</ul>
