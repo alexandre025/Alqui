@@ -1,4 +1,3 @@
-
 <!doctype html>
 	<html lang="fr">
 		<head>
@@ -13,88 +12,160 @@
 		</head>
 		<body>
 	
-			<header>
+			
+	
+			<header  id='headerEditAccount'>
 				<div>
-					<!-- <img src="" id='header-logo' alt='Alqui - Logo' title='Alqui'/> -->
-					<div id="header-logo"></div>
+					<a href='/'><img src="assets/img/logo.png" id='header-logo' alt='Alqui - Logo' title='Alqui'/></a>
 					<ul>
-					  <?php if(!isset($SESSION['id'])): ?>
-						<a href="register" id="register-link"><li>Inscription</li></a>
-						<a href="" id='login-link'><li>Connexion</li></a>
-				      <?php else: ?>
-				        <a href="account"><li>Bonjour, <?php echo $SESSION['firstname']; 
-				        if($SESSION['notif']!=0){
-				        	echo "<span class='notif'>".$SESSION['notif']."</span>";
-				        } ?></li></a>
-				        <a href="logout"><li>Deconnexion</li></a>
-				      <?php endif; ?>
+						<a href="account" id='action'>
+							<li>
+								retour à mon compte
+							</li>
+						</a>
 					</ul>
 				</div>
 			</header> 
-			<div id="info-change"><?php include('partials/edit-info.html'); ?></div>
-			<div id="photo-edit">
-				<h1>Modifier votre photo de profil</h1>
-				<form action="account/edit/photo" enctype="multipart/form-data" id="photo-form" method="POST">
-					<input type="file" name="photo">
-					<input type="submit" value="Valider">
-				</form>
-
-			</div>
-
-			<div id="password-edit">
-				<h1>Modifier votre mot de passe</h1>
-				<form action="account/edit/password" id="password-form" method="POST">
-				<input type="password" name="password" id="password" placeholder='Votre mot de passe' required>
-				<br>
-				<input type="password" name="password-confirm" id="password-confirm" placeholder='Confirmer votre mot de passe' required>
-				<span class="ckeck-form" id="password-check"></span>
-				<input type="submit" value="Valider">
-				</form>
-			</div>
-
-			<div id="info-edit">
-				<h1>Modifier vos informations personnelles</h1>
-				<form action="account/edit/info" id="info-form" method="POST">
-					<!-- ADDRESS -->
-					<input type="text" name="address" 
-					<?php if(!empty($SESSION['address'])): ?>
-						value="<?php echo $SESSION['address']; ?>"
-					<?php else: ?>
-						placeholder="Entrez votre adresse"
-					<?php endif; ?>
-					required>
-					<!-- POSTAL -->
-					<input type="number" name="postal" 
-					<?php if(!empty($SESSION['postal'])): ?>
-						value="<?php echo $SESSION['postal']; ?>"
-					<?php else: ?>
-						placeholder="Entrez votre code postal"
-					<?php endif; ?>
-					required>
-					<!-- CITY -->
-					<input type="text" name="city" 
-					<?php if(!empty($SESSION['city'])): ?>
-						value="<?php echo $SESSION['city']; ?>"
-					<?php else: ?>
-						placeholder="Entrez votre ville"
-					<?php endif; ?>
-					required>
-					<!-- COUNTRY -->
-					<input type="text" name="country" 
-					<?php if(!empty($SESSION['country'])): ?>
-						value="<?php echo $SESSION['country']; ?>"
-					<?php else: ?>
-						placeholder="Entrez votre pays"
-					<?php endif; ?>
-					required>
-					<input type="submit" value="Valider">
-				</form>
-			</div>
-				
-
-		
-
 			
+			<div id="account-info-wrapper">
+				<div id="account-info">
+					<img src="<?php echo !empty($SESSION['photo'])?$SESSION['photo']:''; ?>"/>
+					<span class="account-name">
+						<?php echo $SESSION['firstname']." ".$SESSION['lastname']; ?>
+					</span>
+					<span class="account-email">
+						<?php echo $SESSION['email']; ?>
+					</span>	
+				<?php if(!empty($SESSION['address'])&&!empty($SESSION['postal'])&&!empty($SESSION['city'])&&!empty($SESSION['country'])): ?>
+					<span class="account-address">
+						<?php echo $SESSION['address'].', '; ?>
+					</span>
+					<span class="account-postal">
+						<?php echo $SESSION['postal']; ?>
+					</span>
+					<span class="account-city">
+						<?php echo $SESSION['city'].', '; ?>
+					</span>
+					<span class="account-country">
+						<?php echo $SESSION['country']; ?>
+					</span>
+				<?php else: ?>	
+					<span class="account-address">
+						Adresse incomplète...
+					</span>
+				<?php endif; ?>
+				<br>
+					<a href="account/edit"><?php include('assets/img/icons/edit.svg'); ?> Modifier</a>
+					<a href="logout"><?php include('assets/img/icons/logout.svg'); ?> Se déconnecter</a>
+				</div>
+			</div>
+
+			<div id="container">
+				<div id="info-change">
+					<?php include('partials/edit-info.html'); ?>
+				</div>
+
+				<div class="title">
+					éditer mon profil
+				</div>
+				<div class="content">
+					<form action="account/edit/info" id="info-form" method="POST">
+						<span id='left'>
+							Prénom
+							<br>
+							<input type="text" name="firstname" value="<?php echo $SESSION['firstname']; ?>" required>
+							<br>
+							Nom
+							<br>
+							<input type="text" name="lastname" value="<?php echo $SESSION['lastname']; ?>" required>
+							<br>
+							Mail
+							<br>
+							<input type="text" name="email" value="<?php echo $SESSION['email']; ?>" required>
+						</span>
+						<span id='right'>
+							<!-- ADDRESS -->
+							Adresse
+							<br>
+							<input type="text" name="address" 
+							<?php if(!empty($SESSION['address'])): ?>
+								value="<?php echo $SESSION['address']; ?>"
+							<?php else: ?>
+								placeholder="Entrez votre adresse"
+							<?php endif; ?>
+							required>
+
+							<!-- ZIP / CITY -->
+							<br>
+							Code Postal / Ville
+							<br>
+							<input type="number" id='postal' name="postal" 
+							<?php if(!empty($SESSION['postal'])): ?>
+								value="<?php echo $SESSION['postal']; ?>"
+							<?php else: ?>
+								placeholder="Entrez votre code postal"
+							<?php endif; ?>
+							required>
+							<input type="text" id='city' name="city" 
+							<?php if(!empty($SESSION['city'])): ?>
+								value="<?php echo $SESSION['city']; ?>"
+							<?php else: ?>
+								placeholder="Entrez votre ville"
+							<?php endif; ?>
+							required>
+
+							<!-- COUNTRY -->
+							<br>
+							Pays
+							<br>
+							<input type="text" name="country" 
+							<?php if(!empty($SESSION['country'])): ?>
+								value="<?php echo $SESSION['country']; ?>"
+							<?php else: ?>
+								placeholder="Entrez votre pays"
+							<?php endif; ?>
+							required>
+
+							<input type="submit" value="Enregistrer">
+						</span>
+					</form>
+					<form action="account/edit/photo" enctype="multipart/form-data" id="photo-form" method="POST">
+						<?php if(!empty($SESSION['photo'])): ?>
+							<img id='editphoto' src="<?php echo $SESSION['photo']; ?>"/>
+						<?php else: ?>
+							<div id='editphoto'></div>
+						<?php endif; ?>
+
+						<input type="file" id='input-file' name="photo">
+						<button id='file-fake'>Parcourir</button>
+						<span id='file-name'></span>
+						<input type="submit" value="enregistrer">
+					</form>
+				</div>
+				<div class="title">
+					Mot de passe
+				</div>
+				<div class="content">
+					<form action="account/edit/password" id="password-form" method="POST">
+						<span id="col1">
+							Nouveau mot de passe
+							<br>
+							<input type="password" name="password" id="password" placeholder='••••••••••' required>
+						</span>
+						<span id="col2">
+							Confirmation
+							<br>
+							<input type="password" name="password-confirm" id="password-confirm" placeholder='••••••••••' required>
+						</span>
+						<span id="col3">
+							<input type="submit" value="Valider">
+						</span>
+						
+						<span class="check-form" id="password-check"></span>
+					</form>
+				</div>
+			</div>
+
 			<script src="public/js/app.js" type="text/javascript"></script>
 		</body>
 	</html>

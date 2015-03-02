@@ -6,6 +6,7 @@
 @import 'search';
 @import 'offer';
 @import 'account';
+@import 'editAccount';
 
 a.wished[data-title]:hover:after, a.not-wished[data-title]:hover:after, a.wish-not-logged[data-title]:hover:after{
   content: attr(data-title);
