@@ -952,3 +952,37 @@
 		}
 	}
 }
+
+footer#dashboard{
+	margin: 50px 0 0 0;
+	width: 100%;
+
+	background: rgba(218,218,218,1);
+	color: black;
+
+	ul{
+		padding: 25px 0;
+		margin: 0;
+		list-style: none;
+
+		text-align: center;
+
+		a{
+			color: black;
+
+			text-decoration: none;
+		}
+		li{
+			padding: 10px 25px;
+			display: inline;
+
+			text-transform: uppercase;
+			font-size: 11px;
+			letter-spacing: 1px;
+			font-weight: 700;
+		}
+		a:hover > li{
+			border-bottom: 2px solid black;
+		}
+	}
+}
