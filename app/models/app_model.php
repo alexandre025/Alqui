@@ -48,7 +48,7 @@ class app_model {
 	public function offerAdd($params,$id){
 		$query='INSERT INTO offer (name,price_per_day,location,content,id_category,id_user,created_at,availability) VALUES (:name,:price,:location,:content,:id_category,:id_user,:created_at,:availability)';  
 		$timestamp=time();
-		$availability=1; // L'offre est publié
+		$availability=0; // L'offre est publié
 		$val=array(
 			':name'=>$params['name'],
 			':price'=>$params['price'],
