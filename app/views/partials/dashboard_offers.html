@@ -133,15 +133,16 @@
 					Description <br> du produit
 				</p>
 				<textarea name="content" class='description-offer' placeholder='Écrivez ici...'></textarea>
-				<input type="file" name="main-photo" id='add-picture-1'/>
-				<input type="file" name="second-photo" id='add-picture-2'/>
-				<input type="file" name="third-photo" id='add-picture-3'/>
+				<input type="file" name="main-photo" id='add-picture-1' required accept="image/*"/>
+				<input type="file" name="second-photo" id='add-picture-2' accept="image/*"/>
+				<input type="file" name="third-photo" id='add-picture-3' accept="image/*"/>
 				<button id='add-picture-1-fake'>Ajouter la première photo</button>
 				<button id='add-picture-2-fake'>Ajouter la deuxième photo</button>
 				<button id='add-picture-3-fake'>Ajouter la troisième photo</button>
-				<div class="photos" id='picture-1'></div>
+				<span class="restrict">(.jpg, .jpeg, .png, 2MB max)</span>
+<!-- 				<div class="photos" id='picture-1'></div>
 				<div class="photos" id='picture-2'></div>
-				<div class="photos" id='picture-3'></div>
+				<div class="photos" id='picture-3'></div> -->
 
 				<input type="submit" value='ajouter mon produit'>
 			</div>
