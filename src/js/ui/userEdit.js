@@ -1,4 +1,4 @@
-'use.strict'
+'use.strict';
 
 var _ = require('../tools.js');
 
@@ -6,7 +6,25 @@ var userEdit = {
 
 	init : function(){
 		userEdit.checkConfirm();
-		userEdit.passwordSubmit()
+		userEdit.passwordSubmit();
+
+		_.byId('editphoto').addEventListener('mouseover',function(){
+			_.byId('file-fake').style.visibility = "visible";
+		},false);
+		_.byId('editphoto').addEventListener('mouseout',function(){
+			_.byId('file-fake').style.visibility = "hidden";
+		},false);
+		_.byId('file-fake').addEventListener('mouseover',function(){
+			_.byId('file-fake').style.visibility = "visible";
+		},false);
+		_.byId('file-fake').addEventListener('click',function(e){
+			e.preventDefault();
+			_.byId('input-file').click();
+		},false);
+		_.byId('input-file').addEventListener('change',function(e){
+			e.preventDefault();
+			_.byId('file-name').innerHTML = this.value.substr(12,this.value.length);
+		},false);
 	},
 	checkConfirm : function(){
 		var input = _.selectorAll('input[type="password"]');
@@ -38,6 +56,6 @@ var userEdit = {
 				// Go to app_controller.php
 			}
 		},false);
-	}	
+	}
 };
 module.exports = userEdit;

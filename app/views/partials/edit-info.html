@@ -1,13 +1,13 @@
 <?php 
 	if(isset($edited)){
 		if($edited=='password'){
-			echo "Votre mot de passe a été mis à jour.";
+			echo "<p>Votre mot de passe a été mis à jour.</p>";
 		}else if($edited=='photo'){
-			echo "Votre photo a été mise à jour.";
+			echo "<p>Votre photo a été mise à jour.</p>";
 		}else if($edited=='info'){
-			echo "Vos informations ont été mis à jour, nous vous rappellons que celle-ci restent confidentielles, même lors d'une transaction.";
+			echo "<p>Vos informations ont été mises à jour, nous vous rappellons que celles-ci restent confidentielles, même lors d'une transaction.</p>";
 		}
 	}else if(isset($failed)){
-		echo "Votre fichier n'est pas une image (.png, .jpeg ou .jpg) et/ou est trop lourd (>2MB).";
+		echo "<p id='error'>Votre fichier n'est pas une image (.png, .jpeg ou .jpg) et/ou est trop lourd (>2MB).</p>";
 	}
 ?>

@@ -1,0 +1,359 @@
+#headerEditAccount{
+	position: fixed;
+	top: 0; left: 0; right: 0;
+	z-index: 10;
+
+	height: 92px;
+	width: 100%;
+
+	background: #191919;
+
+	div{
+		width: 960px;
+		margin: 0 auto;
+	}
+	#header-logo{
+		margin: 32px 0 0 0;
+		width: 70px;
+	}
+
+	ul{
+		margin: 46px -10px 0 0;
+		padding: 0;
+
+		float: right;
+
+		a{
+			color: white;
+
+			text-decoration: none;
+		}
+		li{
+			margin: 0 10px;
+			display: inline;
+			padding: 8px 16px;
+
+			letter-spacing: 2px;
+			font-weight: 400;
+			font-size: 11px;
+			text-transform: uppercase;
+
+			cursor: pointer;
+		}
+		li:hover{
+			border-bottom: 2px solid rgba(255,255,255,1);
+		}
+	}
+}
+
+
+#account-info-wrapper{
+	width: 100%;
+	height: 228px;
+	margin: 92px 0 0 0;
+
+	background: #191919;
+	color: white;
+
+	#account-info{
+		width: 960px;
+		margin: 0 auto;
+
+		text-align: center;
+
+		img{
+			width: 90px;
+
+			border-radius: 50%;
+		}
+		#wishlist-nb{
+			padding: 2px 6px;
+
+			background: rgba(255,255,255,.15);
+			border-radius: 6px;
+
+			font-weight: 100;
+			font-size: 12px;
+
+			font{
+				color: #F8E79D;
+			}
+		}
+		.account-name,
+		.account-email{
+			display: block;
+		}
+		.account-address,
+		.account-postal,
+		.account-city,
+		.account-country{
+			display: inline-block;
+			font-family: 'Palatino-Italic', sans-serif;
+			font-size: 12px;
+			color: #808080;
+		}
+		.account-name{
+			margin: 15px 0 10px 0;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			font-size: 16px;
+			font-weight: 900;
+		}
+		.account-email{
+			font-family: 'Palatino-Italic', sans-serif;
+			font-size: 12px;
+			color: #808080;
+		}
+		a{
+			margin: 10px 0 0 0;
+			padding: 5px 10px;
+			display: inline-block;
+
+			color: white;
+
+			text-decoration: none;
+			font-weight: 300;
+			font-size: 14px;
+			letter-spacing: 1px;
+
+			&:last-child{
+				border-left: 1px solid #808080;
+			}
+			svg{
+				width: 20px;
+				height: 20px;
+
+				vertical-align: middle;
+			}
+		}
+	}
+}
+
+#container{
+	width: 960px;
+	margin: 0 auto;
+
+	text-align: center;
+
+	#info-change{
+		width: 480px;
+		margin: 25px auto 0 auto;
+		padding: 0;
+
+		p{
+			margin: 0;
+			padding: 10px;
+
+			background: rgba(24,168,92,.25);
+			color: rgba(24, 168, 92, 1);
+			border: 1px solid rgba(24, 168, 92, 1);
+			border-radius: 6px;
+		}
+		#error{
+			background: rgba(225,89,49,.35);
+			color: rgba(225,89,49,1);
+			border: 1px solid rgba(225,89,49,1);
+		}
+	}
+
+	.title{
+		padding: 25px 0;
+
+		text-transform: uppercase;
+		font-weight: 900;
+		letter-spacing: 2px;
+		font-size: 14px;
+	}
+	.content{
+		width: 100%;
+		padding: 25px 50px;
+
+		background: #DADADA;
+		border-radius: 6px;
+
+		#info-form{
+			width: 70%;
+			display: inline-block;
+			vertical-align: middle;
+
+			#left{
+				display: inline-block;
+				vertical-align: top;
+				width: 50%;
+
+				text-align: left;
+
+				input{
+					width: 215px;
+					padding: 10px 15px;
+					margin: 5px 0 15px 0;
+
+					border-radius: 10px;
+					border: 0 none;
+					background: rgba(255,255,255,1);
+					border-bottom: 2px solid rgba(0,0,0,.18);
+				}
+			}
+			#right{
+				display: inline-block;
+				vertical-align: top;
+				width: 50%;
+				margin: 0 0 0 -4px;
+
+				text-align: left;
+
+				input{
+					width: 215px;
+					padding: 10px 15px;
+					margin: 5px 0 15px 0;
+
+					border-radius: 10px;
+					border: 0 none;
+					background: rgba(255,255,255,1);
+					border-bottom: 2px solid rgba(0,0,0,.18);
+				}
+				#postal{
+					width: 80px;
+					border-top-right-radius: 0;
+					border-bottom-right-radius: 0;
+					border-radius: 1px solid #cfcfcf;
+				}
+				#city{
+					width: 135px;
+					margin: 0 0 0 -2px;
+
+					border-top-left-radius: 0;
+					border-bottom-left-radius: 0;
+				}
+				input[type=submit]{
+					border-radius: 50px;
+					border: 0 none;
+					background: linear-gradient(to right,rgba(12,157,80,1),rgba(51,184,163,1));
+					color: white;
+
+					text-align: center;
+					text-transform: uppercase;
+					letter-spacing: 2px;
+					font-weight: 900;
+					font-size: 12px;
+				}
+			}
+		}
+		#photo-form{
+			position: relative;
+			width: 30%;
+			display: inline-block;
+			vertical-align: middle;
+			margin: 0 0 0 -4px;
+
+			img{
+				max-width: 215px;
+				max-height: 215px;
+
+				border-radius: 50%;
+				cursor: pointer;
+			}
+			div{
+				width: 215px;
+				height: 215px;
+
+				border-radius: 215px;
+				background: #eaeaea;
+				cursor: pointer;
+			}
+			input[type=file]{
+				position: absolute;
+				top: -99999px;
+			}
+			button{
+				visibility: hidden;
+				position: absolute;
+				right: 50%; top: 50%;
+				width: 110px;
+				height: 30px;
+				margin: -30px -55px 0 0;
+
+				background: rgba(0,0,0,.5);
+				border: 0;
+				color: white;
+				border-radius: 50px;
+
+				font-weight: 500;
+				letter-spacing: 2px;
+				font-size: 14px;
+			}
+			button:hover{
+				background: rgba(0,0,0,.75);
+			}
+			span{
+				display: block;
+				width: 215px;
+				margin: 0 auto;
+
+				word-break: break-all;
+				text-align: center;
+			}
+			input[type=submit]{
+				width: 215px;
+				padding: 10px 15px;
+				margin: 15px 0 0 0;
+
+				border-radius: 50px;
+				border: 0 none;
+				background: linear-gradient(to right,rgba(12,157,80,1),rgba(51,184,163,1));
+				color: white;
+
+				text-align: center;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+				font-weight: 900;
+				font-size: 12px;
+			}
+		}
+		#col1,
+		#col2,
+		#col3{
+			width: 33%;
+			display: inline-block;
+			vertical-align: top;
+			margin: 0 0 0 -4px;
+
+			text-align: left;
+
+			input{
+				width: 215px;
+				padding: 10px 15px;
+				margin: 5px 0 15px 0;
+
+				border-radius: 10px;
+				border: 0 none;
+				background: rgba(255,255,255,1);
+				border-bottom: 2px solid rgba(0,0,0,.18);
+			}
+		}
+		#col1{
+			margin: 0;
+		}
+		#col3{
+			margin: 20px 0 0 -4px;
+			padding: 0;
+			text-align: center;
+
+			input[type=submit]{
+				border-radius: 50px;
+				border: 0 none;
+				background: linear-gradient(to right,rgba(12,157,80,1),rgba(51,184,163,1));
+				color: white;
+
+				text-align: center;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+				font-weight: 900;
+				font-size: 12px;
+			}
+		}
+		.check-form{
+			color: #E15931;
+		}
+	}
+}
