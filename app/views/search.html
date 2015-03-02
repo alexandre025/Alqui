@@ -49,21 +49,30 @@
 			</div>
 
 
-			<header id='headerSearch'>
+			<header id='headerLanding'>
 				<div>
-					<!-- <img src="" id='header-logo' alt='Alqui - Logo' title='Alqui'/> -->
-					<div id="header-logo"></div>
+					<a href=''><img src="assets/img/logo.png" id='header-logo' alt='Alqui - Logo' title='Alqui'/></a>
+					<!-- <div id="header-logo"></div> -->
 					<ul>
-					  <?php if(!isset($SESSION['id'])): ?>
-						<a href="register" id="register-link"><li>Inscription</li></a>
-						<a href="" id='login-link'><li>Connexion</li></a>
-				      <?php else: ?>
-				        <a href="account"><li>Bonjour, <?php echo $SESSION['firstname']; 
-				        if($SESSION['notif']!=0){
-				        	echo $SESSION['notif'];
-				        } ?></li></a>
-				        <a href="logout"><li>Deconnexion</li></a>
-				      <?php endif; ?>
+						<?php if(!isset($SESSION['id'])): ?>
+							<a href="register" id="register-link"><li>Inscription</li></a>
+							<a href="" id='login-link'><li>Connexion</li></a>
+						<?php else: ?>
+							<a href="#" id='action'>
+								<li><?php echo $SESSION['firstname'].' '.$SESSION['lastname']; ?>
+								</li>
+								<img src="<?php echo $SESSION['photo']; ?>" alt="">
+								<?php if($SESSION['notif'] != 0){
+									echo "<span class='notif'>".$SESSION['notif']."</span>";
+								}?>
+							</a>
+							<ul id="sub-menu">
+								<a href='account'><li>Tableau de bord</li></a>
+								<a href='account/edit'><li>Paramètres</li></a>
+								<a href='logout'><li>Déconnexion</li></a>
+								<a href='account?view=addoffers'><li><span>ajouter un produit</span></li></a>
+							</ul>
+						<?php endif; ?>
 					</ul>
 				</div>
 			</header> 
