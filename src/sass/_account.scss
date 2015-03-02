@@ -508,6 +508,11 @@
 					.colored{
 						color: $primary-color;
 					}
+					span.restrict{
+						margin-left: 440px;
+						position: relative;
+						top: 10px;
+					}
 					input,
 					select{
 						margin: -15px -4px 0 15px;
