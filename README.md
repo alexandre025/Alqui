@@ -9,8 +9,8 @@ Run :
  	$ gulp
  ```` 
  
- ## Preview
- 
- http://alexandre-ferraille.fr/projet/alqui/
+## Preview
+
+http://alexandre-ferraille.fr/projet/alqui/
 
  
