@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Jeu 19 Février 2015 à 11:44
+-- Généré le :  Mar 03 Mars 2015 à 19:33
 -- Version du serveur :  5.5.34
 -- Version de PHP :  5.5.10
 
@@ -13,6 +13,28 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `location`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` text NOT NULL,
+  `password` text NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `disabled_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `admin`
+--
+
+INSERT INTO `admin` (`id`, `login`, `password`, `created_at`, `disabled_at`) VALUES
+(1, 'alexandre', '60c6d277a8bd81de7fdde19201bf9c58a3df08f4', 1424616721, 0);
 
 -- --------------------------------------------------------
 
@@ -52,7 +74,7 @@ CREATE TABLE `comment` (
   `created_at` int(11) NOT NULL,
   `disabled_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -72,7 +94,7 @@ CREATE TABLE `offer` (
   `disabled_at` int(11) NOT NULL,
   `availability` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 -- --------------------------------------------------------
 
@@ -87,7 +109,7 @@ CREATE TABLE `photo` (
   `created_at` int(11) NOT NULL,
   `disabled_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 -- --------------------------------------------------------
 
@@ -106,7 +128,23 @@ CREATE TABLE `reservation` (
   `created_at` int(11) NOT NULL,
   `disabled_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `sess_handler`
+--
+
+CREATE TABLE `sess_handler` (
+  `session_id` varchar(40) NOT NULL DEFAULT '',
+  `data` text,
+  `csrf` text,
+  `ip` varchar(40) DEFAULT NULL,
+  `agent` varchar(255) DEFAULT NULL,
+  `stamp` int(11) DEFAULT NULL,
+  PRIMARY KEY (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -142,4 +180,4 @@ CREATE TABLE `wish` (
   `id_user` int(11) NOT NULL,
   `id_offer` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
