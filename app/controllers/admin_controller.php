@@ -54,6 +54,7 @@ class admin_controller {
       $this->model->refuseOffer($params['id']);
       $f3->set('offer',$this->model->getOffer($params['id']));
       $f3->set('SESSION.count',count($this->model->getnewOffers()));
+      $f3->reroute('/admin/offers');
     }
     function acceptOffer($f3,$params){
       $this->model->acceptOffer($params['id']);
