@@ -8,5 +8,9 @@ Run :
  	$ npm install
  	$ gulp
  ```` 
+ 
+## Preview
+
+http://alexandre-ferraille.fr/projet/alqui/
 
  
