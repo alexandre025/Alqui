@@ -592,11 +592,11 @@
 							text-transform: uppercase;
 							letter-spacing: 1px;
 						}
-						#add-picture-1-fake,
-						#add-picture-2-fake,
+						#add-picture-1-fake:focus,
+						#add-picture-2-fake:focus,
 						#add-picture-3-fake:focus,
-						#add-picture-1-fake,
-						#add-picture-2-fake,
+						#add-picture-1-fake:hover,
+						#add-picture-2-fake:hover,
 						#add-picture-3-fake:hover{
 							opacity: .75;
 						}
