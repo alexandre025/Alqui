@@ -19,7 +19,7 @@ class app_model {
 
 	public function homeCounter(){
 		return $counter = array(
-			'offer'=>$this->getMapper('offer')->count(),
+			'offer'=>$this->getMapper('offer')->count('disabled_at=0'),
 			'user'=>$this->getMapper('user')->count(),
 			'reservation'=>$this->getMapper('reservation')->count()
 		);
