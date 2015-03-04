@@ -110,6 +110,12 @@ header#headerSearch{
 					color: white;
 				}
 			}
+			li:hover{
+				border-bottom: 0;
+			}
+			a:hover > li{
+				border-bottom: 0;
+			}
 		}
 		#sub-menu.active{
 			visibility: visible;
@@ -227,6 +233,12 @@ header#headerSearchScroll{
 					border-radius: 50px;
 					color: white;
 				}
+			}
+			li:hover{
+				border-bottom: 0;
+			}
+			a:hover > li{
+				border-bottom: 0;
 			}
 		}
 		#sub-menu.active{

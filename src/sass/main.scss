@@ -187,6 +187,15 @@ header#headerLanding{
 			text-transform: uppercase;
 
 			cursor: pointer;
+
+			a{
+				display: inline-block;
+				padding: 4px 10px;
+
+				background: linear-gradient(to right,rgba(12,157,80,1),rgba(51,184,163,1));
+				border-radius: 50px;
+				color: white;
+			}
 		}
 		li:hover{
 			border-bottom: 2px solid rgba(255,255,255,1);
@@ -256,6 +265,12 @@ header#headerLanding{
 					border-radius: 50px;
 					color: white;
 				}
+			}
+			li:hover{
+				border-bottom: 0;
+			}
+			a:hover > li{
+				border-bottom: 0;
 			}
 		}
 		#sub-menu.active{
@@ -403,11 +418,11 @@ header#headerLandingScroll{
 		display: block;
 		margin: 30px 0;
 
-		font-size: 14px;
+		font-size: 20px;
 		text-align: center;
 		text-transform: none;
 		letter-spacing: 3px;
-		font-weight: 100;
+		font-weight: 300;
 	}
 }
 
