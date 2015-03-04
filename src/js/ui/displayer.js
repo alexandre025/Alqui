@@ -8,8 +8,24 @@ var displayer = {
         if(_.byId('login-link')){
             displayer.loginPopup();
         }
+        if(_.byId('sub-menu')){
+            displayer.menu();
+        }
         displayer.wish();
 	},
+    menu: function(){
+        var menu = _.byId('action');
+        var sub_menu = _.byId('sub-menu');
+        menu.addEventListener('click',function(e){
+            e.preventDefault();
+            if(sub_menu.getAttribute('class') == 'active'){
+                sub_menu.removeAttribute('class');
+            }
+            else{
+                sub_menu.setAttribute('class','active');
+            }
+        },false);
+    },
 	// Login popup toggle
 	loginPopup : function(){
 
