@@ -13,7 +13,7 @@ var dashboard = require('./ui/dashboard.js');
 document.addEventListener('DOMContentLoaded',function(){
 
 	displayer.init();
-	if(_.byId('sub-menu')){
+	if(_.byId('home')){
 		home.init();
 	}
 	if(_.byId('register-link')){
