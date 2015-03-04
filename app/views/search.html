@@ -81,8 +81,11 @@
 			<?php include('partials/categories.html'); ?> 
 
 			<!-- OVERLAY -->
-			<div style="background-image:url('assets/img/back_<?php echo $search['category'];?>.png')" id='search-landing-category'>
-				
+			<?php if($category_name=='toute les catégories'): ?>
+				<div style="background-image:url('assets/img/back_all.png');background-position:center center;" id='search-landing-category'>
+			<?php else: ?>
+				<div style="background-image:url('assets/img/back_<?php echo $category_name;?>.png');background-position:center center;" id='search-landing-category'>
+			<?php endif; ?>
 				<?php echo $category_name; ?>
 
 			</div>

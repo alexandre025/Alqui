@@ -309,10 +309,10 @@ header#headerSearchScroll{
 			stroke: rgba(227,99,89,1);
 		}
 		.li_8:hover{
-			color: rgba(70,26,60,1);
+			color: #a0609e;
 		}
 		.li_8:hover .icon_8{
-			stroke: rgba(70,26,60,1);
+			stroke: #a0609e;
 		}
 		.li_9:hover{
 			color: rgba(156,198,185,1);
@@ -346,7 +346,9 @@ header#headerSearchScroll{
 	width: calc(100% - 170px);
 	height: 320px;
 
-	background: rgba(210,210,210,1);
+	color: #FFF;
+	text-shadow: 0 1px 1px rgba(0,0,0,.5);
+
 	border-bottom: 1px solid #cccccc;
 
 	text-align: center;
