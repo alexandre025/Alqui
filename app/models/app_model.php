@@ -91,7 +91,7 @@ class app_model {
 		$mark=-1;
 		$timestamp=time();
 		$password=sha1($params['password']);
-		$photo='img/profil_default.png';
+		$photo='assets/img/profil_default.png';
 		$val=array(
 			':email'=>$params['email'],
 			':password'=>$password,
