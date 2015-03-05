@@ -44,6 +44,38 @@ a.wished[data-title]:hover:after, a.not-wished[data-title]:hover:after, a.wish-n
 	background-color: rgba(0,0,0,0.62);
 
 	cursor: pointer;
+
+	form{
+		margin: -100px 0 0 -150px;
+	}
+	h1{
+		margin: 0;
+
+		letter-spacing: 10px;
+		text-align: center;
+		font-weight: 900;
+		font-size: 40px;
+	}
+	h3{
+		margin: 20px 0 0 0;
+
+		text-align: center;
+		font-weight: 300;
+		font-size: 23px;
+		letter-spacing: 2px;
+	}
+	p{
+		text-align: center;
+		font-size: 14px;
+		font-weight: 300;
+	}
+	#email-check,
+	#password-check{
+		width: 100%;
+
+		text-align: center;
+		font-size: 12px;
+	}
 }
 #login-overlay {
 	// display: block;

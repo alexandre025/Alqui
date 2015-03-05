@@ -57,6 +57,11 @@
 						<a href="register" id="register-link"><li>Inscription</li></a>
 						<a href="" id='login-link'><li>Connexion</li></a>
 				      <?php else: ?>
+							<li id='liaddproduct'>
+								<a href="account?view=addoffers">
+									ajouter un produit
+								</a>
+							</li>
 							<a href="#" id='action'>
 								<li><?php echo $SESSION['firstname'].' '.$SESSION['lastname']; ?>
 								</li>
@@ -160,7 +165,9 @@
 							<?php elseif($data['availability']==2): ?>
 								<div class="unreservable" id='i-reserve'>Momentanement indisponible</div>
 							<?php elseif(!isset($SESSION['id'])): ?>
-								<div class="unreservable" id='i-reserve'>Vous devez vous connecter</div>
+								<div class="unreservable" id='i-reserve'>Vous devez vous connecter pour réserver</div>
+							<?php else: ?>
+								<div class="unreservable" id='i-reserve'>Vous ne pouvez pas louer vos propres offres</div>
 							<?php endif; ?>
 						</form>
 						<div id="wishlist">
