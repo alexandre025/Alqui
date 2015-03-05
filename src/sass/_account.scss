@@ -172,9 +172,10 @@
 
 				border: 0 none;
 
-				font-weight: 700;
-				letter-spacing: 1px;
+				font-weight: 500;
+				letter-spacing: 3px;
 				text-align: left;
+				font-size: 12px;
 			}
 		}
 		#notifications,
@@ -465,6 +466,13 @@
 						}
 					}
 				}
+				#no-own-offer{
+					padding: 25px;
+
+					text-align: center;
+
+					border-bottom: 1px solid #cfcfcf;
+				}
 			}
 			#add-offer-container{
 				width: 100%;
@@ -591,11 +599,11 @@
 							text-transform: uppercase;
 							letter-spacing: 1px;
 						}
-						#add-picture-1-fake,
-						#add-picture-2-fake,
+						#add-picture-1-fake:focus,
+						#add-picture-2-fake:focus,
 						#add-picture-3-fake:focus,
-						#add-picture-1-fake,
-						#add-picture-2-fake,
+						#add-picture-1-fake:hover,
+						#add-picture-2-fake:hover,
 						#add-picture-3-fake:hover{
 							opacity: .75;
 						}
@@ -748,6 +756,11 @@
 							border: 0 none;
 							background: none;
 						}
+					}
+					#no-wish{
+						padding: 25px;
+						
+						text-align: center;
 					}
 				}
 			}
