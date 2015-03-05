@@ -32,18 +32,24 @@
 
 			<div id="register-overlay">
 				<form id="register-form" method="POST" action="register/">
+					<h1>ALQUI</h1>
+					<h3>Bienvenue</h3>
+					<p>
+						Veuillez vous identifier pour profiter pleinement d'Alqui !
+					</p>
 					<!-- REGISTER FORM -->
 					<input name="firstname" type="text" placeholder='Prénom' required>
 					<br>
 					<input name="lastname" type="text" placeholder='Nom' required>
 					<br>
 					<input type="email" name="email" id="email-register" placeholder='Votre email' required>
-					<span class="ckeck-form" id="email-check"><?php include('partials/email-check.html'); ?></span>
-					<br>
+					<p class="ckeck-form" id="email-check">
+						<?php include('partials/email-check.html'); ?>
+					</p>
 					<input type="password" name="password" id="password-register" placeholder='Votre mot de passe' required>
 					<br>
 					<input type="password" name="password-conf" id="confirm-register" placeholder='Confirmer votre mot de passe' required>
-					<span class="ckeck-form" id="password-check"></span>
+					<p class="ckeck-form" id="password-check"></p>
 					<input type="submit" value="Inscription" id="submit-register">
 				</form>
 			</div>
