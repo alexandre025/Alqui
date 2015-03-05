@@ -65,7 +65,7 @@ class offer_model {
 		return $this->dB->exec($query);
 	}
 
-	public function getOffer($id_offer){
+	public function getOffer($id_offer,$f3){
 		$query="SELECT 
 			category.name AS category_name,
 			category.id AS category_id,
@@ -84,7 +84,13 @@ class offer_model {
 			WHERE offer.id_category=category.id 
 			AND offer.id_user=user.id
 			AND offer.id='".$id_offer."'";
-		$result=$this->dB->exec($query)[0];
+		$result=$this->dB->exec($query);
+		if(empty($result)){
+			$f3->error(404);
+			exit;
+		}
+		else
+			$resutl=$result[0];
 
 		$query="SELECT
 			comment.content,
