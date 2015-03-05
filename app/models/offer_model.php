@@ -104,7 +104,7 @@ class offer_model {
 			ORDER BY comment.created_at DESC 
 			LIMIT 5
 		";
-		$val=array(':id_to'=>$result['user_id']);
+		$val=array(':id_to'=>$result['id_user']);
 		$result['comments']=$this->dB->exec($query,$val);
 		$result['user_nb_of_comments']=$this->dB->exec("SELECT COUNT(comment.id_to) AS count FROM comment WHERE comment.id_to=:id_to",$val)[0]['count'];
 		return $result;
