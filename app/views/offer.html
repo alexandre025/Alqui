@@ -127,7 +127,7 @@
 							<?php endif; ?>
 							<?php foreach($data['comments'] as $comment):?>
 								<div class="comment">
-									<img src="assets/<?php echo $comment['user_photo'];?>"/>
+									<img src="<?php echo $comment['user_photo'];?>"/>
 									<?php echo $comment['content']; ?>
 								</div>
 								<div class="separator"></div>
