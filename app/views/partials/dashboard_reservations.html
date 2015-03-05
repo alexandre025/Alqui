@@ -68,7 +68,8 @@
 				<?php endforeach; ?>
 			</div>
 		<?php
-			elseif($confirm == 0):
+			endif;
+			if($confirm < count($reservations)):
 		?>
 			<div id="header">
 				En attente de confirmation (<?php echo count($reservations) - $confirm; ?>)
