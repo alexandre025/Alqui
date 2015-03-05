@@ -54,7 +54,7 @@ class offer_controller {
   }
 
   function showOffer($f3,$params){
-    $this->result=$this->model->getOffer($params['offer']);
+    $this->result=$this->model->getOffer($params['offer'],$f3);
     $photos=$this->model->getPhotos($params['offer']);
     $num=1;
     foreach ($photos as $photo => $value) {
