@@ -84,7 +84,7 @@ class offer_model {
 			WHERE offer.id_category=category.id 
 			AND offer.id_user=user.id
 			AND offer.id='".$id_offer."'";
-		$result=$this->dB->exec($query);
+		$result=$this->dB->exec($query)[0];
 
 		$query="SELECT
 			comment.content,
