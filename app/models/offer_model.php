@@ -85,12 +85,6 @@ class offer_model {
 			AND offer.id_user=user.id
 			AND offer.id='".$id_offer."'";
 		$result=$this->dB->exec($query);
-		if(empty($result)){
-			$f3->error(404);
-			exit;
-		}
-		else
-			$resutl=$result[0];
 
 		$query="SELECT
 			comment.content,
@@ -104,7 +98,7 @@ class offer_model {
 			ORDER BY comment.created_at DESC 
 			LIMIT 5
 		";
-		$val=array(':id_to'=>$result['id_user']);
+		$val=array(':id_to'=>$result['user_id']);
 		$result['comments']=$this->dB->exec($query,$val);
 		$result['user_nb_of_comments']=$this->dB->exec("SELECT COUNT(comment.id_to) AS count FROM comment WHERE comment.id_to=:id_to",$val)[0]['count'];
 		return $result;

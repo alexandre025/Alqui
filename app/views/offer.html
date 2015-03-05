@@ -150,7 +150,7 @@
 									<input type="text" name="date_end" class='pickadate' required placeholder='jj/mm/aaaa'>
 								</div>
 							</div>
-							<?php if(isset($SESSION['id'])&&$data['disabled_at']==0&&$data['availability']==1&&$SESSION['id']!=$data['id_user']): ?>
+							<?php if(isset($SESSION['id'])&&$data['disabled_at']==0&&$data['availability']==1&&$SESSION['id']!=$data['user_id']): ?>
 								<button type="submit" id='i-reserve'>je réserve</button>
 							<?php elseif($data['disabled_at']!=0): ?>
 								<div class="unreservable" id='i-reserve'>Ce produit n'est plus disponible</div>
