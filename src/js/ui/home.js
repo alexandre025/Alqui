@@ -2,6 +2,7 @@
 
 var _ = require('../tools.js');
 var countUp = require('../dependencies/countup.js');
+
 // Home specific JS 
 var home = {
 
