@@ -65,7 +65,7 @@ class offer_model {
 		return $this->dB->exec($query);
 	}
 
-	public function getOffer($id_offer){
+	public function getOffer($id_offer,$f3){
 		$query="SELECT 
 			category.name AS category_name,
 			category.id AS category_id,
