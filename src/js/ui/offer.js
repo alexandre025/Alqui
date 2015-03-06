@@ -49,7 +49,82 @@ var offer = {
 				offer.response({success:false});
 			}
 
-			var center =  new google.maps.LatLng(loc.lat,loc.lng);	
+			var center =	new google.maps.LatLng(loc.lat,loc.lng);
+
+			var styles = [
+				{
+					"featureType": "water",
+					"stylers": [
+						{ "color": "#cccccc" },
+						{ "lightness": 3 }
+					]
+				},{
+					"featureType": "poi",
+					"stylers": [
+						{ "visibility": "off" }
+					]
+				},{
+					"featureType": "road.highway",
+					"elementType": "labels",
+					"stylers": [
+						{ "visibility": "off" }
+					]
+				},{
+					"featureType": "road.highway",
+					"stylers": [
+						{ "color": "#0d9c51" }
+					]
+				},{
+					"featureType": "landscape.natural",
+					"stylers": [
+						{ "visibility": "off" },
+						{ "color": "#ffffff" }
+					]
+				},{
+					"featureType": "landscape.natural",
+					"stylers": [
+						{ "visibility": "on" },
+						{ "color": "#cccccc" },
+						{ "lightness": 100 }
+					]
+				},{
+					"featureType": "administrative.neighborhood",
+					"elementType": "labels.text",
+					"stylers": [
+						{ "visibility": "off" }
+					]
+				},{
+					"featureType": "road.arterial",
+					"elementType": "labels",
+					"stylers": [
+						{ "visibility": "off" }
+					]
+				},{
+					"featureType": "road.highway",
+					"elementType": "geometry.fill",
+					"stylers": [
+						{ "visibility": "on" }
+					]
+				},{
+					"featureType": "road.highway.controlled_access",
+					"elementType": "geometry",
+					"stylers": [
+						{ "visibility": "off" }
+					]
+				},{
+					"featureType": "administrative.country",
+					"stylers": [
+						{ "weight": 0.1 },
+						{ "visibility": "simplified" }
+					]
+				},{
+					"featureType": "administrative.locality",
+					"stylers": [
+					{ "visibility": "simplified" }
+					]
+				}
+			];
+
 			var settings = {
 				zoom : 		12,
 				center : 	center,
@@ -57,10 +132,14 @@ var offer = {
 				mapTypeCOntrol: false,
 				streetViewControl: false,
 				panControl: false,
-				scrollwheel: false
+				scrollwheel: false,
+				// disableDefaultUI: true,
+				// mapTypeId: 'Styled' 
 			};
 
-			var map = new google.maps.Map(_.byId('offer-location'),settings);
+			var map = new google.maps.Map(_.byId('offer-location'),settings); 
+			// var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
+			// map.mapTypes.set('Styled', styledMapType);
 		
 			var circleOptions = {
 				strokeColor: 'rgba(24,168,92,1)',
