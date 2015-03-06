@@ -65,6 +65,7 @@
 									<span class="reservation-info">
 										<img class="reservation-photo" src="<?php echo $reservation['user_photo'];?>"/>
 										<span>
+											<? echo $reservation['user_name']." loue cet objet du <strong>".date('d/m/Y',$reservation['date_start'])."</strong> au <strong>".date('d/m/Y',$reservation['date_end'])."</strong>."; ?>
 											<a href="mailto:<?php echo $reservation['user_email']; ?>?subject=<?php echo "[ALQUI] > Offre &#34;".$offer['name']."&#34;";?>">
 												Contacter le loueur
 											</a>
