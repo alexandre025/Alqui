@@ -56,7 +56,8 @@ var offer = {
 				mapTypeId : google.maps.MapTypeId.ROADMAP,
 				mapTypeCOntrol: false,
 				streetViewControl: false,
-				panControl: false
+				panControl: false,
+				scrollwheel: false
 			};
 
 			var map = new google.maps.Map(_.byId('offer-location'),settings);
