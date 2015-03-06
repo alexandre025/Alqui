@@ -53,7 +53,10 @@ var offer = {
 			var settings = {
 				zoom : 		12,
 				center : 	center,
-				mapTypeId : google.maps.MapTypeId.ROADMAP, 
+				mapTypeId : google.maps.MapTypeId.ROADMAP,
+				mapTypeCOntrol: false,
+				streetViewControl: false,
+				panControl: false
 			};
 
 			this.map = new google.maps.Map(_.byId('offer-location'),settings);
