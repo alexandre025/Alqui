@@ -679,14 +679,14 @@
 				}
 				#all_wish{
 					width: 100%;
-					padding: 25px 0 25px 0; 
+					padding: 0 0 25px 0; 
 
 					.wish{
 						display: inline-block;
 						vertical-align: top;
 
 						width: calc((100% - 200px) / 3);
-						margin: 0 0 0 50px;
+						margin: 25px 0 0 50px;
 						
 						div{
 							padding: 0 0 25px 0;
