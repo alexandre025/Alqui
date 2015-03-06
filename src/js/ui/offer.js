@@ -53,13 +53,28 @@ var offer = {
 			var settings = {
 				zoom : 		12,
 				center : 	center,
-				mapTypeId : google.maps.MapTypeId.ROADMAP, 
+				mapTypeId : google.maps.MapTypeId.ROADMAP,
+				mapTypeCOntrol: false,
+				streetViewControl: false,
+				panControl: false,
+				scrollwheel: false
 			};
 
-			this.map = new google.maps.Map(_.byId('offer-location'),settings);
+			var map = new google.maps.Map(_.byId('offer-location'),settings);
 		
-			new google.maps.Marker({position:loc.latLng,map:this.map});
-			this.map.panTo(loc.latLng);
+			var circleOptions = {
+				strokeColor: 'rgba(24,168,92,1)',
+				strokeOpacity: 0.8,
+				strokeWeight: 2,
+				fillColor: 'rgba(24,168,92,1)',
+				fillOpacity: 0.35,
+				map: map,
+				center: loc.latLng,
+				radius: 1500
+			};
+			cityCircle = new google.maps.Circle(circleOptions);
+			// new google.maps.Marker({position:loc.latLng,map:this.map});
+			// this.map.panTo(loc.latLng);
 		});
 	},
 	response: function(obj){
