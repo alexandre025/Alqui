@@ -13,10 +13,19 @@
 					<a href="offer/<?php echo $offer['id']; ?>">
 						<?php echo $offer['name']; ?>
 					</a>
-					<?php if(count($offer['reservations']) == 1): ?>
-						• <?php echo count($offer['reservations']); ?> demande de location
-					<?php elseif(count($offer['reservations']) > 0): ?>
-						• <?php echo count($offer['reservations']); ?> demandes de location
+
+					<?php $counter = 0; ?>
+
+					<?php foreach($offer['reservations'] as $reservation): ?>
+						<?php if($reservation['date_end'] > time()): ?>
+							<?php $counter ++; ?>
+						<?php endif; ?>
+					<?php endforeach; ?>
+
+					<?php if($counter == 1): ?>
+						• <?php echo $counter; ?> demande de location
+					<?php elseif($counter > 0): ?>
+						• <?php echo $counter; ?> demandes de location
 					<?php else: ?>
 						• Aucune demande
 					<?php endif; ?>
@@ -77,7 +86,7 @@
 							<input type="submit" value="Mettre disponible">
 						</form>
 					<?php endif; ?>
-					<?php if(count($offer['reservations']) == 0): ?>
+					<?php if($counter == 0): ?>
 						<form method="POST" action="account/offer/delete/<?php echo $offer['id'];?>">
 							<input value="Supprimer" type="submit">
 						</form>
