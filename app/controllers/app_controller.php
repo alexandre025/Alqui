@@ -106,7 +106,7 @@ class app_controller {
       $this->result=array($f3->get('offers'),$f3->get('reservations'),$f3->get('wishlist'),$f3->get('notifs'),$f3->get('categories'));
       $this->tpl['sync']="account.html";
     }
-
+    // AJOUT DUNE OFFRE
     function offerAdd($f3){
       if($f3->get('VERB')=='POST'){
         $id=$this->model->offerAdd($f3->get('POST'),$f3->get('SESSION.id'));

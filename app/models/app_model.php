@@ -30,6 +30,7 @@ class app_model {
       return $this->getMapper('user')->load(array('email=:email and password=:password',':email'=>$params['email'],':password'=>$params['password']));
     }
 
+    // SELECTION DES ID DES OFFRES WISHED POUR LA SESSION
     public function getWish($id){
     	$query="SELECT id_offer FROM wish WHERE id_user=:id_user";
     	$val=array(':id_user'=>$id);
@@ -40,11 +41,13 @@ class app_model {
     	}
     	return $wishlist;
     }
-    
+
+    // SELECTION DES CATEGORIES
 	public function getCategories(){
 		return $this->dB->exec('SELECT * FROM category');
 	}
 
+	// AJOUT DUNE OFFRE
 	public function offerAdd($params,$id){
 		$query='INSERT INTO offer (name,price_per_day,location,content,id_category,id_user,created_at,availability) VALUES (:name,:price,:location,:content,:id_category,:id_user,:created_at,:availability)';  
 		$timestamp=time();
@@ -67,6 +70,8 @@ class app_model {
 		);
 		return $this->dB->exec($query,$val);
 	}
+
+	// AJOUTER DUNE PHOTO POUR OFFRE
 	public function offerAddPhoto($fileName,$id_offer){
 		$query='INSERT INTO photo (photo_name,id_offer,created_at) VALUES (:photo_name,:id_offer,:created_at)';
 		$timestamp=time();
@@ -82,10 +87,12 @@ class app_model {
 		return $this->dB->log();
 	}
 
+	// CHECK EN DB DE LEMAIL
 	public function checkEmail($params){
 		return $this->getMapper('user')->load(array('email=:email',':email'=>$params['email']));
 	}
 
+	// INSCRIPTION ET LOG
 	public function register($params){
 		$query='INSERT INTO user (email,password,firstname,lastname,photo,mark,created_at) VALUES (:email,:password,:firstname,:lastname,:photo,:mark,:created_at)';  
 		$mark=-1;
@@ -105,6 +112,7 @@ class app_model {
 		return $this->login($params);
 	}
 
+	// MODIF DU PASSWORD
 	public function passwordEdit($params,$id){
 		$query='UPDATE user SET password=:password WHERE id=:id';
 		$password=sha1($params['password']);
@@ -115,6 +123,7 @@ class app_model {
 		$this->dB->exec($query,$val);
 		return;
 	}
+	// MODIF DES INFOS
 	public function infoEdit($params,$id){
 		$query='UPDATE user SET address=:address, postal=:postal, city=:city, country=:country WHERE id=:id';
 		$val=array(
@@ -127,6 +136,7 @@ class app_model {
 		$this->dB->exec($query,$val);
 		return $params;
 	}
+	// MODIF DE LA PHOTO DE PROFIL
 	public function photoEdit($fileName,$id){
 		$query='UPDATE user SET photo=:photo WHERE id=:id';
 		$val=array(
@@ -137,6 +147,7 @@ class app_model {
 		return;
 	}
 
+	// NOS OFFRES ET RESERVATIONS ASSOCIES
 	public function getOwnOffers($id){
 		$query="SELECT 
 			offer.id, 
@@ -184,6 +195,7 @@ class app_model {
 		return $result;
 	}
 
+	// NOS RESERVATIONS
 	public function getOwnReserv($id){
 		$query="SELECT
 			reservation.id AS reservation_id,
@@ -211,6 +223,7 @@ class app_model {
 		return $this->dB->exec($query,$val);
 	}
 
+	// SELECTION DES NOTIFS
 	public function selectNotifications($id_user){
 		$query="SELECT 
 			reservation.id AS reservation_id, 
@@ -254,6 +267,7 @@ class app_model {
 		return $result;
 	}
 
+	// WISHLIST
 	public function getWishlist($id){
 		$query="SELECT
 			wish.id AS wish_id,
@@ -274,35 +288,44 @@ class app_model {
 		return $this->dB->exec($query,$val);
 	}
 
+	// Refuser une demande
 	public function refuseReservation($id_reservation){
 		return $this->dB->exec("UPDATE reservation SET status='2', created_at='".time()."' WHERE id='".$id_reservation."'");	
 	}
 
+	// Accepter une demande
 	public function acceptReservation($id_reservation){
 		return $this->dB->exec("UPDATE reservation SET status='1', created_at='".time()."' WHERE id='".$id_reservation."'");	
 	}
 
+	//Supprimer sa réservation
 	public function deleteReservation($id_reservation){
 		$timestamp=time();
 		return $this->dB->exec("UPDATE reservation SET disabled_at='".$timestamp."' WHERE id='".$id_reservation."'");
 	}
 
+	//Supprimer son offre
 	public function deleteOffer($id_offer){
 		$timestamp=time();
 		return $this->dB->exec("UPDATE offer SET disabled_at='".$timestamp."',availability='2' WHERE id='".$id_offer."'");
 	}
 
+	//Rendre une offre indisponible
 	public function unavailableOffer($id_offer){
 		return $this->dB->exec("UPDATE offer SET availability='2' WHERE id='".$id_offer."'");
 	}
+
+	//Rendre une offre valide
 	public function availableOffer($id_offer){
 		return $this->dB->exec("UPDATE offer SET availability='1' WHERE id='".$id_offer."'");
 	}
 
+	//Supprimer un souhait
 	public function deleteWish($id){
 		return $this->dB->exec("DELETE FROM wish WHERE id='".$id."'");
 	}
 
+	//Ajouter un commentaire et note
 	public function addComment($id,$id_to,$form){
 		$query="INSERT INTO comment (id_from,id_to,content,mark,created_at) VALUES (:id_from,:id_to,:content,:mark,:created_at)";
 		$timestamp=time();
@@ -321,7 +344,7 @@ class app_model {
 			$average=$average+$mark['mark'];
 			$count++;
 		}
-		$average=intval(round($average/$count));
+		$average=intval(round($average/$count)); // Moyenne basé sur toute les notes précédentes
 		$this->dB->exec("UPDATE user SET mark='".$average."' WHERE id='".$id_to."'");
 		$this->dB->exec("UPDATE reservation SET commented='1' WHERE id='".$form['reservation_id']."'");
 	}
