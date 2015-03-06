@@ -86,7 +86,7 @@
 							<input type="submit" value="Mettre disponible">
 						</form>
 					<?php endif; ?>
-					<?php if(count($offer['reservations']) == 0): ?>
+					<?php if($counter == 0): ?>
 						<form method="POST" action="account/offer/delete/<?php echo $offer['id'];?>">
 							<input value="Supprimer" type="submit">
 						</form>
