@@ -14,7 +14,7 @@ class admin_controller {
         'async'=>''
       );
       $this->model=new \APP\MODELS\admin_model();
-    	new \DB\SQL\Session($this->model->dB,'sess_handler',true);
+    	// new \DB\SQL\Session($this->model->dB,'sess_handler',true);
       $pattern=explode('/',$f3->get('PATTERN'));
       $pattern=$pattern[1];
       if($pattern=='admin'&&!$f3->get('SESSION.admin_id')){
@@ -29,14 +29,18 @@ class admin_controller {
     function login($f3){
       if($f3->get('VERB')=='POST'){
         $auth=$this->model->login($f3->get('POST'));
-        if($auth){
+        if(!empty($auth)){
           $auth=$auth[0];
           $admin=array(
             'admin_id'=>$auth['id'],
             'admin_name'=>$auth['login'],
           );
+          print_r($admin);
           $f3->set('SESSION',$admin);
           $f3->reroute('/admin');
+        }
+        else{
+          $this->tpl['sync']='admin_login.html';
         }
       }else{ // GET
         $this->tpl['sync']='admin_login.html';
