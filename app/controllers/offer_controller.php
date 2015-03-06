@@ -40,7 +40,7 @@ class offer_controller {
     }
     $f3->set('search.category',$params['cat']);
     if($params['cat']=='all'){
-      $f3->set('category_name','Toute les catégories');
+      $f3->set('category_name','Toutes les catégories');
     }else{
       $f3->set('category_name',$this->model->getCategoryName($params['cat']));
     }
