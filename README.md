@@ -8,6 +8,17 @@ Run :
  	$ npm install
  	$ gulp
  ```` 
+
+## Technologies used :
+
+- HTML5 / CSS3
+- Object-oriented PHP
+- FatFree Framework
+- Javascript
+- NPM
+- Gulp
+- Browserify
+- Google maps API
  
 ## Preview
 
